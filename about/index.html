@@ -265,7 +265,15 @@
                 
             </div>
 
-          <!-- Sidebar Container -->
+          {% if theme.busuanzi.enabled %} 
+<span id="busuanzi_container_site_{{ theme.busuanzi.method }}"> 
+	Total 
+	<span id="busuanzi_value_site_{{ theme.busuanzi.method }}"></span> 
+	views 
+</span> 
+{% endif %}
+
+<!-- Sidebar Container -->
 <div class="
     col-lg-3 col-lg-offset-0
     col-md-3 col-md-offset-0
@@ -499,6 +507,9 @@
 <!-- Baidu Tongji -->
 
 
+{% if theme.busuanzi.enabled %} 
+<script async src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script > 
+{% endif %}
 
 
 
