@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://jukyellow.github.io/sitemap.xml
