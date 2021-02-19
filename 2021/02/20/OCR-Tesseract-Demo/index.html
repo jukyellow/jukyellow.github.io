@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="yelan`s tech blog">
+    <meta name="keyword"  content="AI, ML, MSA">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          OCR-Tesseract-Demo - 옐란
+        
+    </title>
+
+    <link rel="canonical" href="https://github.com/jukyellow/jukyellow.github.io/2021/02/20/OCR-Tesseract-Demo/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+<link rel="stylesheet" href="/css/beantech.min.css">
+
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/toc.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('possessed-photography-jIBMSMs4_kA-unsplash.jpg')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#OCR" title="OCR">OCR</a>
+                            
+                              <a class="tag" href="/tags/#Tesseract" title="Tesseract">Tesseract</a>
+                            
+                              <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+                            
+                              <a class="tag" href="/tags/#Text추출" title="Text추출">Text추출</a>
+                            
+                        </div>
+                        <h1>OCR-Tesseract-Demo</h1>
+                        <h2 class="subheading">OCR 오픈소스 tesseract(Docker)를 이용한 데모 페이지 개발</h2>
+                        <span class="meta">
+                            Posted by 옐란 on
+                            2021-02-20
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">뜻이 있는 곳에 !!!!! 길이 있다</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About Me</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="실행화면"><a href="#실행화면" class="headerlink" title="실행화면"></a>실행화면</h1><ul>
+<li>초기화면<br><img src="./images/01_%EC%B4%88%EA%B8%B0%ED%99%94%EB%A9%B4.png">  </li>
+<li>Text 추출 결과<br><img src="./images/02_Text%EC%B6%94%EC%B6%9C.png">  </li>
+</ul>
+<h1 id="tesseract-다운로드"><a href="#tesseract-다운로드" class="headerlink" title="tesseract 다운로드"></a>tesseract 다운로드</h1><h2 id="도커-이미지-다운로드"><a href="#도커-이미지-다운로드" class="headerlink" title="도커 이미지 다운로드"></a>도커 이미지 다운로드</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://tesseract-ocr.github.io/">https://tesseract-ocr.github.io/</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://tesseract-ocr.github.io/tessdoc/">https://tesseract-ocr.github.io/tessdoc/</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://tesseract-ocr.github.io/tessdoc/4.0-Docker-Containers.html">https://tesseract-ocr.github.io/tessdoc/4.0-Docker-Containers.html</a>  <blockquote>
+<p>Tesseract 4 OCR Runtime Environment - Docker Container<br>(레파지토리) <a href="https://github.com/tesseract-shadow/tesseract-ocr-re">https://github.com/tesseract-shadow/tesseract-ocr-re</a>  </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="image-다운로드"><a href="#image-다운로드" class="headerlink" title="image 다운로드"></a>image 다운로드</h2><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull tesseractshadow/tesseract<span class="number">4</span>re .</span><br></pre></td></tr></table></figure>
+<h2 id="샘플-테스트-복사-amp-실행"><a href="#샘플-테스트-복사-amp-실행" class="headerlink" title="샘플 테스트 (복사 &amp; 실행)"></a>샘플 테스트 (복사 &amp; 실행)</h2><ul>
+<li>test.sh  </li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker cp .<span class="regexp">/ocr-files/</span>phototest.tif t4re:<span class="regexp">/home/</span>work<span class="regexp">/$TASK_TMP_DIR/</span></span><br><span class="line">docker exec -it t4re <span class="regexp">/bin/</span>bash -c <span class="string">&quot;mkdir -p ./$TASK_TMP_DIR/out/; cd ./$TASK_TMP_DIR/out/; tesseract ../phototest.tif phototest -l eng --psm 1 --oem 3 txt pdf hocr&quot;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="데모-페이지"><a href="#데모-페이지" class="headerlink" title="데모 페이지"></a>데모 페이지</h1><h2 id="pytesseract-설치-및-Flask-웹서버-연동"><a href="#pytesseract-설치-및-Flask-웹서버-연동" class="headerlink" title="pytesseract 설치 및 Flask 웹서버 연동"></a>pytesseract 설치 및 Flask 웹서버 연동</h2><ul>
+<li>출처: <a target="_blank" rel="noopener" href="https://realpython.com/setting-up-a-simple-ocr-server/#web-server-time">https://realpython.com/setting-up-a-simple-ocr-server/#web-server-time</a> </li>
+<li>(source) <a href="https://github.com/ybur-yug/python_ocr_tutorial">https://github.com/ybur-yug/python_ocr_tutorial</a>  <blockquote>
+<p>(tesseract 설치/구동까지는 1번참고, 해당 자료는 tesseract 구레파지토리를 사용하는 옛날버전인듯)<br>pytesseract를 설치하는 부분은 1)번 + 별도 dockerfile로 구성  </p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="도커실행"><a href="#도커실행" class="headerlink" title="도커실행"></a>도커실행</h2><ul>
+<li>5000: ocr tesseract flask port  <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker</span> build -t ocr_tesseract_web .</span><br><span class="line"><span class="attribute">docker</span> run --name ocr_tesseract_web --publish <span class="number">5000</span>:<span class="number">5000</span> -it ocr_tesseract_web</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="dockerfile"><a href="#dockerfile" class="headerlink" title="dockerfile"></a>dockerfile</h2><ul>
+<li>tesseractshadow/tesseract4re + Flask 웹서버 구동을 위해서 일부 오류수정 추가<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># start with a base image</span></span><br><span class="line"><span class="comment"># FROM ubuntu:14.04</span></span><br><span class="line"><span class="keyword">FROM</span> tesseractshadow/tesseract4re</span><br><span class="line"></span><br><span class="line"><span class="comment">## install dependencies</span></span><br><span class="line"><span class="builtin-name">RUN</span> apt-<span class="builtin-name">get</span> update</span><br><span class="line"><span class="builtin-name">RUN</span> apt-<span class="builtin-name">get</span> install -y liblog4cplus-dev</span><br><span class="line"><span class="builtin-name">RUN</span> apt-<span class="builtin-name">get</span> install -y python python-pip</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">RUN</span> ls</span><br><span class="line">WORKDIR /</span><br><span class="line"><span class="builtin-name">RUN</span> ls</span><br><span class="line"><span class="builtin-name">ADD</span> requirements.txt /</span><br><span class="line"><span class="builtin-name">RUN</span> pip install -r requirements.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># pil error : decoder jpeg not available</span></span><br><span class="line"><span class="builtin-name">RUN</span> pip uninstall Pillow -y</span><br><span class="line"><span class="builtin-name">RUN</span> apt-<span class="builtin-name">get</span> install -y libjpeg-dev</span><br><span class="line"><span class="builtin-name">RUN</span> pip install Pillow</span><br><span class="line"></span><br><span class="line"><span class="comment"># update working directories</span></span><br><span class="line"><span class="builtin-name">ADD</span> ./flask_server /flask_server</span><br><span class="line">WORKDIR /flask_server</span><br><span class="line"></span><br><span class="line"><span class="comment">#EXPOSE 5000</span></span><br><span class="line">CMD [<span class="string">&quot;python&quot;</span>, <span class="string">&quot;app.py&quot;</span>]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="Flask-app"><a href="#Flask-app" class="headerlink" title="Flask app"></a>Flask app</h2><ul>
+<li>app.py  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;index.html&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/v&#123;&#125;/ocr&#x27;</span>.<span class="built_in">format</span>(<span class="params">_VERSION</span>), methods=[<span class="string">&quot;POST&quot;</span>]</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ocr</span>():</span></span><br><span class="line">    print(<span class="string">&#x27;--call ocr processing --&#x27;</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> request.files.get(<span class="string">&quot;image&quot;</span>):</span><br><span class="line">            print(<span class="string">&#x27;--read image --&#x27;</span>)</span><br><span class="line">            <span class="comment"># read the image in PIL format</span></span><br><span class="line">            image = request.files[<span class="string">&quot;image&quot;</span>].read()</span><br><span class="line">            image = Image.<span class="built_in">open</span>(io.BytesIO(image))</span><br><span class="line">            print(<span class="string">&#x27;RECV:&#x27;</span>, image.<span class="built_in">format</span>, image.size, image.mode)</span><br><span class="line"></span><br><span class="line">            output = process_image2(image)</span><br><span class="line">            print(<span class="string">&#x27;output:&#x27;</span>, output)</span><br><span class="line">            <span class="keyword">return</span> jsonify(&#123;<span class="string">&quot;output&quot;</span>: output&#125;)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> jsonify(&#123;<span class="string">&quot;error&quot;</span>: <span class="string">&quot;only .jpg files, please&quot;</span>&#125;)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(<span class="string">&#x27;ocr processing exception:&#x27;</span> , e)</span><br><span class="line">        print(traceback.format_exc())</span><br><span class="line">        <span class="keyword">return</span> jsonify(</span><br><span class="line">            &#123;<span class="string">&quot;error&quot;</span>: <span class="built_in">str</span>(e)&#125;</span><br><span class="line">        )</span><br></pre></td></tr></table></figure></li>
+<li>javascript  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;#submit&#x27;</span>).on(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	$(<span class="string">&quot;#results&quot;</span>).hide()</span><br><span class="line">	<span class="keyword">var</span> data = <span class="keyword">new</span> FormData();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(is_mobile)&#123;</span><br><span class="line">		<span class="keyword">var</span> cFile = getCaptureImg();</span><br><span class="line">		data.append(<span class="string">&quot;image&quot;</span>, cFile);</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;			</span><br><span class="line">		<span class="keyword">var</span> file = $(<span class="string">&#x27;#file&#x27;</span>)[<span class="number">0</span>].files[<span class="number">0</span>];</span><br><span class="line">		data.append(<span class="string">&quot;image&quot;</span>, file);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	$.ajax(&#123;</span><br><span class="line">	  type: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">	  url: <span class="string">&quot;/v1/ocr&quot;</span>,</span><br><span class="line">	  enctype: <span class="string">&#x27;multipart/form-data&#x27;</span>,</span><br><span class="line">	  data : data,</span><br><span class="line">	  processData: <span class="literal">false</span>,</span><br><span class="line">	  contentType: <span class="literal">false</span>,</span><br><span class="line">	  cache: <span class="literal">false</span>,</span><br><span class="line">	  timeout: <span class="number">600000</span>,</span><br><span class="line">	  success: <span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(result);</span><br><span class="line">		$(<span class="string">&quot;#post-form&quot;</span>).hide()</span><br><span class="line">		$(<span class="string">&quot;#retry&quot;</span>).show()</span><br><span class="line">		$(<span class="string">&quot;#results&quot;</span>).show()</span><br><span class="line">		$(<span class="string">&quot;#results-data&quot;</span>).html(<span class="string">&quot;&lt;div class=&#x27;well&#x27;&gt;&quot;</span>+result[<span class="string">&quot;output&quot;</span>]+<span class="string">&quot;&lt;/div&gt;&quot;</span>);</span><br><span class="line">	  &#125;,</span><br><span class="line">	  error: <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(error);</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h1><ul>
+<li>전체 source: <a href="https://github.com/jukyellow/artificial-intelligence-study/tree/master/13_ImageProcessing/OCR(Tesseract)/pytessract_dockerfike">https://github.com/jukyellow/artificial-intelligence-study/tree/master/13_ImageProcessing/OCR(Tesseract)/pytessract_dockerfike</a>  </li>
+<li>참고: PC 크롬환경에서 테스트완료, 모바일 환경은 테스트 못함(소스는 모바일(아이폰) 환경도 가능한 모듈로 구성)  </li>
+</ul>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2021/02/19/Face-Check-In/" data-toggle="tooltip" data-placement="top" title="Face Check In 구현">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%EC%8B%A4%ED%96%89%ED%99%94%EB%A9%B4"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">실행화면</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#tesseract-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">tesseract 다운로드</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">도커 이미지 다운로드</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#image-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">image 다운로드</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EC%83%98%ED%94%8C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B3%B5%EC%82%AC-amp-%EC%8B%A4%ED%96%89"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">샘플 테스트 (복사 &amp; 실행)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%EB%8D%B0%EB%AA%A8-%ED%8E%98%EC%9D%B4%EC%A7%80"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">데모 페이지</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#pytesseract-%EC%84%A4%EC%B9%98-%EB%B0%8F-Flask-%EC%9B%B9%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">pytesseract 설치 및 Flask 웹서버 연동</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EB%8F%84%EC%BB%A4%EC%8B%A4%ED%96%89"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">도커실행</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#dockerfile"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">dockerfile</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Flask-app"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">Flask app</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Source"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Source</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#OCR" title="OCR">OCR</a>
+                        
+                          <a class="tag" href="/tags/#Tesseract" title="Tesseract">Tesseract</a>
+                        
+                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+                        
+                          <a class="tag" href="/tags/#Text추출" title="Text추출">Text추출</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "yelran-s-tech-blog";
+    var disqus_identifier = "https://github.com/jukyellow/jukyellow.github.io/2021/02/20/OCR-Tesseract-Demo/";
+    var disqus_url = "https://github.com/jukyellow/jukyellow.github.io/2021/02/20/OCR-Tesseract-Demo/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/jukyellow">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 옐란 2021 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://github.com/jukyellow/jukyellow.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'G-EG1ZFE1SGM';
+    var _gaDomain = '';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://github.com/jukyellow/jukyellow.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
