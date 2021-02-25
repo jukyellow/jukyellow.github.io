@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="https://github.com/jukyellow/jukyellow.github.io/2021/02/25/bug-patch-tuning/">
+    <link rel="canonical" href="https://jukyellow.github.io/2021/02/25/bug-patch-tuning/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -287,12 +287,12 @@
 <li>category.ejs 수정(category 단위의 목록 출력 + 선택한 category는 최상위에 출력 코딩)  </li>
 </ol>
 </li>
-<li>참고: <a href="https://github.com/wzpan/hexo-theme-freemind/blob/master/layout/categories.ejs">https://github.com/wzpan/hexo-theme-freemind/blob/master/layout/categories.ejs</a>  </li>
+<li>참고: <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-theme-freemind/blob/master/layout/categories.ejs">https://github.com/wzpan/hexo-theme-freemind/blob/master/layout/categories.ejs</a>  </li>
 <li>설명: page의 카테고리 id와 site 전체의 카테고리 정보를 비교해서 처리  <blockquote>
 <p>p_category.data[0]._id == item._id  </p>
 </blockquote>
 </li>
-<li>source: <a href="https://github.com/jukyellow/hexo-blog/blob/main/themes/beantech/layout/category.ejs">https://github.com/jukyellow/hexo-blog/blob/main/themes/beantech/layout/category.ejs</a>  </li>
+<li>source: <a target="_blank" rel="noopener" href="https://github.com/jukyellow/hexo-blog/blob/main/themes/beantech/layout/category.ejs">https://github.com/jukyellow/hexo-blog/blob/main/themes/beantech/layout/category.ejs</a>  </li>
 </ul>
 <figure class="highlight bnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">&lt;% if (site.categories.length) &#123; %&gt;</span></span><br><span class="line">	<span class="attribute">&lt;div class=&quot;archive&quot;&gt;</span></span><br><span class="line">		<span class="attribute">&lt;% var p_category = null;</span></span><br><span class="line"><span class="attribute">		page.posts.each(post=&gt;</span>&#123; </span><br><span class="line">			p_category = post.categories;</span><br><span class="line">		&#125;) %&gt;</span><br><span class="line">		</span><br><span class="line">		<span class="attribute">&lt;% site.categories.sort(&#x27;name&#x27;).each(function(item)&#123; %&gt;</span></span><br><span class="line">		<span class="attribute">&lt;% if(p_category.data[0]._id == item._id)&#123; %&gt;</span></span><br><span class="line">			<span class="attribute">&lt;h4 class=&quot;archive-ul show&quot; data-toggle=&quot;collapse&quot; id=&quot;&lt;%= item.name %&gt;</span>&quot; data-target=&quot;#modal-<span class="attribute">&lt;%= item.name %&gt;</span>&quot;&gt; <span class="attribute">&lt;%= item.name %&gt;</span> <span class="attribute">&lt;b class=&quot;caret&quot;&gt;</span><span class="attribute">&lt;/b&gt;</span><span class="attribute">&lt;/h4&gt;</span></span><br><span class="line">		<span class="attribute">&lt;% &#125; %&gt;</span></span><br><span class="line">		<span class="attribute">&lt;ul id=&quot;modal-&lt;%= item.name %&gt;</span>&quot; class=&quot;collapse in&quot;&gt;</span><br><span class="line">			<span class="attribute">&lt;% site.posts.sort(&#x27;date&#x27;, -1).forEach(function(it)&#123; %&gt;</span></span><br><span class="line">				<span class="attribute">&lt;% if (it.categories.length == 1 &amp;&amp; it.categories.data[0]._id == item._id &amp;&amp; p_category.data[0]._id == item._id)&#123; %&gt;</span></span><br><span class="line">				<span class="attribute">&lt;li class=&quot;listing-item&quot;&gt;</span></span><br><span class="line">					<span class="attribute">&lt;%= it.date.format(&#x27;MM-DD&#x27;) %&gt;</span></span><br><span class="line">					<span class="attribute">&lt;i class=&quot;fa fa-angle-double-right&quot; aria-hidden=&quot;true&quot;&gt;</span><span class="attribute">&lt;/i&gt;</span></span><br><span class="line">					<span class="attribute">&lt;a href=&quot;&lt;%= config.root %&gt;</span><span class="attribute">&lt;%= it.path %&gt;</span>&quot; <span class="attribute">&lt;% if (it.description) &#123; %&gt;</span> title=&quot;<span class="attribute">&lt;%= it.description %&gt;</span>&quot; <span class="attribute">&lt;% &#125; %&gt;</span>&gt;<span class="attribute">&lt;%= it.title %&gt;</span><span class="attribute">&lt;/a&gt;</span></span><br><span class="line">				<span class="attribute">&lt;/li&gt;</span></span><br><span class="line">				<span class="attribute">&lt;% &#125; %&gt;</span></span><br><span class="line">			<span class="attribute">&lt;% &#125;); %&gt;</span></span><br><span class="line">	   <span class="attribute">&lt;/ul&gt;</span></span><br><span class="line">	   <span class="attribute">&lt;% &#125;); %&gt;</span></span><br><span class="line">	   <span class="attribute">&lt;hr align=&quot;left&quot; style=&quot;border: solid 1px gray; width: 55%;&quot;&gt;</span></span><br><span class="line">		</span><br><span class="line">		<span class="attribute">&lt;% site.categories.sort(&#x27;name&#x27;).each(function(item)&#123; %&gt;</span></span><br><span class="line">		<span class="attribute">&lt;% if(p_category.data[0]._id != item._id)&#123; %&gt;</span></span><br><span class="line">			<span class="attribute">&lt;h4 class=&quot;archive-ul show&quot; data-toggle=&quot;collapse&quot; id=&quot;&lt;%= item.name %&gt;</span>&quot; data-target=&quot;#modal-<span class="attribute">&lt;%= item.name %&gt;</span>&quot;&gt; <span class="attribute">&lt;%= item.name %&gt;</span> <span class="attribute">&lt;b class=&quot;caret&quot;&gt;</span><span class="attribute">&lt;/b&gt;</span><span class="attribute">&lt;/h4&gt;</span></span><br><span class="line">		<span class="attribute">&lt;% &#125; %&gt;</span></span><br><span class="line">		<span class="attribute">&lt;ul id=&quot;modal-&lt;%= item.name %&gt;</span>&quot; class=&quot;collapse in&quot;&gt;</span><br><span class="line">			<span class="attribute">&lt;% site.posts.sort(&#x27;date&#x27;, -1).forEach(function(it)&#123; %&gt;</span></span><br><span class="line">				<span class="attribute">&lt;% if (it.categories.length == 1 &amp;&amp; it.categories.data[0]._id == item._id &amp;&amp; p_category.data[0]._id != item._id)&#123; %&gt;</span></span><br><span class="line">				<span class="attribute">&lt;li class=&quot;listing-item&quot;&gt;</span></span><br><span class="line">					<span class="attribute">&lt;%= it.date.format(&#x27;MM-DD&#x27;) %&gt;</span></span><br><span class="line">					<span class="attribute">&lt;i class=&quot;fa fa-angle-double-right&quot; aria-hidden=&quot;true&quot;&gt;</span><span class="attribute">&lt;/i&gt;</span></span><br><span class="line">					<span class="attribute">&lt;a href=&quot;&lt;%= config.root %&gt;</span><span class="attribute">&lt;%= it.path %&gt;</span>&quot; <span class="attribute">&lt;% if (it.description) &#123; %&gt;</span> title=&quot;<span class="attribute">&lt;%= it.description %&gt;</span>&quot; <span class="attribute">&lt;% &#125; %&gt;</span>&gt;<span class="attribute">&lt;%= it.title %&gt;</span><span class="attribute">&lt;/a&gt;</span></span><br><span class="line">				<span class="attribute">&lt;/li&gt;</span></span><br><span class="line">				<span class="attribute">&lt;% &#125; %&gt;</span></span><br><span class="line">			<span class="attribute">&lt;% &#125;); %&gt;</span></span><br><span class="line">	   <span class="attribute">&lt;/ul&gt;</span></span><br><span class="line">	   <span class="attribute">&lt;% &#125;); %&gt;</span></span><br><span class="line">	   <span class="attribute">&lt;/ul&gt;</span></span><br><span class="line">	<span class="attribute">&lt;/div&gt;</span></span><br><span class="line"><span class="attribute">&lt;% &#125; %&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -378,8 +378,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "yelran-s-tech-blog";
-    var disqus_identifier = "https://github.com/jukyellow/jukyellow.github.io/2021/02/25/bug-patch-tuning/";
-    var disqus_url = "https://github.com/jukyellow/jukyellow.github.io/2021/02/25/bug-patch-tuning/";
+    var disqus_identifier = "https://jukyellow.github.io/2021/02/25/bug-patch-tuning/";
+    var disqus_url = "https://jukyellow.github.io/2021/02/25/bug-patch-tuning/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -527,7 +527,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("https://github.com/jukyellow/jukyellow.github.io/js/jquery.tagcloud.js",function(){
+        async("https://jukyellow.github.io/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -552,7 +552,7 @@
 <script>
     // dynamic User by Hux
     var _gaId = 'G-EG1ZFE1SGM';
-    var _gaDomain = 'https://jukyellow.github.io/';
+    var _gaDomain = 'https://jukyellow.github.io';
 
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -578,7 +578,7 @@
 	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
     <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
 <!-- Image to hack wechat -->
-<img src="https://github.com/jukyellow/jukyellow.github.io/img/icon_wechat.png" width="0" height="0" />
+<img src="https://jukyellow.github.io/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>
