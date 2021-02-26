@@ -520,10 +520,21 @@ https://hexo.io/ko/docs/   123npm install hexo-cli -g --saven......
                 
             </div>
 
-          <div style="text-align: center;">
+          <!-- COUNTER -->
+<script async src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script >
+
+<div style="text-align: center; font-size:12px;">
+<!--
 <a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank">
   <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg" />
 </a>
+-->
+	<span id="busuanzi_container_site_pv">
+		 조회수 <span id="busuanzi_value_site_pv"></span> views
+	</span>
+	<span id="busuanzi_container_site_uv">
+	   | 방문자수 <span id="busuanzi_value_site_uv"></span> visitors 
+	</span>
 </div>
 
 <!-- Sidebar Container -->
@@ -674,12 +685,9 @@ https://hexo.io/ko/docs/   123npm install hexo-cli -g --saven......
                     </iframe>
 					-->
 					<br>
-					<span id="busuanzi_container_site_pv">
-						 Total <span id="busuanzi_value_site_pv"></span> views
-					</span>
-					<span id="busuanzi_container_site_uv">
-					   | You got <span id="busuanzi_value_site_uv"></span> visitors 
-					</span>
+					<a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank">
+					  <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg" />
+					</a>
                 </p>
             </div>
         </div>
@@ -778,12 +786,6 @@ https://hexo.io/ko/docs/   123npm install hexo-cli -g --saven......
 
 
 <!-- Baidu Tongji -->
-
-
-
-<!-- COUNTER -->
-<script async src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script >
-
 
 
 

@@ -474,12 +474,9 @@
                     </iframe>
 					-->
 					<br>
-					<span id="busuanzi_container_site_pv">
-						 Total <span id="busuanzi_value_site_pv"></span> views
-					</span>
-					<span id="busuanzi_container_site_uv">
-					   | You got <span id="busuanzi_value_site_uv"></span> visitors 
-					</span>
+					<a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank">
+					  <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg" />
+					</a>
                 </p>
             </div>
         </div>
@@ -578,12 +575,6 @@
 
 
 <!-- Baidu Tongji -->
-
-
-
-<!-- COUNTER -->
-<script async src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script >
-
 
 
 
