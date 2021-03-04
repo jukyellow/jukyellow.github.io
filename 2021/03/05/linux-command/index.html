@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="yelan`s tech blog">
+    <meta name="keyword"  content="AI, Data Science, MSA">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Linux-Command - 옐란
+        
+    </title>
+
+    <link rel="canonical" href="https://jukyellow.github.io/2021/03/05/linux-command/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="../../../../css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+<link rel="stylesheet" href="../../../../css/beantech.min.css">
+
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="../../../../css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/widget.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/signature.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/toc.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-EG1ZFE1SGM"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-EG1ZFE1SGM');
+	</script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('tag-bg.png')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#linux" title="linux">linux</a>
+                            
+                              <a class="tag" href="/tags/#unix" title="unix">unix</a>
+                            
+                              <a class="tag" href="/tags/#centos" title="centos">centos</a>
+                            
+                              <a class="tag" href="/tags/#명령어" title="명령어">명령어</a>
+                            
+                              <a class="tag" href="/tags/#OS버전" title="OS버전">OS버전</a>
+                            
+                        </div>
+                        <h1>Linux-Command</h1>
+                        <h2 class="subheading">리눅스 명령어 모음, 리눅스 변천사</h2>
+                        <span class="meta">
+                            Posted by 옐란 on
+                            2021-03-05
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">옐란 기술 블로그</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About Me</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <ul>
+<li>유닉스(솔라리스) OS에서 Java 데몬 서비스를 운영하면서, 주로 사용했던 명령어들을 정리하였다.  </li>
+</ul>
+<h1 id="리눅스-명령어"><a href="#리눅스-명령어" class="headerlink" title="리눅스 명령어"></a>리눅스 명령어</h1><h2 id="OS버전-확인"><a href="#OS버전-확인" class="headerlink" title="OS버전 확인"></a>OS버전 확인</h2><h3 id="솔라리스"><a href="#솔라리스" class="headerlink" title="솔라리스"></a>솔라리스</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 커널 버전확인</span><br><span class="line"><span class="variable">$</span> uname <span class="literal">-a</span> </span><br><span class="line">- 패키지버전 확인</span><br><span class="line"><span class="variable">$</span> <span class="built_in">cat</span> /etc/relese</span><br></pre></td></tr></table></figure>
+<h3 id="우분투"><a href="#우분투" class="headerlink" title="우분투"></a>우분투</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 커널 버전확인</span><br><span class="line"><span class="variable">$</span> uname <span class="literal">-a</span></span><br><span class="line">- 패키지버전 확인</span><br><span class="line"><span class="variable">$</span> <span class="built_in">cat</span> /etc/issue</span><br></pre></td></tr></table></figure>
+<h3 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 패키지 버전확인</span><br><span class="line">$ cat <span class="regexp">/etc/</span>system-release.</span><br></pre></td></tr></table></figure>
+<br>
+
+<hr>
+<h2 id="프로세스-목록"><a href="#프로세스-목록" class="headerlink" title="프로세스 목록"></a>프로세스 목록</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 특정프로세스 확인</span><br><span class="line"><span class="keyword">ps</span> -ef | <span class="keyword">grep</span> 문자열 </span><br></pre></td></tr></table></figure>
+<h2 id="조회-명령어"><a href="#조회-명령어" class="headerlink" title="조회 명령어"></a>조회 명령어</h2><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- 최신 변경 파일순 상세 조회</span><br><span class="line"><span class="symbol">$</span> ls -alrt</span><br><span class="line">- 하위 디렉토리까지 파일수 세기</span><br><span class="line"><span class="symbol">$</span> ls -lR | wc -l </span><br><span class="line">- 파일내 data 조회</span><br><span class="line"><span class="symbol">$</span> grep -l <span class="string">&quot;문자열&quot;</span> *  <span class="comment">// 모든 파일에서 검색, *제일 많이 씀</span></span><br><span class="line"><span class="symbol">$</span> grep 문자열 파일명    <span class="comment">// 특정 파일에서 문자열이 포함된 라인출력</span></span><br><span class="line"><span class="symbol">$</span> grep -c 문자열 파일명 <span class="comment">// 특정 파일에서 문자열이 포함된 라인의 갯수 출력</span></span><br></pre></td></tr></table></figure>
+<h2 id="IP-PORT-체크"><a href="#IP-PORT-체크" class="headerlink" title="IP/PORT 체크"></a>IP/PORT 체크</h2><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span>Listen(점유) port 확인</span><br><span class="line">$ netstat -an | grep 8040</span><br><span class="line"><span class="bullet">- </span>방화벽 오픈여부 확인</span><br><span class="line">$ telnet ip port</span><br><span class="line"><span class="bullet">- </span>도메인의 IP 주소 확인</span><br><span class="line">$ nslookup 도메인명</span><br></pre></td></tr></table></figure>
+<h2 id="스토리지-용량체크"><a href="#스토리지-용량체크" class="headerlink" title="스토리지 용량체크"></a>스토리지 용량체크</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- 디스크 잔여 용량(disk free)</span><br><span class="line">$ df -h  <span class="regexp">//</span> 사용자가 보기 쉬운 단위로&#123;KB, MB, GB&#125; 잔여량 표시, *제일 많이 씀</span><br><span class="line">$ df .   <span class="regexp">//</span> 현재 디렉토리가 포함된 파티션의 남은 공간을 보여준다.</span><br><span class="line">$ df -k  <span class="regexp">//</span> Kilobyte 단위로 현재 마운트된 파티션들의 남은 공간을 보여준다.</span><br><span class="line">$ df -F ufs -o i <span class="regexp">//</span> inode 파일갯수 확인(<span class="number">100</span>%차면 파일쓰기등 안됨)</span><br><span class="line"></span><br><span class="line">-디스크 현재 사용량(disk Usage)</span><br><span class="line">$ du -sh *  <span class="regexp">//</span> 현재 디렉토리 사용용량(하위폴더 포함), *제일 많이 씀</span><br><span class="line">$ du -h     <span class="regexp">//</span> 현재 디렉토리의 사용용량(사용자가 보기쉬운값으로)</span><br><span class="line">$ du -k     <span class="regexp">//</span> Kilobyte 사용용량 표시</span><br><span class="line">$ du -s * | awk <span class="string">&#x27;$1 &gt; 100000&#x27;</span>  <span class="regexp">//</span> 특정용량 이상조회!</span><br><span class="line">&gt; 참고: https:<span class="regexp">//</span>ko.wikipedia.org<span class="regexp">/wiki/</span>Du_(%EC%<span class="number">9</span>C%A0%EB%<span class="number">8</span>B%<span class="number">89</span>%EC%<span class="number">8</span>A%A4)</span><br></pre></td></tr></table></figure>
+<h2 id="압축-해제"><a href="#압축-해제" class="headerlink" title="압축/해제"></a>압축/해제</h2><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span>파일 압축</span><br><span class="line">$ tar -cvf 파일이름  압축할파일 혹은 /디렉토리</span><br><span class="line"><span class="bullet">- </span>파일 해제(압축풀기)</span><br><span class="line">$ tar -xvf 파일이름</span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>jar 파일 리스트 보기</span><br><span class="line">$ jar -tvf jar파일명</span><br><span class="line"><span class="bullet">- </span>jar 파일 압축 풀기</span><br><span class="line">$ jar -xvf jar파일명</span><br></pre></td></tr></table></figure>
+<h2 id="Session-관리"><a href="#Session-관리" class="headerlink" title="Session 관리"></a>Session 관리</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 세션 타임아웃 변경</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$TMOUT</span></span><br><span class="line"><span class="built_in">export</span> TMOUT=18000  <span class="comment"># 5시간</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$TMOUT</span></span><br></pre></td></tr></table></figure>
+<br>
+
+<hr>
+<h1 id="리눅스-변천사"><a href="#리눅스-변천사" class="headerlink" title="리눅스 변천사"></a>리눅스 변천사</h1><ul>
+<li>사용버전은 크게 솔라리스와 레드헷, 개발자들은 우분투를 많이 씀  </li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">                               유닉스(커널)</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">                                                 SunOS(커널)</span></span><br><span class="line"><span class="code">                                                     솔라리스(배포판, 상용)</span></span><br><span class="line"><span class="code">             리눅스(커널)</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">     리눅스(무료)           레드헷 (상용)</span></span><br><span class="line"><span class="code">우분투(무료)       페도라        센토스(무료)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>이미지 출처: <a target="_blank" rel="noopener" href="https://upload.wikimedia.org/wikipedia/commons/b/bc/Unix-like_history.svg">https://upload.wikimedia.org/wikipedia/commons/b/bc/Unix-like_history.svg</a><br><img src="./images/linux_history.jpg"></li>
+</ul>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2021/02/25/bug-patch-tuning/" data-toggle="tooltip" data-placement="top" title="Hexo Bug Patch and Tuning">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%EB%A6%AC%EB%88%85%EC%8A%A4-%EB%AA%85%EB%A0%B9%EC%96%B4"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">리눅스 명령어</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#OS%EB%B2%84%EC%A0%84-%ED%99%95%EC%9D%B8"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">OS버전 확인</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EC%86%94%EB%9D%BC%EB%A6%AC%EC%8A%A4"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">솔라리스</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EC%9A%B0%EB%B6%84%ED%88%AC"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">우분투</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#CentOS"><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text">CentOS</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EB%AA%A9%EB%A1%9D"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">프로세스 목록</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EC%A1%B0%ED%9A%8C-%EB%AA%85%EB%A0%B9%EC%96%B4"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">조회 명령어</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#IP-PORT-%EC%B2%B4%ED%81%AC"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">IP&#x2F;PORT 체크</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EC%9A%A9%EB%9F%89%EC%B2%B4%ED%81%AC"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">스토리지 용량체크</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EC%95%95%EC%B6%95-%ED%95%B4%EC%A0%9C"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">압축&#x2F;해제</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Session-%EA%B4%80%EB%A6%AC"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">Session 관리</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%EB%A6%AC%EB%88%85%EC%8A%A4-%EB%B3%80%EC%B2%9C%EC%82%AC"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">리눅스 변천사</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#linux" title="linux">linux</a>
+                        
+                          <a class="tag" href="/tags/#unix" title="unix">unix</a>
+                        
+                          <a class="tag" href="/tags/#centos" title="centos">centos</a>
+                        
+                          <a class="tag" href="/tags/#명령어" title="명령어">명령어</a>
+                        
+                          <a class="tag" href="/tags/#OS버전" title="OS버전">OS버전</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "yelran-s-tech-blog";
+    var disqus_identifier = "https://jukyellow.github.io/2021/03/05/linux-command/";
+    var disqus_url = "https://jukyellow.github.io/2021/03/05/linux-command/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/jukyellow">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 옐란 2021 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a> 
+                    <!-- | 
+					<iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe>
+					-->
+					<br>
+					<!-- hits -->
+					<a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank">
+					  <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg" />
+					</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="../../../../js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="../../../../js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="../../../../js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://jukyellow.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'G-EG1ZFE1SGM';
+    var _gaDomain = 'https://jukyellow.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T5KTSP5JKB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  var _gaId = 'G-EG1ZFE1SGM';
+  gtag('config', _gaId);
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://jukyellow.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
