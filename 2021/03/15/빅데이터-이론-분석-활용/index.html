@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="yelan`s tech blog">
+    <meta name="keyword"  content="AI, Data Science, MSA">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          빅데이터-이론-분석-활용 - 옐란
+        
+    </title>
+
+    <link rel="canonical" href="https://jukyellow.github.io/2021/03/15/빅데이터-이론-분석-활용/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="../../../../css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+<link rel="stylesheet" href="../../../../css/beantech.min.css">
+
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="../../../../css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/widget.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/signature.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/toc.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-EG1ZFE1SGM"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-EG1ZFE1SGM');
+	</script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/category_img/competition_663.jpg')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#빅데이터" title="빅데이터">빅데이터</a>
+                            
+                              <a class="tag" href="/tags/#Data Analysis" title="Data Analysis">Data Analysis</a>
+                            
+                              <a class="tag" href="/tags/#Data Scientist" title="Data Scientist">Data Scientist</a>
+                            
+                              <a class="tag" href="/tags/#K-MOOC" title="K-MOOC">K-MOOC</a>
+                            
+                              <a class="tag" href="/tags/#강의노트" title="강의노트">강의노트</a>
+                            
+                        </div>
+                        <h1>빅데이터-이론-분석-활용</h1>
+                        <h2 class="subheading">K-MOOC 빅데이터 강의노트</h2>
+                        <span class="meta">
+                            Posted by 옐란 on
+                            2021-03-15
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">옐란 기술 블로그</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About Me</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>[온라인 강좌 강의노트]</p>
+<ul>
+<li>K-MOOC 강좌명: [집콕]빅데이터의 세계, 원리와 응용  </li>
+</ul>
+<h2 id="1주차"><a href="#1주차" class="headerlink" title="1주차"></a>1주차</h2><h3 id="빅데이터란"><a href="#빅데이터란" class="headerlink" title="빅데이터란"></a>빅데이터란</h3><p>-빅데이터 분석: 귀납적(경험-&gt;정보)<br>-비즈니스 인텔리젠스(1990년대말): 데이터-&gt;기업정보활용,  </p>
+<blockquote>
+<dl><dt>데이터웨어하우스/OLAP, 데이터 마이닝<br>-데이터 분석과정</dt><dd>데이터확인&gt;수집&gt;저장(Hadoop,NoSQL)&gt;처리&gt;분석(통계,마이닝)&gt;표현  </dd></dl></blockquote>
+<h3 id="빅데이터-주요특징"><a href="#빅데이터-주요특징" class="headerlink" title="빅데이터 주요특징"></a>빅데이터 주요특징</h3><ul>
+<li>기술적요소/전략적요소/인적요소  </li>
+<li>기술적요소: 데이터(정형/비정형), 수집/처리/저장, 분석/지식추출  </li>
+<li>전략적요소: 디지털 transformation&gt;Data Technology 활용기획&gt;빅데이터 분석 활용기회탐색&gt;활용시나리오 도출  </li>
+<li>인적요소: CDC(Chief Data Officer), Data Scientists, 빅데이터 팀, 교육  </li>
+</ul>
+<h3 id="빅데이터와-인공지능"><a href="#빅데이터와-인공지능" class="headerlink" title="빅데이터와 인공지능"></a>빅데이터와 인공지능</h3><ul>
+<li>귀납(사례,데이터분석)에 의한 지식획득 가능성(빅데이터)-&gt;딥러닝 학습   </li>
+</ul>
+<h3 id="빅데이터가-제공하는-기회"><a href="#빅데이터가-제공하는-기회" class="headerlink" title="빅데이터가 제공하는 기회"></a>빅데이터가 제공하는 기회</h3><ul>
+<li>의사결정의 질 제고, 운영효율 제고, 새로운 가치 창출(BM발굴)   </li>
+</ul>
+<h3 id="데이터-분석과정"><a href="#데이터-분석과정" class="headerlink" title="데이터 분석과정"></a>데이터 분석과정</h3><ul>
+<li>데이터(Source인식) &gt; 수집(ETL,클롤링) &gt; 저장(Hadoop,NoSQL) &gt; 처리 &gt; 분석(통계,마이닝,머신러닝) &gt; 표현(가시화)  </li>
+</ul>
+<hr>
+<h2 id="2주차"><a href="#2주차" class="headerlink" title="2주차"></a>2주차</h2><h3 id="빅데이터-활용의-핵심-성공요인"><a href="#빅데이터-활용의-핵심-성공요인" class="headerlink" title="빅데이터 활용의 핵심 성공요인"></a>빅데이터 활용의 핵심 성공요인</h3><ul>
+<li>분석을 위한 기획능력 필요  </li>
+<li>분석 시나리오 수립이 어려운 이유: 도메인 지식부족, 수집/저장/분석 기술능력 부족, 어떤 결과가 도출가능한지 이해부족  </li>
+<li>기획능력 향상방법: 요소기술 이해, 가치에 대한 인식, 성공사례 분석  </li>
+</ul>
+<h3 id="활용사례-1"><a href="#활용사례-1" class="headerlink" title="활용사례 1"></a>활용사례 1</h3><ul>
+<li>독감예보 서비스(구글 검색어 빅데이터로 예측)  <blockquote>
+<p>어떤 데이터: 검색어 조회수<br>어떻게 분석: 빈도를 계산<br>어떤 가치 제공: 독감 예보  </p>
+</blockquote>
+</li>
+<li>SNS를 활용한 영화 흥행 수익 예측  <blockquote>
+<p>어떤 데이터: SNS상의 비정형 Text 데이터<br>어떻게 분석: 텍스 마이닝(감정분석, 오피니언 분석)<br>어떤 가체 제공: 경영/투자자의 의사결정 자료  </p>
+</blockquote>
+</li>
+<li>빅데이터 분석을 통한 심야버스 노선 정책지원  <blockquote>
+<p>어떤 데이터: 서울시민 전화통화 기록<br>어떻게 분석: 기술통계(평균,표준편차,빈도)<br>어떤 가치: 시민편익, 수익보장  </p>
+</blockquote>
+</li>
+<li>빅데이터 기반 고객의 소리분석 시스템을 통한 서비스 혁신  </li>
+</ul>
+<ul>
+<li>KTNET 음성노취-&gt; 실시간 콜내용(불만사항) 분석 알람/장애/대응 강화<blockquote>
+<p>어떤 데이터: 고객 음성 데이터(STT:speech to text)<br>어떻게 : 텍스트 마이닝<br>어떤 가치: 고객 중심 경영  </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="활용사례-2"><a href="#활용사례-2" class="headerlink" title="활용사례 2"></a>활용사례 2</h3><ul>
+<li>데이터 마이닝을 활용한 신용평가 시스템 구축 (국민은행) </li>
+</ul>
+<ul>
+<li>기업의 재무제표 지표값과 회사의 부도여부 간의 상관성</li>
+<li>부도난 회사의 패턴을 머신러닝으로 모델링(부도패턴 예측) -&gt; 부도예측시스템 구축<br>: KTNET 유통데이터(물류,무역 모두 가능?)로 기업 신용평가 정보 제공  <blockquote>
+<p>어떤 데이터: 기업 데이터(재무, 비재무)<br>어떻게 분석: 통계기법, 인공지능 기법 모형구축<br>어떤 가치 제공: 기업 심사비용 감축, 의사 결정 지원  </p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>빅데이터 분석을 활용한 감사정보 시스템 구축  </li>
+<li>빅데이터 분석을 활용한 탈세 및 범죄 예방시스템 구축  <blockquote>
+<p>어떤 데이터: 납세,SNS데이터<br>어떻게 분석: 데이터 마이닝, 사회연결망 분석<br>어떤 가치 제공: 재정 수입에 기여, 탈세 예방 효과  </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="빅데이터-분석-기획1-2"><a href="#빅데이터-분석-기획1-2" class="headerlink" title="빅데이터 분석 기획1,2"></a>빅데이터 분석 기획1,2</h3><ul>
+<li>문제해결 &gt; 목표와 방법 &gt; 확보계획  </li>
+<li>분석 기획 목적:   <blockquote>
+<p>분석대상 발굴 및 구체화, 확보 역량, 분석역량, 운영관리 체계 정규화, 의사결정문화 정착<br>데이터/분석역량/프로세스/문화/ICT 거버넌스등 전반에 걸친 해결방안 수립  </p>
+</blockquote>
+</li>
+<li>분석 기획의 단계: 분석기회 발굴 =&gt; 분석기회 구체화 =&gt; 마스터 플랜 수립  <blockquote>
+<p>분석 기회 발굴: 문제 정의/필요성/목표 정의<br>분석 기회 구체화: 목표달성 방법 구체화, 수행절차 적용방법/기술 정의<br>마스터 플랜수립: 로드맵/일정계획, 분석 거버넌스 체계 필요  </p>
+</blockquote>
+</li>
+<li>분석 기회발굴: 톱다운(전사비즈모델분석), 바틈업(대상프로세스선정/분석), 벤치마킹  </li>
+<li>분석 기회 구체화: 분석 체계/과정 구체화, 활용시나리오 구체적 정의  <blockquote>
+<p>분석기회 구조화: 묵표가치, 유저스토리 형식 정의, 목표가치 지표화, 분석질문 정의<br>분석방안 구체화: 체계/과정 구체화, 전체분석세트 및 관계도출, 데이터 정의 분석 경제성 평가<br>활용시나리오정의: 프로세스 지능화/변화 발생  </p>
+</blockquote>
+</li>
+<li>마스터 플랜 수립: 전략적 우선순위, 로드맵 수립(우선순위 평가, 분석적용 범위/방식 고려)  <blockquote>
+<p>분석 과제 우선순위 평가: 중요도, 경제성(ROI), 실행용이성 고려<br>단계적 구현 로드맵 수립:<br>일정계획: 세부 일정  </p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="3주차"><a href="#3주차" class="headerlink" title="3주차"></a>3주차</h2><h3 id="분석을-위한-데이터들"><a href="#분석을-위한-데이터들" class="headerlink" title="분석을 위한 데이터들"></a>분석을 위한 데이터들</h3><ul>
+<li>정형 데이터: 고정된 필드에 저장된 데이터, 설계자에 의해 형태가 정해짐  </li>
+<li>비정형 데이터: 문서/그림/영상…  </li>
+<li>분석대상 데이터의 예  <blockquote>
+<p>텍스트분석-&gt;핵심단어, 주요토픽/이슈, 감정(긍정/부정)<br>웹: Html&gt;Tagging&gt;분석<br>SNS: 사용자반응&lt;–게시글 크롤링<br>로그데이터: 방문시간/횟수/접근정보/관심상품…<br>센서데이터/사진(이미지)/동영상  </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="빅데이터의-수집"><a href="#빅데이터의-수집" class="headerlink" title="빅데이터의 수집"></a>빅데이터의 수집</h3><ul>
+<li>데이터수집: 데이터소스 데이터 자동수집, 저장/변환/통합  </li>
+<li>수집과정의 중요성: 정확한 데이터가 필요/분석목적 고려  </li>
+<li>내부데이터/외부데이터  </li>
+<li>수집방법(ETL) : 수집/변환/적재  </li>
+<li>외부 데이터 수집방법: 크롤링(스크래핑)- Textom,  </li>
+</ul>
+<h3 id="데이터-저장-데이터베이스란"><a href="#데이터-저장-데이터베이스란" class="headerlink" title="(데이터 저장) 데이터베이스란"></a>(데이터 저장) 데이터베이스란</h3><h3 id="데이터-저장-데이터모델링이란-E-R모델링"><a href="#데이터-저장-데이터모델링이란-E-R모델링" class="headerlink" title="(데이터 저장) 데이터모델링이란(E-R모델링)"></a>(데이터 저장) 데이터모델링이란(E-R모델링)</h3><h3 id="데이터-분석-데이터-웨어하우스란"><a href="#데이터-분석-데이터-웨어하우스란" class="headerlink" title="(데이터 분석) 데이터 웨어하우스란?"></a>(데이터 분석) 데이터 웨어하우스란?</h3><ul>
+<li>DW: DB(응용프로그램목적), DW(적절한조합-&gt;지식변환 목적-&gt;의사결정지원)  </li>
+<li>DW정의: 주제중심/통합/시간성/비휘발성 자료 집합  </li>
+<li>DW특징: 주제/데이터중심, 비휘발성(읽기중심), 시간성(역사성)  </li>
+<li>데이터 마트(Mart): <blockquote>
+<p>데이터 웨어하우스와 사용자 사이의 중간층에 위치<br>하나의 주제 하나의 부서 중심 DW<br>DW가 도매상이면, DT는 소매상<br>DW-&gt;DT로 데이터 복제  </p>
+</blockquote>
+</li>
+<li>구성  <blockquote>
+<p>운영/보관data -&gt; 자료 추출/변환 -&gt; 메타데이터&lt;-&gt; DW-&gt;DT -&gt; 분석도구/OLAP  </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="OLAP-On-Line-Analytical-Processing"><a href="#OLAP-On-Line-Analytical-Processing" class="headerlink" title="OLAP(On-Line Analytical Processing)"></a>OLAP(On-Line Analytical Processing)</h3><ul>
+<li>다차원 데이터 구조를 이용하여 다차원의 복잡한 질의를 고속으로 처리하는 데이터 분석기술  </li>
+<li>온라인 분석처리의 구성요소 : 드립 다운(Drill down)/드립 업,  </li>
+</ul>
+<h3 id="빅데이터와-비정형-데이터베이스-1"><a href="#빅데이터와-비정형-데이터베이스-1" class="headerlink" title="빅데이터와 비정형 데이터베이스(1)"></a>빅데이터와 비정형 데이터베이스(1)</h3><ul>
+<li>분산시스템 필요, 비정형 데이터베이스(NoSQL, Hadoop)  </li>
+<li>CAP이론(Consistency-일관성, Availability-가용성, Partiton Tolerance-지속성) 불가능   <blockquote>
+<p>CAP중 두개를 선택하고 하나를 포기(RDB-C/A, 비정형-P/A, P/C)  </p>
+</blockquote>
+</li>
+<li>NoSQL(Not-Only SQL or NoSQL)  <blockquote>
+<p>규마 확장성, 분산저장, 대용량 구조/반구조적 저장 용이(MongoDB…)<br>key-val(레디스,캐시..), 컬럼(H베이스..), 도큐먼트(몽고DB..), 그래프(Neo4J..)  </p>
+</blockquote>
+</li>
+<li>NoSQL 특징: 스키마 없음, 저장방식(값,컬럼,문서,그래프), 탄력성, 부하분산용이, 조회용이  </li>
+</ul>
+<h3 id="비정형-데이터베이스-2"><a href="#비정형-데이터베이스-2" class="headerlink" title="비정형 데이터베이스(2)"></a>비정형 데이터베이스(2)</h3><ul>
+<li>하둡(Hadoop)이란? : 대용량 데이터의 분산 저장과 처리가 가능한 자바 기반 오픈소스 프레임워크  <blockquote>
+<p>여러개의 컴퓨터를 묶어서 하나의 시스템으로 처리<br>하둡 파일 시스템(HDFS), 맵리듀스(분산된 서버 자원으로 쉽게 분석)  </p>
+</blockquote>
+</li>
+<li>데이터 &gt; 맵리듀스(분석처리) &gt; HDFS  </li>
+<li>주요특징: 대용량 처리에 적합, 클라우드 환경 적합, 장애의 대비, 저렴한 구축비용 </li>
+<li>구성요소: 파일시스템(HDFS, 64M~128M단위 분산저장/복제/클러스터), 맵리듀스(분산처리계산)  </li>
+</ul>
+<hr>
+<h2 id="4주차"><a href="#4주차" class="headerlink" title="4주차"></a>4주차</h2><h3 id="데이터분석"><a href="#데이터분석" class="headerlink" title="데이터분석"></a>데이터분석</h3><ul>
+<li>데이터 분석 유형  <blockquote>
+<p>Descriptive Analysis: 현재상황 이해/사실 파악<br>Diagnostic Analysis : 현재상황 이해/원인파악<br>Predictive Analysis: 미래, 또는 결과에 대한 예측<br>Prescriptibe Analsis: 해결방안 도축  </p>
+</blockquote>
+</li>
+<li>Descriptive 방식: 데이터 요약/정보생성, 사실이해/현황파악, 의사결정 지원  <blockquote>
+<p>기술통계, 군집화, 연관규칙,  </p>
+</blockquote>
+</li>
+<li>Predictive 방식: 예측모형, 미래/미지의 값 추정  <blockquote>
+<p>예측, 분류, </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Descriptive-Analysis"><a href="#Descriptive-Analysis" class="headerlink" title="Descriptive Analysis"></a>Descriptive Analysis</h3><ul>
+<li>기술통계: 통계기반(평균,최대,최소…) 데이터 속성 요약/파악  </li>
+<li>군집화: 유사속성 묶어, 군집(Cluster)으로 나누는것  </li>
+<li>연관규칙: 데이터에 숨어있는 항목간의 관계를 탐색하는 것, 규칙성 도출    </li>
+</ul>
+<h3 id="Predictive-Analysis"><a href="#Predictive-Analysis" class="headerlink" title="Predictive Analysis"></a>Predictive Analysis</h3><ul>
+<li>예측모형: 과거의 데이터바탕, 관측되지 않은 변수의 미래 값 평가  <blockquote>
+<p>예측, 분류  </p>
+</blockquote>
+</li>
+<li>예측모형의 구축 및 활용  <blockquote>
+<p>Historical Data -&gt; Predictive Alogorithms -&gt; Model  -&gt; New data -&gt; predict  </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="기계학습"><a href="#기계학습" class="headerlink" title="기계학습"></a>기계학습</h3><ul>
+<li>인공지능기법이자 인공지능에 필요한 지식을 찾는 방법론   </li>
+<li>지도학습/비지도학습/강화박습  </li>
+<li>학습용 데이터 구축: 독립변수(t 시점), 종속변수(t+1시점) <blockquote>
+<p>기계학습(가중치 초기화&gt;출력값 계산&gt;목표값의 비교)-&gt;교사학습(가중치조정-&gt;과정반복)  </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="SPSS-Modeler-ver-17"><a href="#SPSS-Modeler-ver-17" class="headerlink" title="SPSS Modeler(ver 17)"></a>SPSS Modeler(ver 17)</h3><ul>
+<li>SPSS: 데이터 마이닝 도구, 대용량 데이터 처리, 결과 예측모형 도출  </li>
+</ul>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2021/03/14/kaggle-notebook-guide/" data-toggle="tooltip" data-placement="top" title="Kaggle-Notebook-Guide">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1%EC%A3%BC%EC%B0%A8"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1주차</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%80"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">빅데이터란</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A3%BC%EC%9A%94%ED%8A%B9%EC%A7%95"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">빅데이터 주요특징</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%99%80-%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">빅데이터와 인공지능</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%EA%B0%80-%EC%A0%9C%EA%B3%B5%ED%95%98%EB%8A%94-%EA%B8%B0%ED%9A%8C"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">빅데이터가 제공하는 기회</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D%EA%B3%BC%EC%A0%95"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">데이터 분석과정</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2%EC%A3%BC%EC%B0%A8"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">2주차</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%99%9C%EC%9A%A9%EC%9D%98-%ED%95%B5%EC%8B%AC-%EC%84%B1%EA%B3%B5%EC%9A%94%EC%9D%B8"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">빅데이터 활용의 핵심 성공요인</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%ED%99%9C%EC%9A%A9%EC%82%AC%EB%A1%80-1"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">활용사례 1</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%ED%99%9C%EC%9A%A9%EC%82%AC%EB%A1%80-2"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">활용사례 2</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D-%EA%B8%B0%ED%9A%8D1-2"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">빅데이터 분석 기획1,2</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3%EC%A3%BC%EC%B0%A8"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">3주차</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%B6%84%EC%84%9D%EC%9D%84-%EC%9C%84%ED%95%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%93%A4"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">분석을 위한 데이터들</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98-%EC%88%98%EC%A7%91"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">빅데이터의 수집</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%80%EC%9E%A5-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4%EB%9E%80"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">(데이터 저장) 데이터베이스란</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%80%EC%9E%A5-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%AA%A8%EB%8D%B8%EB%A7%81%EC%9D%B4%EB%9E%80-E-R%EB%AA%A8%EB%8D%B8%EB%A7%81"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">(데이터 저장) 데이터모델링이란(E-R모델링)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%9B%A8%EC%96%B4%ED%95%98%EC%9A%B0%EC%8A%A4%EB%9E%80"><span class="toc-nav-number">3.5.</span> <span class="toc-nav-text">(데이터 분석) 데이터 웨어하우스란?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#OLAP-On-Line-Analytical-Processing"><span class="toc-nav-number">3.6.</span> <span class="toc-nav-text">OLAP(On-Line Analytical Processing)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%99%80-%EB%B9%84%EC%A0%95%ED%98%95-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-1"><span class="toc-nav-number">3.7.</span> <span class="toc-nav-text">빅데이터와 비정형 데이터베이스(1)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%B9%84%EC%A0%95%ED%98%95-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-2"><span class="toc-nav-number">3.8.</span> <span class="toc-nav-text">비정형 데이터베이스(2)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#4%EC%A3%BC%EC%B0%A8"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">4주차</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">데이터분석</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Descriptive-Analysis"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">Descriptive Analysis</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Predictive-Analysis"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">Predictive Analysis</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">기계학습</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#SPSS-Modeler-ver-17"><span class="toc-nav-number">4.5.</span> <span class="toc-nav-text">SPSS Modeler(ver 17)</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#빅데이터" title="빅데이터">빅데이터</a>
+                        
+                          <a class="tag" href="/tags/#Data Analysis" title="Data Analysis">Data Analysis</a>
+                        
+                          <a class="tag" href="/tags/#Data Scientist" title="Data Scientist">Data Scientist</a>
+                        
+                          <a class="tag" href="/tags/#K-MOOC" title="K-MOOC">K-MOOC</a>
+                        
+                          <a class="tag" href="/tags/#강의노트" title="강의노트">강의노트</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "yelran-s-tech-blog";
+    var disqus_identifier = "https://jukyellow.github.io/2021/03/15/%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%9D%B4%EB%A1%A0-%EB%B6%84%EC%84%9D-%ED%99%9C%EC%9A%A9/";
+    var disqus_url = "https://jukyellow.github.io/2021/03/15/%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%9D%B4%EB%A1%A0-%EB%B6%84%EC%84%9D-%ED%99%9C%EC%9A%A9/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/jukyellow">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 옐란 2021 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a> 
+                    <!-- | 
+					<iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe>
+					-->
+					<br>
+					<!-- hits -->
+					<a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank">
+					  <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg" />
+					</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="../../../../js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="../../../../js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="../../../../js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://jukyellow.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'G-EG1ZFE1SGM';
+    var _gaDomain = 'https://jukyellow.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T5KTSP5JKB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  var _gaId = 'G-EG1ZFE1SGM';
+  gtag('config', _gaId);
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://jukyellow.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
