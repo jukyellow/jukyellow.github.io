@@ -5,10 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="yelan`s tech blog">
-    <meta name="keyword"  content="AI, Data Science, MSA">
+    <meta name="keyword" content="AI, Data Science, MSA">
     <link rel="shortcut icon" href="/img/ironman-draw.png">
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -81,11 +81,14 @@
 
 	  gtag('config', 'G-EG1ZFE1SGM');
 	</script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+	
+	<link rel="canonical" href="https://jukyellow.github.io/2021/03/10/stock-predict-by-cnn-candlechart/">
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="rss2.xml" title="옐란 기술 블로그" type="application/rss+xml">
+</head>
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart>
 	<!-- Modified by Yu-Hsuan Yen -->
 <!-- Post Header -->
 <style type="text/css">
@@ -102,7 +105,7 @@
     
 </style>
 
-<header class="intro-header" >
+<header class="intro-header">
     <!-- Signature -->
     <div id="signature">
         <div class="container">
@@ -274,14 +277,14 @@
 </ul>
 <h1 id="이미지-Candle-chart-저장"><a href="#이미지-Candle-chart-저장" class="headerlink" title="이미지 Candle chart 저장"></a>이미지 Candle chart 저장</h1><ul>
 <li>주식지표를 이미지로 그리는 라이브러리 사용(candlestick2_ochl)  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/matplotlib/mpl-finance">https://github.com/matplotlib/mpl-finance</a> -&gt; (변경됨) <a target="_blank" rel="noopener" href="https://github.com/matplotlib/mplfinance">https://github.com/matplotlib/mplfinance</a>  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(df)-<span class="built_in">int</span>(seq_len)):</span><br><span class="line">	<span class="comment"># ohlc+volume</span></span><br><span class="line">	c = df.iloc[i:i + <span class="built_in">int</span>(seq_len), :] </span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(c) == <span class="built_in">int</span>(seq_len):</span><br><span class="line">		my_dpi = <span class="number">96</span></span><br><span class="line">		fig = plt.figure(figsize=(dimension / my_dpi, dimension / my_dpi), dpi=my_dpi)</span><br><span class="line">		ax1 = fig.add_subplot(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">		candlestick2_ochl(ax1, c[<span class="string">&#x27;Open&#x27;</span>], c[<span class="string">&#x27;Close&#x27;</span>], c[<span class="string">&#x27;High&#x27;</span>],c[<span class="string">&#x27;Low&#x27;</span>],</span><br><span class="line">						  width=<span class="number">1</span>,colorup=<span class="string">&#x27;#77d879&#x27;</span>, colordown=<span class="string">&#x27;#db3f3f&#x27;</span>)</span><br><span class="line">		ax1.grid(<span class="literal">False</span>)</span><br><span class="line">		ax1.set_xticklabels([])</span><br><span class="line">		ax1.set_yticklabels([])</span><br><span class="line">		ax1.xaxis.set_visible(<span class="literal">False</span>)</span><br><span class="line">		ax1.yaxis.set_visible(<span class="literal">False</span>)</span><br><span class="line">		ax1.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line"></span><br><span class="line">		<span class="comment"># create the second axis for the volume bar-plot</span></span><br><span class="line">		<span class="comment"># Add a seconds axis for the volume overlay</span></span><br><span class="line">		<span class="keyword">if</span> use_volume:</span><br><span class="line">			ax2 = ax1.twinx()</span><br><span class="line">			<span class="comment"># Plot the volume overlay</span></span><br><span class="line">			bc = volume_overlay(ax2, c[<span class="string">&#x27;Open&#x27;</span>], c[<span class="string">&#x27;Close&#x27;</span>], c[<span class="string">&#x27;Volume&#x27;</span>],</span><br><span class="line">								colorup=<span class="string">&#x27;#77d879&#x27;</span>, colordown=<span class="string">&#x27;#db3f3f&#x27;</span>, alpha=<span class="number">0.5</span>, width=<span class="number">1</span>)</span><br><span class="line">			ax2.add_collection(bc)</span><br><span class="line">			ax2.grid(<span class="literal">False</span>)</span><br><span class="line">			ax2.set_xticklabels([])</span><br><span class="line">			ax2.set_yticklabels([])</span><br><span class="line">			ax2.xaxis.set_visible(<span class="literal">False</span>)</span><br><span class="line">			ax2.yaxis.set_visible(<span class="literal">False</span>)</span><br><span class="line">			ax2.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">		pngfile = <span class="string">&#x27;dataset/&#123;&#125;_&#123;&#125;/&#123;&#125;/&#123;&#125;/&#123;&#125;-&#123;&#125;.png&#x27;</span>.<span class="built_in">format</span>(</span><br><span class="line">			seq_len, dimension, symbol, dataset_type, symbol+<span class="string">&quot;_&quot;</span>+dataset_type, i)</span><br><span class="line">		fig.savefig(pngfile, pad_inches=<span class="number">0</span>, transparent=<span class="literal">False</span>)</span><br><span class="line">		plt.close(fig)</span><br><span class="line"></span><br><span class="line">		<span class="comment"># Alpha 채널 없애기 위한.</span></span><br><span class="line">		<span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">		img = Image.<span class="built_in">open</span>(pngfile)</span><br><span class="line">		img = img.convert(<span class="string">&#x27;RGB&#x27;</span>)</span><br><span class="line">		img.save(pngfile)</span><br></pre></td></tr></table></figure>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/matplotlib/mpl-finance">https://github.com/matplotlib/mpl-finance</a> -&gt; (변경됨) <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/matplotlib/mplfinance">https://github.com/matplotlib/mplfinance</a>  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(df)-<span class="built_in">int</span>(seq_len)):</span><br><span class="line">	<span class="comment"># ohlc+volume</span></span><br><span class="line">	c = df.iloc[i:i + <span class="built_in">int</span>(seq_len), :] </span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(c) == <span class="built_in">int</span>(seq_len):</span><br><span class="line">		my_dpi = <span class="number">96</span></span><br><span class="line">		fig = plt.figure(figsize=(dimension / my_dpi, dimension / my_dpi), dpi=my_dpi)</span><br><span class="line">		ax1 = fig.add_subplot(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">		candlestick2_ochl(ax1, c[<span class="string">&#x27;Open&#x27;</span>], c[<span class="string">&#x27;Close&#x27;</span>], c[<span class="string">&#x27;High&#x27;</span>],c[<span class="string">&#x27;Low&#x27;</span>],</span><br><span class="line">						  width=<span class="number">1</span>,colorup=<span class="string">&#x27;#77d879&#x27;</span>, colordown=<span class="string">&#x27;#db3f3f&#x27;</span>)</span><br><span class="line">		ax1.grid(<span class="literal">False</span>)</span><br><span class="line">		ax1.set_xticklabels([])</span><br><span class="line">		ax1.set_yticklabels([])</span><br><span class="line">		ax1.xaxis.set_visible(<span class="literal">False</span>)</span><br><span class="line">		ax1.yaxis.set_visible(<span class="literal">False</span>)</span><br><span class="line">		ax1.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line"></span><br><span class="line">		<span class="comment"># create the second axis for the volume bar-plot</span></span><br><span class="line">		<span class="comment"># Add a seconds axis for the volume overlay</span></span><br><span class="line">		<span class="keyword">if</span> use_volume:</span><br><span class="line">			ax2 = ax1.twinx()</span><br><span class="line">			<span class="comment"># Plot the volume overlay</span></span><br><span class="line">			bc = volume_overlay(ax2, c[<span class="string">&#x27;Open&#x27;</span>], c[<span class="string">&#x27;Close&#x27;</span>], c[<span class="string">&#x27;Volume&#x27;</span>],</span><br><span class="line">								colorup=<span class="string">&#x27;#77d879&#x27;</span>, colordown=<span class="string">&#x27;#db3f3f&#x27;</span>, alpha=<span class="number">0.5</span>, width=<span class="number">1</span>)</span><br><span class="line">			ax2.add_collection(bc)</span><br><span class="line">			ax2.grid(<span class="literal">False</span>)</span><br><span class="line">			ax2.set_xticklabels([])</span><br><span class="line">			ax2.set_yticklabels([])</span><br><span class="line">			ax2.xaxis.set_visible(<span class="literal">False</span>)</span><br><span class="line">			ax2.yaxis.set_visible(<span class="literal">False</span>)</span><br><span class="line">			ax2.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">		pngfile = <span class="string">&#x27;dataset/&#123;&#125;_&#123;&#125;/&#123;&#125;/&#123;&#125;/&#123;&#125;-&#123;&#125;.png&#x27;</span>.<span class="built_in">format</span>(</span><br><span class="line">			seq_len, dimension, symbol, dataset_type, symbol+<span class="string">&quot;_&quot;</span>+dataset_type, i)</span><br><span class="line">		fig.savefig(pngfile, pad_inches=<span class="number">0</span>, transparent=<span class="literal">False</span>)</span><br><span class="line">		plt.close(fig)</span><br><span class="line"></span><br><span class="line">		<span class="comment"># Alpha 채널 없애기 위한.</span></span><br><span class="line">		<span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">		img = Image.<span class="built_in">open</span>(pngfile)</span><br><span class="line">		img = img.convert(<span class="string">&#x27;RGB&#x27;</span>)</span><br><span class="line">		img.save(pngfile)</span><br></pre></td></tr></table></figure>
 <img src="./images/candle_chart_data.jpg">  </li>
 </ul>
 <h1 id="이미지-라벨별-폴더이동"><a href="#이미지-라벨별-폴더이동" class="headerlink" title="이미지 라벨별 폴더이동"></a>이미지 라벨별 폴더이동</h1><h2 id="데이터별-폴더-이동"><a href="#데이터별-폴더-이동" class="headerlink" title="데이터별 폴더 이동"></a>데이터별 폴더 이동</h2><ul>
 <li>학습할 이미지를 1, 0 폴더로 이동<br><img src="./images/data_folder.jpg">  </li>
 </ul>
 <h2 id="소스1-주식-데이터-다운로드-생성"><a href="#소스1-주식-데이터-다운로드-생성" class="headerlink" title="소스1(주식 데이터 다운로드 생성)"></a>소스1(주식 데이터 다운로드 생성)</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/jukyellow/machine-learning-finance/blob/main/00_%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/02_%EC%95%8C%EA%B3%A0%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/08_1_1_CNN_Candle_Chart_Pred_ImgGen_20210309.ipynb">https://github.com/jukyellow/machine-learning-finance/blob/main/00_%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/02_%EC%95%8C%EA%B3%A0%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/08_1_1_CNN_Candle_Chart_Pred_ImgGen_20210309.ipynb</a>  </li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/jukyellow/machine-learning-finance/blob/main/00_%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/02_%EC%95%8C%EA%B3%A0%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/08_1_1_CNN_Candle_Chart_Pred_ImgGen_20210309.ipynb">https://github.com/jukyellow/machine-learning-finance/blob/main/00_%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/02_%EC%95%8C%EA%B3%A0%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/08_1_1_CNN_Candle_Chart_Pred_ImgGen_20210309.ipynb</a>  </li>
 </ul>
 <hr>
 <h1 id="CNN-모델설계"><a href="#CNN-모델설계" class="headerlink" title="CNN 모델설계"></a>CNN 모델설계</h1><ul>
@@ -333,7 +336,7 @@
 <li>상승/하락을 예측하기 위해선 여러가지 변수(재무재표,경제지표 등등)가 상식적으로 필요하겠지만, 여기서는 주가데이터(candle chart:open/close 등)만으로 학습하였고, 이에대한 결과이다.<br><img src="./images/accuracy.jpg">  </li>
 </ul>
 <h2 id="소스2-학습-예측-성능평가"><a href="#소스2-학습-예측-성능평가" class="headerlink" title="소스2(학습/예측/성능평가)"></a>소스2(학습/예측/성능평가)</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/jukyellow/machine-learning-finance/blob/main/00_%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/02_%EC%95%8C%EA%B3%A0%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/08_1_2_CNN_Candle_Chart_Pred_Model_Training_20210309.ipynb">https://github.com/jukyellow/machine-learning-finance/blob/main/00_%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/02_%EC%95%8C%EA%B3%A0%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/08_1_2_CNN_Candle_Chart_Pred_Model_Training_20210309.ipynb</a>  </li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/jukyellow/machine-learning-finance/blob/main/00_%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/02_%EC%95%8C%EA%B3%A0%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/08_1_2_CNN_Candle_Chart_Pred_Model_Training_20210309.ipynb">https://github.com/jukyellow/machine-learning-finance/blob/main/00_%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/02_%EC%95%8C%EA%B3%A0%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9/08_1_2_CNN_Candle_Chart_Pred_Model_Training_20210309.ipynb</a>  </li>
 </ul>
 <h1 id="총평"><a href="#총평" class="headerlink" title="총평"></a>총평</h1><ul>
 <li>주가데이터 및 Candle-Chart로 기업 주식의 상승/하락을 예측하는 딥러닝 모델을 구현해 봤다.  </li>
@@ -499,7 +502,7 @@
 
                 
                     <li>
-                        <a target="_blank"  href="https://github.com/jukyellow">
+                        <a target="_blank" href="https://github.com/jukyellow" rel="external nofollow noopener noreferrer">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -514,11 +517,11 @@
                 <p class="copyright text-muted">
                     Copyright &copy; 옐란 2021 
                     <br>
-                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    Theme by <a target="_blank" rel="external nofollow noopener noreferrer" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    re-Ported by <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a> 
+                    re-Ported by <a target="_blank" rel="external nofollow noopener noreferrer" href="http://beantech.org">BeanTech</a> 
                     <!-- | 
 					<iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
@@ -528,8 +531,8 @@
 					-->
 					<br>
 					<!-- hits -->
-					<a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank">
-					  <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg" />
+					<a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank" rel="external nofollow noopener noreferrer">
+					  <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg">
 					</a>
                 </p>
             </div>
@@ -644,11 +647,11 @@
 
 
 
-	<a id="rocket" href="#top" class=""></a>
-	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
-    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+	<a id="rocket" href="#top" class></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async></script>
 <!-- Image to hack wechat -->
-<img src="https://jukyellow.github.io/img/icon_wechat.png" width="0" height="0" />
+<img src="https://jukyellow.github.io/img/icon_wechat.png" width="0" height="0">
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>

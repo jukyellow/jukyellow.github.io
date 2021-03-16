@@ -5,10 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="yelan`s tech blog">
-    <meta name="keyword"  content="AI, Data Science, MSA">
+    <meta name="keyword" content="AI, Data Science, MSA">
     <link rel="shortcut icon" href="/img/ironman-draw.png">
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -81,11 +81,14 @@
 
 	  gtag('config', 'G-EG1ZFE1SGM');
 	</script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+	
+	<link rel="canonical" href="https://jukyellow.github.io/2021/02/23/docker-install-root-dir-modify/">
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="rss2.xml" title="옐란 기술 블로그" type="application/rss+xml">
+</head>
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart>
 	<!-- Modified by Yu-Hsuan Yen -->
 <!-- Post Header -->
 <style type="text/css">
@@ -102,7 +105,7 @@
     
 </style>
 
-<header class="intro-header" >
+<header class="intro-header">
     <!-- Signature -->
     <div id="signature">
         <div class="container">
@@ -264,7 +267,7 @@
 <h2 id="도커-재설치-확인"><a href="#도커-재설치-확인" class="headerlink" title="도커 재설치/확인"></a>도커 재설치/확인</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install </span>-y docker-ce</span><br><span class="line">yum list <span class="keyword">installed </span><span class="title">| grep docker</span></span><br></pre></td></tr></table></figure>
 <h2 id="도커-enable-start"><a href="#도커-enable-start" class="headerlink" title="도커 enable/start"></a>도커 enable/start</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="builtin-name">enable</span> docker.service</span><br><span class="line">systemctl <span class="builtin-name">enable</span> containerd.service</span><br><span class="line">systemctl start docker.service</span><br><span class="line">systemctl status docker.service</span><br><span class="line">service status docker</span><br></pre></td></tr></table></figure>
 <h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
-<li><a target="_blank" rel="noopener" href="http://cloudrain21.com/remove-docker-forcely-and-reinstall">http://cloudrain21.com/remove-docker-forcely-and-reinstall</a>   </li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="http://cloudrain21.com/remove-docker-forcely-and-reinstall">http://cloudrain21.com/remove-docker-forcely-and-reinstall</a>   </li>
 </ul>
 <hr>
 <h1 id="Root-Dir-변경"><a href="#Root-Dir-변경" class="headerlink" title="Root Dir 변경"></a>Root Dir 변경</h1><ul>
@@ -281,11 +284,11 @@
 <h2 id="Root-변경확인"><a href="#Root-변경확인" class="headerlink" title="Root 변경확인"></a>Root 변경확인</h2><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker info | grep <span class="string">&quot;Docker Root Dir&quot;</span></span><br><span class="line">(Docker Root Dir: <span class="regexp">/home/</span><span class="function"><span class="params">docker</span>    =&gt;</span> 변경된 root dir )</span><br><span class="line">docker volume inspect my-vol</span><br></pre></td></tr></table></figure>
 <h2 id="실행권한-추가"><a href="#실행권한-추가" class="headerlink" title="실행권한 추가"></a>실행권한 추가</h2><ul>
 <li>root권한으로 설치된경우, user권한에 실행권한 추가  </li>
-<li>참고: <a target="_blank" rel="noopener" href="https://github.com/occidere/TIL/issues/116">https://github.com/occidere/TIL/issues/116</a>  </li>
+<li>참고: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/occidere/TIL/issues/116">https://github.com/occidere/TIL/issues/116</a>  </li>
 </ul>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod <span class="number">666</span> <span class="regexp">/var/</span>run/docker.sock</span><br></pre></td></tr></table></figure>
 <h2 id="참고-1"><a href="#참고-1" class="headerlink" title="참고"></a>참고</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://fliedcat.tistory.com/113">https://fliedcat.tistory.com/113</a>  </li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://fliedcat.tistory.com/113">https://fliedcat.tistory.com/113</a>  </li>
 </ul>
 <hr>
 
@@ -446,7 +449,7 @@
 
                 
                     <li>
-                        <a target="_blank"  href="https://github.com/jukyellow">
+                        <a target="_blank" href="https://github.com/jukyellow" rel="external nofollow noopener noreferrer">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -461,11 +464,11 @@
                 <p class="copyright text-muted">
                     Copyright &copy; 옐란 2021 
                     <br>
-                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    Theme by <a target="_blank" rel="external nofollow noopener noreferrer" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    re-Ported by <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a> 
+                    re-Ported by <a target="_blank" rel="external nofollow noopener noreferrer" href="http://beantech.org">BeanTech</a> 
                     <!-- | 
 					<iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
@@ -475,8 +478,8 @@
 					-->
 					<br>
 					<!-- hits -->
-					<a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank">
-					  <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg" />
+					<a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank" rel="external nofollow noopener noreferrer">
+					  <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg">
 					</a>
                 </p>
             </div>
@@ -591,11 +594,11 @@
 
 
 
-	<a id="rocket" href="#top" class=""></a>
-	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
-    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+	<a id="rocket" href="#top" class></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async></script>
 <!-- Image to hack wechat -->
-<img src="https://jukyellow.github.io/img/icon_wechat.png" width="0" height="0" />
+<img src="https://jukyellow.github.io/img/icon_wechat.png" width="0" height="0">
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>

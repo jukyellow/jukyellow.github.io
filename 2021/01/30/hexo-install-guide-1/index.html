@@ -5,10 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="yelan`s tech blog">
-    <meta name="keyword"  content="AI, Data Science, MSA">
+    <meta name="keyword" content="AI, Data Science, MSA">
     <link rel="shortcut icon" href="/img/ironman-draw.png">
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -81,11 +81,14 @@
 
 	  gtag('config', 'G-EG1ZFE1SGM');
 	</script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+	
+	<link rel="canonical" href="https://jukyellow.github.io/2021/01/30/hexo-install-guide-1/">
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="rss2.xml" title="옐란 기술 블로그" type="application/rss+xml">
+</head>
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart>
 	<!-- Modified by Yu-Hsuan Yen -->
 <!-- Post Header -->
 <style type="text/css">
@@ -102,7 +105,7 @@
     
 </style>
 
-<header class="intro-header" >
+<header class="intro-header">
     <!-- Signature -->
     <div id="signature">
         <div class="container">
@@ -250,12 +253,12 @@
 <p>git과 npm이 사전에 설치되어 있어야한다.  </p>
 </blockquote>
 <h2 id="2-hexo-기본-가이드-한글로-번역됨"><a href="#2-hexo-기본-가이드-한글로-번역됨" class="headerlink" title="2. hexo (기본 가이드 한글로 번역됨)"></a>2. hexo (기본 가이드 한글로 번역됨)</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://hexo.io/ko/docs/">https://hexo.io/ko/docs/</a>   <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g <span class="comment">--save</span></span><br><span class="line">npm install hexo-<span class="keyword">server</span> <span class="comment">--save</span></span><br><span class="line">npm install hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://hexo.io/ko/docs/">https://hexo.io/ko/docs/</a>   <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g <span class="comment">--save</span></span><br><span class="line">npm install hexo-<span class="keyword">server</span> <span class="comment">--save</span></span><br><span class="line">npm install hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 <h2 id="3-테마-repo-clone"><a href="#3-테마-repo-clone" class="headerlink" title="3. 테마 repo clone"></a>3. 테마 repo clone</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/YenYuHsuan/hexo-theme-beantech">https://github.com/YenYuHsuan/hexo-theme-beantech</a>  </li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/YenYuHsuan/hexo-theme-beantech">https://github.com/YenYuHsuan/hexo-theme-beantech</a>  </li>
 </ul>
 <h2 id="4-경로진입"><a href="#4-경로진입" class="headerlink" title="4. 경로진입"></a>4. 경로진입</h2><blockquote>
 <p>cd hexo-beantech  </p>
@@ -270,7 +273,7 @@
 <li>_config.yml &gt; widgets 부분 category 주석풀기 + post에 작성시 category 추가  </li>
 </ul>
 <h2 id="8-기초세팅"><a href="#8-기초세팅" class="headerlink" title="8. 기초세팅"></a>8. 기초세팅</h2><ul>
-<li>_config.yml 설정(<a target="_blank" rel="noopener" href="https://github.com/YenYuHsuan/hexo-theme-beantech">https://github.com/YenYuHsuan/hexo-theme-beantech</a> 따라하기)  </li>
+<li>_config.yml 설정(<a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/YenYuHsuan/hexo-theme-beantech">https://github.com/YenYuHsuan/hexo-theme-beantech</a> 따라하기)  </li>
 </ul>
 <h2 id="9-post작성-및-배포"><a href="#9-post작성-및-배포" class="headerlink" title="9. post작성 및 배포"></a>9. post작성 및 배포</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> post <span class="string">&quot;&lt;post name&gt;&quot;</span> # you can change post to another layout <span class="keyword">if</span> you want</span><br><span class="line">hexo clean &amp;&amp; hexo <span class="keyword">generate</span> # <span class="keyword">generate</span> the <span class="keyword">static</span> file</span><br><span class="line">hexo server # run hexo in <span class="keyword">local</span> environment</span><br><span class="line">hexo deploy # hexo will push the <span class="keyword">static</span> files automatically into the specific branch(gh-pages) of your repo!</span><br></pre></td></tr></table></figure>
 
@@ -283,7 +286,7 @@
 <h2 id="11-tag-category-입력"><a href="#11-tag-category-입력" class="headerlink" title="11. tag/category 입력"></a>11. tag/category 입력</h2><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">tags:</span></span><br><span class="line">- Hexo</span><br><span class="line">- Blog</span><br><span class="line"># or tags: [&quot;A&quot;, &quot;B&quot;]</span><br><span class="line">catagories:</span><br><span class="line">- Hexo</span><br></pre></td></tr></table></figure>
 
 <h2 id="12-무료-이미지-다운로드"><a href="#12-무료-이미지-다운로드" class="headerlink" title="12. 무료 이미지 다운로드"></a>12. 무료 이미지 다운로드</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.freepik.com/">https://www.freepik.com</a><br><a target="_blank" rel="noopener" href="https://pixabay.com/">https://pixabay.com/</a><br><a target="_blank" rel="noopener" href="https://unsplash.com/">https://unsplash.com/</a><br><br></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.freepik.com/">https://www.freepik.com</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://pixabay.com/">https://pixabay.com/</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://unsplash.com/">https://unsplash.com/</a><br><br></p>
 </blockquote>
 
                 
@@ -439,7 +442,7 @@
 
                 
                     <li>
-                        <a target="_blank"  href="https://github.com/jukyellow">
+                        <a target="_blank" href="https://github.com/jukyellow" rel="external nofollow noopener noreferrer">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -454,11 +457,11 @@
                 <p class="copyright text-muted">
                     Copyright &copy; 옐란 2021 
                     <br>
-                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    Theme by <a target="_blank" rel="external nofollow noopener noreferrer" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    re-Ported by <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a> 
+                    re-Ported by <a target="_blank" rel="external nofollow noopener noreferrer" href="http://beantech.org">BeanTech</a> 
                     <!-- | 
 					<iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
@@ -468,8 +471,8 @@
 					-->
 					<br>
 					<!-- hits -->
-					<a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank">
-					  <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg" />
+					<a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank" rel="external nofollow noopener noreferrer">
+					  <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg">
 					</a>
                 </p>
             </div>
@@ -584,11 +587,11 @@
 
 
 
-	<a id="rocket" href="#top" class=""></a>
-	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
-    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+	<a id="rocket" href="#top" class></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async></script>
 <!-- Image to hack wechat -->
-<img src="https://jukyellow.github.io/img/icon_wechat.png" width="0" height="0" />
+<img src="https://jukyellow.github.io/img/icon_wechat.png" width="0" height="0">
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>

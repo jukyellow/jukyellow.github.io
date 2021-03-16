@@ -5,10 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="yelan`s tech blog">
-    <meta name="keyword"  content="AI, Data Science, MSA">
+    <meta name="keyword" content="AI, Data Science, MSA">
     <link rel="shortcut icon" href="/img/ironman-draw.png">
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -81,11 +81,14 @@
 
 	  gtag('config', 'G-EG1ZFE1SGM');
 	</script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+	
+	<link rel="canonical" href="https://jukyellow.github.io/2021/02/20/ocr-tesseract-demo/">
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="rss2.xml" title="옐란 기술 블로그" type="application/rss+xml">
+</head>
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart>
 	<!-- Modified by Yu-Hsuan Yen -->
 <!-- Post Header -->
 <style type="text/css">
@@ -102,7 +105,7 @@
     
 </style>
 
-<header class="intro-header" >
+<header class="intro-header">
     <!-- Signature -->
     <div id="signature">
         <div class="container">
@@ -257,10 +260,10 @@
 <li>Text 추출 결과<br><img src="./images/02_Text%EC%B6%94%EC%B6%9C.png">  </li>
 </ul>
 <h1 id="tesseract-다운로드"><a href="#tesseract-다운로드" class="headerlink" title="tesseract 다운로드"></a>tesseract 다운로드</h1><h2 id="도커-이미지-다운로드"><a href="#도커-이미지-다운로드" class="headerlink" title="도커 이미지 다운로드"></a>도커 이미지 다운로드</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://tesseract-ocr.github.io/">https://tesseract-ocr.github.io/</a>  </li>
-<li><a target="_blank" rel="noopener" href="https://tesseract-ocr.github.io/tessdoc/">https://tesseract-ocr.github.io/tessdoc/</a>  </li>
-<li><a target="_blank" rel="noopener" href="https://tesseract-ocr.github.io/tessdoc/4.0-Docker-Containers.html">https://tesseract-ocr.github.io/tessdoc/4.0-Docker-Containers.html</a>  <blockquote>
-<p>Tesseract 4 OCR Runtime Environment - Docker Container<br>(레파지토리) <a target="_blank" rel="noopener" href="https://github.com/tesseract-shadow/tesseract-ocr-re">https://github.com/tesseract-shadow/tesseract-ocr-re</a>  </p>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://tesseract-ocr.github.io/">https://tesseract-ocr.github.io/</a>  </li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://tesseract-ocr.github.io/tessdoc/">https://tesseract-ocr.github.io/tessdoc/</a>  </li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://tesseract-ocr.github.io/tessdoc/4.0-Docker-Containers.html">https://tesseract-ocr.github.io/tessdoc/4.0-Docker-Containers.html</a>  <blockquote>
+<p>Tesseract 4 OCR Runtime Environment - Docker Container<br>(레파지토리) <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/tesseract-shadow/tesseract-ocr-re">https://github.com/tesseract-shadow/tesseract-ocr-re</a>  </p>
 </blockquote>
 </li>
 </ul>
@@ -271,8 +274,8 @@
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker cp .<span class="regexp">/ocr-files/</span>phototest.tif t4re:<span class="regexp">/home/</span>work<span class="regexp">/$TASK_TMP_DIR/</span></span><br><span class="line">docker exec -it t4re <span class="regexp">/bin/</span>bash -c <span class="string">&quot;mkdir -p ./$TASK_TMP_DIR/out/; cd ./$TASK_TMP_DIR/out/; tesseract ../phototest.tif phototest -l eng --psm 1 --oem 3 txt pdf hocr&quot;</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h1 id="데모-페이지"><a href="#데모-페이지" class="headerlink" title="데모 페이지"></a>데모 페이지</h1><h2 id="pytesseract-설치-및-Flask-웹서버-연동"><a href="#pytesseract-설치-및-Flask-웹서버-연동" class="headerlink" title="pytesseract 설치 및 Flask 웹서버 연동"></a>pytesseract 설치 및 Flask 웹서버 연동</h2><ul>
-<li>출처: <a target="_blank" rel="noopener" href="https://realpython.com/setting-up-a-simple-ocr-server/#web-server-time">https://realpython.com/setting-up-a-simple-ocr-server/#web-server-time</a> </li>
-<li>(source) <a target="_blank" rel="noopener" href="https://github.com/ybur-yug/python_ocr_tutorial">https://github.com/ybur-yug/python_ocr_tutorial</a>  <blockquote>
+<li>출처: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://realpython.com/setting-up-a-simple-ocr-server/#web-server-time">https://realpython.com/setting-up-a-simple-ocr-server/#web-server-time</a> </li>
+<li>(source) <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/ybur-yug/python_ocr_tutorial">https://github.com/ybur-yug/python_ocr_tutorial</a>  <blockquote>
 <p>(tesseract 설치/구동까지는 1번참고, 해당 자료는 tesseract 구레파지토리를 사용하는 옛날버전인듯)<br>pytesseract를 설치하는 부분은 1)번 + 별도 dockerfile로 구성  </p>
 </blockquote>
 </li>
@@ -295,7 +298,7 @@
 </ul>
 <hr>
 <h1 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h1><ul>
-<li>전체 source: <a target="_blank" rel="noopener" href="https://github.com/jukyellow/artificial-intelligence-study/tree/master/13_ImageProcessing/OCR(Tesseract)/pytessract_dockerfike">https://github.com/jukyellow/artificial-intelligence-study/tree/master/13_ImageProcessing/OCR(Tesseract)/pytessract_dockerfike</a>  </li>
+<li>전체 source: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/jukyellow/artificial-intelligence-study/tree/master/13_ImageProcessing/OCR(Tesseract)/pytessract_dockerfike">https://github.com/jukyellow/artificial-intelligence-study/tree/master/13_ImageProcessing/OCR(Tesseract)/pytessract_dockerfike</a>  </li>
 <li>참고: PC 크롬환경에서 테스트완료, 모바일 환경은 테스트 못함(소스는 모바일(아이폰) 환경도 가능한 모듈로 구성)  </li>
 </ul>
 
@@ -454,7 +457,7 @@
 
                 
                     <li>
-                        <a target="_blank"  href="https://github.com/jukyellow">
+                        <a target="_blank" href="https://github.com/jukyellow" rel="external nofollow noopener noreferrer">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -469,11 +472,11 @@
                 <p class="copyright text-muted">
                     Copyright &copy; 옐란 2021 
                     <br>
-                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    Theme by <a target="_blank" rel="external nofollow noopener noreferrer" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    re-Ported by <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a> 
+                    re-Ported by <a target="_blank" rel="external nofollow noopener noreferrer" href="http://beantech.org">BeanTech</a> 
                     <!-- | 
 					<iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
@@ -483,8 +486,8 @@
 					-->
 					<br>
 					<!-- hits -->
-					<a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank">
-					  <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg" />
+					<a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank" rel="external nofollow noopener noreferrer">
+					  <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg">
 					</a>
                 </p>
             </div>
@@ -599,11 +602,11 @@
 
 
 
-	<a id="rocket" href="#top" class=""></a>
-	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
-    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+	<a id="rocket" href="#top" class></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async></script>
 <!-- Image to hack wechat -->
-<img src="https://jukyellow.github.io/img/icon_wechat.png" width="0" height="0" />
+<img src="https://jukyellow.github.io/img/icon_wechat.png" width="0" height="0">
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>
