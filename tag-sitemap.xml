@@ -3,6 +3,41 @@
 
 
     <url>
+        <loc>https://jukyellow.github.io/tags/seo/</loc>
+        <lastmod>2021-03-16T21:31:03.901Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/search-engine-optimization/</loc>
+        <lastmod>2021-03-16T21:31:03.901Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/hexo/</loc>
+        <lastmod>2021-03-16T21:31:03.901Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/category-ejs/</loc>
+        <lastmod>2021-03-16T21:24:01.524Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/hexo-bug-patch/</loc>
+        <lastmod>2021-03-16T21:24:01.524Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://jukyellow.github.io/tags/slide/</loc>
         <lastmod>2021-03-16T20:33:03.552Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -143,20 +178,6 @@
     </url>
 
     <url>
-        <loc>https://jukyellow.github.io/tags/category-ejs/</loc>
-        <lastmod>2021-03-13T14:49:39.503Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/tags/hexo/</loc>
-        <lastmod>2021-03-13T14:49:39.503Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://jukyellow.github.io/tags/msa/</loc>
         <lastmod>2021-03-12T21:58:27.290Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -201,13 +222,6 @@
     <url>
         <loc>https://jukyellow.github.io/tags/hexo-blog/</loc>
         <lastmod>2021-03-12T21:48:06.523Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/tags/hexo-bug-patch/</loc>
-        <lastmod>2021-03-12T21:48:02.266Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

@@ -9,6 +9,22 @@
 
 
     <url>
+        <loc>https://jukyellow.github.io/2021/03/17/hexo-search-engine-optimization/</loc>
+        <lastmod>2021-03-16T21:31:03.901Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/2021/02/25/bug-patch-tuning/</loc>
+        <lastmod>2021-03-16T21:24:01.524Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://jukyellow.github.io/2021/01/31/marp-guide/</loc>
         <lastmod>2021-03-16T20:33:03.552Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -59,14 +75,6 @@
     <url>
         <loc>https://jukyellow.github.io/2021/01/30/hexo-install-guide-1/</loc>
         <lastmod>2021-03-12T21:48:06.523Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/2021/02/25/bug-patch-tuning/</loc>
-        <lastmod>2021-03-12T21:48:02.266Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
