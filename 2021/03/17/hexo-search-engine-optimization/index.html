@@ -15,7 +15,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Hexo-Search-Engine-Optimization - 옐란
+          헥소 검색 엔진 최적화 - 옐란
         
     </title>
 
@@ -123,9 +123,15 @@
                             
                               <a class="tag" href="/tags/#SEO" title="SEO">SEO</a>
                             
+                              <a class="tag" href="/tags/#검색엔진노출" title="검색엔진노출">검색엔진노출</a>
+                            
+                              <a class="tag" href="/tags/#robots.txt" title="robots.txt">robots.txt</a>
+                            
+                              <a class="tag" href="/tags/#sitemap.xml" title="sitemap.xml">sitemap.xml</a>
+                            
                         </div>
-                        <h1>Hexo-Search-Engine-Optimization</h1>
-                        <h2 class="subheading">헥소 검색 엔진 최적화(SEO)</h2>
+                        <h1>헥소 검색 엔진 최적화</h1>
+                        <h2 class="subheading">sitemap, robots.txt 생성 및 웹마스터 등록</h2>
                         <span class="meta">
                             Posted by 옐란 on
                             2021-03-17
@@ -255,6 +261,7 @@
 <li>참고: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://youngjunsung.github.io/2019/12/06/hexo-blog-SEO/">https://youngjunsung.github.io/2019/12/06/hexo-blog-SEO/</a>  </li>
 </ul>
 <h2 id="플러그인-설치-목록"><a href="#플러그인-설치-목록" class="headerlink" title="플러그인 설치 목록"></a>플러그인 설치 목록</h2><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install <span class="comment">--save hexo-auto-canonical</span></span><br><span class="line">npm install <span class="comment">--save hexo-autonofollow</span></span><br><span class="line">npm install <span class="comment">--save hexo-generator-feed</span></span><br><span class="line">npm install <span class="comment">--save hexo-generator-seo-friendly-sitemap</span></span><br><span class="line">npm install <span class="comment">--save hexo-generator-robotstxt</span></span><br></pre></td></tr></table></figure>
+<h2 id="config-xml"><a href="#config-xml" class="headerlink" title="_config.xml"></a>_config.xml</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">nofollow:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">exclude:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">exclude1.com</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">exclude2.com</span></span><br><span class="line"><span class="attr">feed:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">rss2</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">rss2.xml</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">sitemap:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">sitemap.xml</span></span><br><span class="line">  <span class="attr">tag:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">category:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">robotstxt:</span></span><br><span class="line">  <span class="attr">useragent:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">  <span class="attr">allow:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/</span></span><br><span class="line">  <span class="attr">sitemap:</span> <span class="string">https://jukyellow.github.io/sitemap.xml</span></span><br></pre></td></tr></table></figure>
 <h2 id="tag-삽입"><a href="#tag-삽입" class="headerlink" title="tag 삽입"></a>tag 삽입</h2><ul>
 <li>head.ejs 파일의 head 태그 안에 삽입      </li>
 </ul>
@@ -309,7 +316,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8-%EC%84%A4%EC%B9%98-%EB%AA%A9%EB%A1%9D"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">플러그인 설치 목록</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#tag-%EC%82%BD%EC%9E%85"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">tag 삽입</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EA%B5%AC%EA%B8%80-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%93%B1%EB%A1%9D"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">구글&#x2F;네이버 웹마스터 등록</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EA%B5%AC%EA%B8%80-search-console"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">구글 search console</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%84%A4%EC%9D%B4%EB%B2%84"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">네이버</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EA%B5%AC%EA%B8%80-%EC%95%A0%EB%84%90%EB%A6%AC%EC%8A%A4%ED%8B%B1"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">구글 애널리스틱</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8-%EC%84%A4%EC%B9%98-%EB%AA%A9%EB%A1%9D"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">플러그인 설치 목록</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#config-xml"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">_config.xml</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#tag-%EC%82%BD%EC%9E%85"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">tag 삽입</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EA%B5%AC%EA%B8%80-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%93%B1%EB%A1%9D"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">구글&#x2F;네이버 웹마스터 등록</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EA%B5%AC%EA%B8%80-search-console"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">구글 search console</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%84%A4%EC%9D%B4%EB%B2%84"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">네이버</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EA%B5%AC%EA%B8%80-%EC%95%A0%EB%84%90%EB%A6%AC%EC%8A%A4%ED%8B%B1"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">구글 애널리스틱</span></a></li></ol>
         
         </div>
       </aside>
@@ -334,6 +341,12 @@
                           <a class="tag" href="/tags/#search engine optimization" title="search engine optimization">search engine optimization</a>
                         
                           <a class="tag" href="/tags/#SEO" title="SEO">SEO</a>
+                        
+                          <a class="tag" href="/tags/#검색엔진노출" title="검색엔진노출">검색엔진노출</a>
+                        
+                          <a class="tag" href="/tags/#robots.txt" title="robots.txt">robots.txt</a>
+                        
+                          <a class="tag" href="/tags/#sitemap.xml" title="sitemap.xml">sitemap.xml</a>
                         
                     </div>
                 </section>
