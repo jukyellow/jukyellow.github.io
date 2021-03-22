@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+	<meta name="naver-site-verification" content="357b4759c0e0b85f2d702c6bdd4f59bd590ca1d5">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="yelan&#39;s tech blog">
+    <meta name="keyword" content="AI, Data Scientist, MSA">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          구글 Colab Jupyter Notebook 사용 팁 - 옐란
+        
+    </title>
+
+    <link rel="canonical" href="https://jukyellow.github.io/2021/03/23/google-colab-tip/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="../../../../css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+<link rel="stylesheet" href="../../../../css/beantech.min.css">
+
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="../../../../css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/widget.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/signature.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/toc.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-EG1ZFE1SGM"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-EG1ZFE1SGM');
+	</script>
+	
+	<link rel="canonical" href="https://jukyellow.github.io/2021/03/23/google-colab-tip/">
+	<script data-ad-client="ca-pub-3777597204408341" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="rss2.xml" title="옐란 기술 블로그" type="application/rss+xml">
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart>
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/category_img/note.jpg')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/');
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Colaboratory" title="Colaboratory">Colaboratory</a>
+                            
+                              <a class="tag" href="/tags/#google colab" title="google colab">google colab</a>
+                            
+                              <a class="tag" href="/tags/#google drive" title="google drive">google drive</a>
+                            
+                              <a class="tag" href="/tags/#Jupter notebook" title="Jupter notebook">Jupter notebook</a>
+                            
+                              <a class="tag" href="/tags/#drive file download" title="drive file download">drive file download</a>
+                            
+                        </div>
+                        <h1>구글 Colab Jupyter Notebook 사용 팁</h1>
+                        <h2 class="subheading">Google Drive 연동 및 각종 사용 꿀팁 정리</h2>
+                        <span class="meta">
+                            Posted by 옐란 on
+                            2021-03-23
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">옐란 기술 블로그</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About Me</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <ul>
+<li>keras framework로 2년간 google colab과 google drive를 이용해 작업시 사용하던 내용을 정리해본다.  </li>
+</ul>
+<h1 id="목차"><a href="#목차" class="headerlink" title="목차"></a>목차</h1><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> Google Drive file download-upload</span><br><span class="line"><span class="bullet">2.</span> Colab file upload/download</span><br><span class="line"><span class="bullet">3.</span> Colab tensorflow/keras downgrade</span><br><span class="line"><span class="bullet">4.</span> Colab file handling</span><br><span class="line"><span class="bullet">5.</span> Colab utility install</span><br><span class="line"><span class="bullet">6.</span> Colab github 프로젝트 연동</span><br><span class="line"><span class="bullet">7.</span> Colab upload 오류 대처</span><br></pre></td></tr></table></figure>
+<h1 id="Google-drive-file-download-upload"><a href="#Google-drive-file-download-upload" class="headerlink" title="Google drive file download-upload"></a>Google drive file download-upload</h1><h2 id="file-download"><a href="#file-download" class="headerlink" title="file download"></a>file download</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#구글 드라이브에서 다운로드</span></span><br><span class="line"><span class="keyword">from</span> google.colab <span class="keyword">import</span> auth</span><br><span class="line">auth.authenticate_user()</span><br><span class="line"><span class="keyword">from</span> googleapiclient.discovery <span class="keyword">import</span> build</span><br><span class="line">drive_service = build(<span class="string">&#x27;drive&#x27;</span>, <span class="string">&#x27;v3&#x27;</span>)</span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> BytesIO </span><br><span class="line"><span class="keyword">from</span> googleapiclient.http <span class="keyword">import</span> MediaIoBaseDownload</span><br><span class="line"></span><br><span class="line">TEMP_PATH = <span class="string">&#x27;/tmp/&#x27;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcp_download</span>(<span class="params">file_name, key</span>):</span></span><br><span class="line">    <span class="comment">#3. 모델 다운로드</span></span><br><span class="line">    <span class="comment">#https://drive.google.com/open?id=1TlvbayGRCjAI6bOZrUYMmv6g6b95rnRM</span></span><br><span class="line">    request = drive_service.files().get_media(fileId=key)</span><br><span class="line"></span><br><span class="line">    downloaded = io.BytesIO()</span><br><span class="line">    downloader = MediaIoBaseDownload(downloaded, request)</span><br><span class="line">    done = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">while</span> done <span class="keyword">is</span> <span class="literal">False</span>:</span><br><span class="line">      status, done = downloader.next_chunk()</span><br><span class="line">      <span class="keyword">if</span> status:</span><br><span class="line">          print(<span class="string">&quot;Download %%%d%%.&quot;</span> % <span class="built_in">int</span>(status.progress() * <span class="number">100</span>))</span><br><span class="line">      print(<span class="string">&quot;Download Complete!&quot;</span>)</span><br><span class="line">    downloaded.seek(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(TEMP_PATH + file_name, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(downloaded.read())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 사용법 : 다운로드시 사용할 파일명, 파일key 정보만 있으면 됨!</span></span><br><span class="line">down_file_name = <span class="string">&#x27;201912_purcon_gd.csv&#x27;</span></span><br><span class="line">gcp_download(down_file_name, <span class="string">&#x27;1q-E4K439JJBV2HnqgbibHMhmNOAHO11v&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#pickle 파일 다운로드 및 로딩</span></span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line">gd_tokenizer_name = <span class="string">&#x27;gd_tokenizer_350K4_ALL.pickle&#x27;</span></span><br><span class="line">gcp_download(gd_tokenizer_name, <span class="string">&#x27;15hcUEPYB-el1oNctRrhLqObuFKVvXJSV&#x27;</span>)</span><br><span class="line"><span class="comment">#loading</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(TEMP_PATH + gd_tokenizer_name, <span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> handle:</span><br><span class="line">    gd_tokenizer = pickle.load(handle) </span><br></pre></td></tr></table></figure>
+<h2 id="file-upload"><a href="#file-upload" class="headerlink" title="file upload"></a>file upload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">!pip install -U -q PyDrive</span><br><span class="line"><span class="keyword">from</span> pydrive.auth <span class="keyword">import</span> GoogleAuth</span><br><span class="line"><span class="keyword">from</span> pydrive.drive <span class="keyword">import</span> GoogleDrive</span><br><span class="line"><span class="keyword">from</span> google.colab <span class="keyword">import</span> auth</span><br><span class="line"><span class="keyword">from</span> oauth2client.client <span class="keyword">import</span> GoogleCredentials</span><br><span class="line"></span><br><span class="line">gcp_drive = <span class="literal">None</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">doGoodleDriveAuth</span>():</span></span><br><span class="line">    <span class="comment"># 1. Authenticate and create the PyDrive client.</span></span><br><span class="line">    auth.authenticate_user()</span><br><span class="line">    gauth = GoogleAuth()</span><br><span class="line">    print(<span class="string">&#x27;gauth:&#x27;</span>,gauth)</span><br><span class="line">    gauth.credentials = GoogleCredentials.get_application_default()</span><br><span class="line"></span><br><span class="line">    gcp_drive = GoogleDrive(gauth)</span><br><span class="line">    print(<span class="string">&#x27;gcp_drive:&#x27;</span>, gcp_drive)</span><br><span class="line">    <span class="keyword">return</span> gcp_drive</span><br><span class="line"></span><br><span class="line"><span class="comment"># PyDrive reference:</span></span><br><span class="line"><span class="comment"># https://googledrive.github.io/PyDrive/docs/build/html/index.html</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcp_upload</span>(<span class="params">file_path, w_file_name</span>):</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> gcp_drive == <span class="literal">None</span>:</span><br><span class="line">            drive = doGoodleDriveAuth()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 특정 폴더 안으로 파일 삽입</span></span><br><span class="line">        uploaded = drive.CreateFile(&#123;<span class="string">&#x27;title&#x27;</span>: w_file_name&#125;) <span class="comment">#, &quot;parents&quot;: [&#123;&quot;kind&quot;: &quot;drive#fileLink&quot;,&quot;id&quot;: &#x27;jukyellow@gmail.com&#x27;&#125;]&#125;)</span></span><br><span class="line">        uploaded.SetContentString(w_file_name)</span><br><span class="line">        uploaded.SetContentFile(file_path + w_file_name)</span><br><span class="line">        uploaded.Upload()</span><br><span class="line">        print(<span class="string">&#x27;Uploaded file with ID &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(uploaded.get(<span class="string">&#x27;id&#x27;</span>)))</span><br><span class="line">        <span class="keyword">return</span> uploaded.get(<span class="string">&#x27;id&#x27;</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e: print(<span class="string">&#x27;gcp_upload err:&#x27;</span>, e)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 사용법</span></span><br><span class="line"><span class="comment"># 먼저, 파일을 100M단위로 분할 압축(100M 이상일때 한번에 안올라가는 문제있어서)</span></span><br><span class="line">!<span class="built_in">zip</span> -s 100M -o TextCNN_EarayStop.<span class="built_in">zip</span> ./TextCNN_EarayStop.h5</span><br><span class="line"><span class="comment"># 루프돌면서 분할 파일 업로드(나중에 다시 합칠때는 다운로드 받고 압축푼다음 합칠수 있음)</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">	<span class="keyword">for</span> idx <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">9</span>):</span><br><span class="line">		<span class="keyword">if</span> idx == <span class="number">0</span>: div_name = <span class="string">&quot;TextCNN_EarayStop.zip&quot;</span></span><br><span class="line">		<span class="keyword">else</span>: div_name = <span class="string">&quot;TextCNN_EarayStop.z0&quot;</span> + <span class="built_in">str</span>(idx)</span><br><span class="line">		gcp_upload(<span class="string">&quot;./&quot;</span>, div_name) <span class="comment">#gcp root경로에 저장됨</span></span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e : print(<span class="string">&#x27;e:&#x27;</span>, e)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 분할파일을 다시 내려받고 합칠때</span></span><br><span class="line">model_name_early_stop = <span class="string">&#x27;TextCNN_EarayStop_350K4.h5&#x27;</span>  </span><br><span class="line"><span class="comment">#gcp_download(model_name_4bu, &#x27;1T2Es7AO2FTYuMaq2A8-9Tc_g_mUKhitP&#x27;) # temp 경로에 다운로드</span></span><br><span class="line">gcp_download(<span class="string">&#x27;TextCNN_EarayStop_350K4.zip&#x27;</span>,<span class="string">&#x27;1RD9VCeLwKmZrZCP8SRRjwA4ADGPzZcZi&#x27;</span>)</span><br><span class="line">gcp_download(<span class="string">&#x27;TextCNN_EarayStop_350K4.z01&#x27;</span>,<span class="string">&#x27;17RPrQiuPyx5eUATEX5FYMBSxKcao6X5w&#x27;</span>)</span><br><span class="line">gcp_download(<span class="string">&#x27;TextCNN_EarayStop_350K4.z02&#x27;</span>,<span class="string">&#x27;1NrR7sHeVEcqlJT4bSAspx3RsTvbpiZkH&#x27;</span>)</span><br><span class="line">gcp_download(<span class="string">&#x27;TextCNN_EarayStop_350K4.z03&#x27;</span>,<span class="string">&#x27;1nI0yli3HLCSRF3RVWTNgQCUQ0thhmviv&#x27;</span>)</span><br><span class="line"><span class="comment">#...</span></span><br><span class="line"><span class="comment"># 분할파일 머지 및 압축해제</span></span><br><span class="line">!cat /tmp/TextCNN_EarayStop_350K4.z* &gt; /tmp/TextCNN_EarayStop_Mer.<span class="built_in">zip</span></span><br><span class="line">!unzip /tmp/TextCNN_EarayStop_Mer.<span class="built_in">zip</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Colab-file-upload-download"><a href="#Colab-file-upload-download" class="headerlink" title="Colab file upload/download"></a>Colab file upload/download</h1><h2 id="colab-file-upload"><a href="#colab-file-upload" class="headerlink" title="colab file upload"></a>colab file upload</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 직접 업로드( files.upload())</span></span><br><span class="line"><span class="keyword">from</span> google.colab import files</span><br><span class="line"><span class="comment">#파일업로드창 출력</span></span><br><span class="line">uploaded = files.upload()</span><br><span class="line"><span class="comment">#업로드한 파일정보 출력</span></span><br><span class="line"><span class="keyword">for</span> fn <span class="keyword">in</span> uploaded.keys():</span><br><span class="line">  <span class="builtin-name">print</span>(<span class="string">&#x27;Upload file &quot;&#123;name&#125;&quot; with length &#123;length&#125; bytes&#x27;</span>.format(<span class="attribute">name</span>=fn, <span class="attribute">length</span>=len(uploaded[fn])))</span><br><span class="line"><span class="comment">#읽어서 사용</span></span><br><span class="line">im = imread(<span class="string">&quot;output.jpg&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.google drive업로드 후 로딩 방법</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2-1) 파일을 열어서 라인단위로 읽어서 저장하는 방법</span></span><br><span class="line"><span class="comment">#Pre-Trained data를 사용(find-tune)</span></span><br><span class="line">embeddings_index = &#123;&#125;</span><br><span class="line"><span class="comment"># driver code</span></span><br><span class="line"><span class="keyword">from</span> google.colab import drive</span><br><span class="line">import os</span><br><span class="line">drive.mount(<span class="string">&#x27;/content/gdrive&#x27;</span>)</span><br><span class="line"></span><br><span class="line">f = open(os.path.join(<span class="string">&#x27;/content/gdrive/My Drive&#x27;</span>, <span class="string">&#x27;glove.6B.100d.txt&#x27;</span>))</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> f:</span><br><span class="line">    values = line.split()</span><br><span class="line">    word = values[0]</span><br><span class="line">    coefs = np.asarray(values[1:], <span class="attribute">dtype</span>=<span class="string">&#x27;float32&#x27;</span>)</span><br><span class="line">    embeddings_index[word] = coefs</span><br><span class="line">f.close()</span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">&#x27;Found %s word vectors.&#x27;</span> % len(embeddings_index))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2-2) dataPath 및 Gensim 이용해서 파일을 읽어오는 방법</span></span><br><span class="line"><span class="comment"># 2-2-1)</span></span><br><span class="line"><span class="keyword">from</span> gensim.test.utils import datapath, get_tmpfile</span><br><span class="line"><span class="keyword">from</span> google.colab import drive</span><br><span class="line">drive.mount(<span class="string">&#x27;/content/gdrive&#x27;</span>)</span><br><span class="line"></span><br><span class="line">glove_file = datapath(<span class="string">&#x27;/content/gdrive/My Drive/glove.6B.100d.txt&#x27;</span>) </span><br><span class="line">xy = np.loadtxt( glove_file , <span class="attribute">delimiter</span>=<span class="string">&#x27;,&#x27;</span>, <span class="attribute">dtype</span>=np.float32) </span><br><span class="line"></span><br><span class="line"><span class="comment"># 2-2-2)</span></span><br><span class="line"><span class="keyword">from</span> gensim.test.utils import datapath, get_tmpfile</span><br><span class="line">feature_data = datapath(<span class="string">&#x27;/content/gdrive/My Drive/AI/kaggle/&#x27;</span> + <span class="string">&#x27;300features_40minwords_10text&#x27;</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment"># 2-3) google drive경로에서 읽는 방법</span></span><br><span class="line"><span class="comment"># 2-3-1) image</span></span><br><span class="line"><span class="keyword">from</span> google.colab import drive</span><br><span class="line">drive.mount(<span class="string">&#x27;/content/gdrive&#x27;</span>)</span><br><span class="line"><span class="keyword">from</span> matplotlib.pyplot import imread</span><br><span class="line"></span><br><span class="line">im = imread(<span class="string">&quot;/content/gdrive/My Drive/NLP-Lab/output.jpg&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2-3-2)txt read</span></span><br><span class="line"><span class="keyword">from</span> google.colab import drive</span><br><span class="line">drive.mount(<span class="string">&#x27;/content/gdrive&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#csv data read</span></span><br><span class="line">xy = np.loadtxt(<span class="string">&#x27;/content/gdrive/My Drive/data-01-test-score.csv&#x27;</span>, <span class="attribute">delimiter</span>=<span class="string">&#x27;,&#x27;</span>, <span class="attribute">dtype</span>=np.float32) </span><br><span class="line"><span class="comment">#문자열인 경우 dtype=np.str</span></span><br><span class="line"><span class="comment">#google driave root 경로: /content/gdrive/My Drive/</span></span><br><span class="line">x_data = xy[:, 0:-1]</span><br><span class="line">y_data = xy[:, [-1]]</span><br><span class="line"><span class="comment">#단 chunk_size 초과로 오류발생 가능..</span></span><br></pre></td></tr></table></figure>
+<h2 id="colab-file-download"><a href="#colab-file-download" class="headerlink" title="colab file download"></a>colab file download</h2><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># A. pandas data 다운로드</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="title">pd</span>.<span class="type">DataFrame</span>(err_vec).to_csv(<span class="string">&quot;/tmp/preporcessing_case6.csv&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="title">from</span> google.colab <span class="keyword">import</span> files</span><br><span class="line"><span class="title">files</span>.download(<span class="string">&quot;/tmp/preporcessing_case6.csv&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta"># B. Numpy 다운로드</span></span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"><span class="title">a</span> = numpy.asarray([ [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>], [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>] ])</span><br><span class="line"><span class="title">numpy</span>.savetxt(<span class="string">&quot;foo.csv&quot;</span>, a, delimiter=<span class="string">&quot;,&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="title">from</span> google.colab <span class="keyword">import</span> files</span><br><span class="line"><span class="title">files</span>.download(<span class="string">&quot;파일명&quot;</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Colab-tensorflow-keras-downgrade"><a href="#Colab-tensorflow-keras-downgrade" class="headerlink" title="Colab tensorflow/keras downgrade"></a>Colab tensorflow/keras downgrade</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tensorflow 1.x대 적용방법 1</span></span><br><span class="line">%tensorflow_version 1.x</span><br><span class="line">import tensorflow as tf</span><br><span class="line"><span class="comment"># 버전확인</span></span><br><span class="line"><span class="builtin-name">print</span>(tf.__version__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># tensorflow 1.x대 적용방법2</span></span><br><span class="line">!pip install <span class="attribute">tensorflow</span>==1.14.0</span><br><span class="line"><span class="comment"># 특정 버전 설치? : pip3 install tensorflow-gpu==1.15.2</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Colab-file-handling"><a href="#Colab-file-handling" class="headerlink" title="Colab file handling"></a>Colab file handling</h1><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 디렉토리 조회</span></span><br><span class="line">! ls -alrt <span class="regexp">/content/</span></span><br><span class="line"><span class="comment"># 파일 move</span></span><br><span class="line">!mv <span class="regexp">/tmp/</span>facenet_keras.h5 /content</span><br><span class="line"><span class="comment"># 파일 삭제</span></span><br><span class="line">!\rm -rf <span class="regexp">/content/</span>origin_data</span><br><span class="line"><span class="comment"># 디렉토리 생성</span></span><br><span class="line">!mkdir <span class="regexp">/content/</span>origin_data</span><br><span class="line"><span class="comment"># 압축관련 설치</span></span><br><span class="line">!apt-get install zip unzip</span><br><span class="line"><span class="comment">#압축 100M이하로!</span></span><br><span class="line">!zip -s <span class="number">100</span>M -o TextCNN_GCN_10bu.zip ./TextCNN_GCN_10bu.h5</span><br><span class="line"><span class="comment"># -r:하위경로 모두 포함하여 압축, 현재경로에 zip파일 만들기(대상은 절대경로로)</span></span><br><span class="line">!zip -r dataset_zip.zip <span class="regexp">/content/</span>dataset</span><br><span class="line"><span class="comment"># 압축풀기 : 한글깨짐 방지: -O cp949</span></span><br><span class="line">!unzip -O cp949 <span class="regexp">/tmp/</span><span class="number">00</span>_Total.zip</span><br><span class="line">!rm -rf <span class="regexp">/tmp/</span><span class="number">00</span>_Total.zip</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Colab-utility-install"><a href="#Colab-utility-install" class="headerlink" title="Colab utility install"></a>Colab utility install</h1><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">!pip uninstall google-api-python-<span class="keyword">client</span> -y</span><br><span class="line">!pip install google-api-python-<span class="keyword">client</span>==<span class="number">1.7</span><span class="number">.3</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Colab-github-프로젝트-연동"><a href="#Colab-github-프로젝트-연동" class="headerlink" title="Colab github 프로젝트 연동"></a>Colab github 프로젝트 연동</h1><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">!git clone https:<span class="comment">//github.com/philipperemy/keras-attention-mechanism.git</span></span><br><span class="line"></span><br><span class="line">!ls -alrt</span><br><span class="line"></span><br><span class="line">!cd keras-attention-mechanism</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> attention_utils <span class="keyword">import</span> get_activations, get_data</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">1337</span>)  # for reproducibility</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Input, Dense, merge</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Colab-upload-오류-대처"><a href="#Colab-upload-오류-대처" class="headerlink" title="Colab upload 오류 대처"></a>Colab upload 오류 대처</h1><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 오류내용 : RedirectMissingLocation: Redirected but the response is missing a Location: header.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#버전 확인</span></span><br><span class="line"><span class="comment">#!pip list</span></span><br><span class="line"><span class="comment">#httplib2                 0.17.1</span></span><br><span class="line"><span class="comment">#google-api-python-client 1.7.12  </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 방안 : downgrade (https://github.com/tokland/youtube-upload/issues/293)</span></span><br><span class="line"><span class="comment"># !pip3 install google-api-python-client==1.7.3 oauth2client==4.1.2 progressbar2==3.38.0 httplib2==0.15.0</span></span><br><span class="line"><span class="comment">!pip uninstall google-api-python-client -y</span></span><br><span class="line"><span class="comment">!pip uninstall oauth2client -y</span></span><br><span class="line"><span class="comment">!pip uninstall progressbar2 -y</span></span><br><span class="line"><span class="comment">!pip uninstall httplib2 -y</span></span><br><span class="line"><span class="comment">!pip install google-api-python-client==1.7.3</span></span><br><span class="line"><span class="comment">!pip install oauth2client==4.1.2</span></span><br><span class="line"><span class="comment">!pip install progressbar2==3.38.0</span></span><br><span class="line"><span class="comment">!pip install httplib2==0.15.0</span></span><br></pre></td></tr></table></figure>
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2021/03/17/hexo-search-engine-optimization/" data-toggle="tooltip" data-placement="top" title="헥소 검색 엔진 최적화">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%EB%AA%A9%EC%B0%A8"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">목차</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Google-drive-file-download-upload"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Google drive file download-upload</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#file-download"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">file download</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#file-upload"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">file upload</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Colab-file-upload-download"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Colab file upload&#x2F;download</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#colab-file-upload"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">colab file upload</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#colab-file-download"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">colab file download</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Colab-tensorflow-keras-downgrade"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Colab tensorflow&#x2F;keras downgrade</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Colab-file-handling"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">Colab file handling</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Colab-utility-install"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">Colab utility install</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Colab-github-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%97%B0%EB%8F%99"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">Colab github 프로젝트 연동</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Colab-upload-%EC%98%A4%EB%A5%98-%EB%8C%80%EC%B2%98"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">Colab upload 오류 대처</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Colaboratory" title="Colaboratory">Colaboratory</a>
+                        
+                          <a class="tag" href="/tags/#google colab" title="google colab">google colab</a>
+                        
+                          <a class="tag" href="/tags/#google drive" title="google drive">google drive</a>
+                        
+                          <a class="tag" href="/tags/#Jupter notebook" title="Jupter notebook">Jupter notebook</a>
+                        
+                          <a class="tag" href="/tags/#drive file download" title="drive file download">drive file download</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "yelran-s-tech-blog";
+    var disqus_identifier = "https://jukyellow.github.io/2021/03/23/google-colab-tip/";
+    var disqus_url = "https://jukyellow.github.io/2021/03/23/google-colab-tip/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/jukyellow" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 옐란 2021 
+                    <br>
+                    Theme by <a target="_blank" rel="external nofollow noopener noreferrer" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a target="_blank" rel="external nofollow noopener noreferrer" href="http://beantech.org">BeanTech</a> 
+                    <!-- | 
+					<iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe>
+					-->
+					<br>
+					<!-- hits -->
+					<a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank" rel="external nofollow noopener noreferrer">
+					  <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg">
+					</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="../../../../js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="../../../../js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="../../../../js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://jukyellow.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'G-EG1ZFE1SGM';
+    var _gaDomain = 'https://jukyellow.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T5KTSP5JKB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  var _gaId = 'G-EG1ZFE1SGM';
+  gtag('config', _gaId);
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+	<a id="rocket" href="#top" class></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async></script>
+<!-- Image to hack wechat -->
+<img src="https://jukyellow.github.io/img/icon_wechat.png" width="0" height="0">
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
