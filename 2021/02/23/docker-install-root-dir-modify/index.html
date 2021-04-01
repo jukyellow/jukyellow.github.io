@@ -260,7 +260,7 @@
 <li>Docker: Docker Comunity 20.0.3?</li>
 </ul>
 <h1 id="Docker-재-설치"><a href="#Docker-재-설치" class="headerlink" title="Docker (재)설치"></a>Docker (재)설치</h1><ul>
-<li>도커가 이미 설치된 경우, 관련 파일/패키지를 삭제하고 재설치를 수행해야 한다.  </li>
+<li>도커가 이미 설치된 경우, 관련 파일/패키지를 삭제하고 재설치를 수행해야 한다. </li>
 </ul>
 <h2 id="컨테이너-종료-이미지-삭제"><a href="#컨테이너-종료-이미지-삭제" class="headerlink" title="컨테이너 종료, 이미지 삭제"></a>컨테이너 종료, 이미지 삭제</h2><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker stop <span class="constructor">$(<span class="params">docker</span> <span class="params">ps</span> -<span class="params">q</span>)</span></span><br><span class="line">docker rm <span class="constructor">$(<span class="params">docker</span> <span class="params">ps</span> -<span class="params">a</span> -<span class="params">q</span>)</span></span><br><span class="line">docker rmi <span class="constructor">$(<span class="params">docker</span> <span class="params">images</span> -<span class="params">q</span>)</span></span><br></pre></td></tr></table></figure>
 <h2 id="서비스-중지"><a href="#서비스-중지" class="headerlink" title="서비스 중지"></a>서비스 중지</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">stop</span> docker.service</span><br><span class="line">systemctl <span class="built_in">stop</span> containerd.service</span><br></pre></td></tr></table></figure>

@@ -263,6 +263,7 @@
 
                 <ul>
 <li>개요 : 유닉스(솔라리스) OS에서 Java Application을 운영하면서 사용했던 명령어들을 두번째로 정리해본다.</li>
+<li><a href="https://jukyellow.github.io/2021/03/05/linux-command/">서비스 운영자로서 기본 유닉스 사용법 정리는 이전 블로그 참고</a></li>
 </ul>
 <h2 id="목차"><a href="#목차" class="headerlink" title="목차"></a>목차</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> nslookup</span><br><span class="line"><span class="bullet">2.</span> hostname</span><br><span class="line"><span class="bullet">3.</span> telnet/ping/tracert</span><br><span class="line"><span class="bullet">4.</span> 터미널 ssh 접속</span><br><span class="line"><span class="bullet">5.</span> Shell 특수문자와 2&gt;&amp;1의 의미</span><br><span class="line"><span class="bullet">6.</span> 파일 생성시간 기준으로 찾기/삭제하기</span><br><span class="line"><span class="bullet">7.</span> SWAP 메모리 추가</span><br><span class="line"><span class="bullet">8.</span> 웹서버 설정(Sun ONE)과 WAS Timeout설정</span><br></pre></td></tr></table></figure>
 <h2 id="nslookup"><a href="#nslookup" class="headerlink" title="nslookup"></a>nslookup</h2><ul>
@@ -284,8 +285,10 @@
 <li>ping: target ip로 네트워크 상태 확인(패킷 전송 및 응답 수신)</li>
 <li>활용 : 주로 상대방 서버의 live상태를 체크 및 방화벽 오픈 여부 목적으로 사용  <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">ping</span> <span class="built_in">ip</span> 옵션</span><br></pre></td></tr></table></figure></li>
 <li>tracert (리눅스 traceroute): ip 라우팅 경로 추적  </li>
-<li>활용 : 내부망/외부망이 분리된 경우, 인터넷망에서 접속 실패/다운로드 실패시에 라우팅 경로를 확인하여 문제를 찾아볼수 있다.  <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">tracert</span> <span class="built_in">ip</span></span><br></pre></td></tr></table></figure>
-
+<li>활용 : 내부망/외부망이 분리된 경우, 인터넷망에서 접속 실패/다운로드 실패시에 라우팅 경로를 확인하여 문제를 찾아볼수 있다.  <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">tracert</span> <span class="built_in">ip</span></span><br></pre></td></tr></table></figure></li>
+<li>기타(windows): 접속 사이트별 응답정보 확인용으로  <blockquote>
+<p>fiddler 설치 및 확인 : <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.telerik.com/fiddler">https://www.telerik.com/fiddler</a>  </p>
+</blockquote>
 </li>
 </ul>
 <h2 id="터미널-SSH-접속"><a href="#터미널-SSH-접속" class="headerlink" title="터미널 SSH 접속"></a>터미널 SSH 접속</h2><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssh</span> -p <span class="number">15022</span> user@<span class="number">123.123.123.123</span></span><br></pre></td></tr></table></figure>
