@@ -3,6 +3,97 @@
 
 
     <url>
+        <loc>https://jukyellow.github.io/tags/os%EB%B2%84%EC%A0%84/</loc>
+        <lastmod>2021-04-01T21:26:40.736Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/%EB%AA%85%EB%A0%B9%EC%96%B4/</loc>
+        <lastmod>2021-04-01T21:26:40.736Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/centos/</loc>
+        <lastmod>2021-04-01T21:26:40.736Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/unix/</loc>
+        <lastmod>2021-04-01T21:26:40.736Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/linux/</loc>
+        <lastmod>2021-04-01T21:26:40.736Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/%EC%9B%B9%EC%84%9C%EB%B2%84%EC%84%A4%EC%A0%95/</loc>
+        <lastmod>2021-04-01T21:26:21.078Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/2-1/</loc>
+        <lastmod>2021-04-01T21:26:21.078Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/%ED%8C%8C%EC%9D%BC%EC%83%9D%EC%84%B1%EC%8B%9C%EA%B0%84-%EC%82%AD%EC%A0%9C/</loc>
+        <lastmod>2021-04-01T21:26:21.078Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/ssh%EC%A0%91%EC%86%8D/</loc>
+        <lastmod>2021-04-01T21:26:21.078Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/tracert/</loc>
+        <lastmod>2021-04-01T21:26:21.078Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/hostname/</loc>
+        <lastmod>2021-04-01T21:26:21.078Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/telnet/</loc>
+        <lastmod>2021-04-01T21:26:21.078Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/nslookup/</loc>
+        <lastmod>2021-04-01T21:26:21.078Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://jukyellow.github.io/tags/%EA%B0%95%EC%9D%98%EB%85%B8%ED%8A%B8/</loc>
         <lastmod>2021-04-01T20:36:33.726Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -397,41 +488,6 @@
     <url>
         <loc>https://jukyellow.github.io/tags/facenet/</loc>
         <lastmod>2021-03-10T21:27:58.499Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/tags/os%EB%B2%84%EC%A0%84/</loc>
-        <lastmod>2021-03-04T22:18:45.786Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/tags/%EB%AA%85%EB%A0%B9%EC%96%B4/</loc>
-        <lastmod>2021-03-04T22:18:45.786Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/tags/centos/</loc>
-        <lastmod>2021-03-04T22:18:45.786Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/tags/unix/</loc>
-        <lastmod>2021-03-04T22:18:45.786Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/tags/linux/</loc>
-        <lastmod>2021-03-04T22:18:45.786Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
