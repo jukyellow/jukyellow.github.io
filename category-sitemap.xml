@@ -9,22 +9,43 @@
 
 
     <url>
-        <loc>https://jukyellow.github.io/categories/ai/image/</loc>
-        <lastmod>2021-03-23T20:49:21.385Z</lastmod>
+        <loc>https://jukyellow.github.io/categories/data-scientist/note/</loc>
+        <lastmod>2021-04-01T20:36:33.726Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/categories/data-scientist/</loc>
+        <lastmod>2021-04-01T20:36:33.726Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/categories/ai/finance/</loc>
+        <lastmod>2021-04-01T20:36:17.927Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://jukyellow.github.io/categories/ai/</loc>
-        <lastmod>2021-03-23T20:49:21.385Z</lastmod>
+        <lastmod>2021-04-01T20:36:17.927Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://jukyellow.github.io/categories/ai/note/</loc>
-        <lastmod>2021-03-22T22:00:42.092Z</lastmod>
+        <lastmod>2021-04-01T20:36:03.005Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/categories/ai/image/</loc>
+        <lastmod>2021-03-23T20:49:21.385Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -51,29 +72,8 @@
     </url>
 
     <url>
-        <loc>https://jukyellow.github.io/categories/data-scientist/note/</loc>
-        <lastmod>2021-03-16T20:14:11.316Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/categories/data-scientist/</loc>
-        <lastmod>2021-03-16T20:14:11.316Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://jukyellow.github.io/categories/ai/competition/</loc>
         <lastmod>2021-03-15T01:37:19.816Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/categories/ai/finance/</loc>
-        <lastmod>2021-03-14T00:32:18.794Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

@@ -15,8 +15,132 @@
     <atom:link href="https://jukyellow.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>yelan&#39;s tech blog</description>
-    <pubDate>Mon, 22 Mar 2021 22:00:42 GMT</pubDate>
+    <pubDate>Thu, 01 Apr 2021 20:36:17 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>주식 기술지표 산출법 정리</title>
+      <link>https://jukyellow.github.io/2021/04/02/stock-tech-indicator/</link>
+      <guid>https://jukyellow.github.io/2021/04/02/stock-tech-indicator/</guid>
+      <pubDate>Thu, 01 Apr 2021 20:32:40 GMT</pubDate>
+      
+        
+        
+      <description>&lt;ul&gt;
+&lt;li&gt;주식 투자관련 기술지표 정의/산출법(계산식)들을 정리해 본다.  &lt;/li&gt;
+&lt;li&gt;참고도서: 퀀트 전략을 위한 인공지능 트레이닝  &lt;/li&gt;
+&lt;li&gt;진척률(2021.04.02): 1%&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;목차&quot;&gt;&lt;a hr</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<ul><li>주식 투자관련 기술지표 정의/산출법(계산식)들을 정리해 본다.  </li><li>참고도서: 퀀트 전략을 위한 인공지능 트레이닝  </li><li>진척률(2021.04.02): 1%</li></ul><h1 id="목차"><a href="#목차" class="headerlink" title="목차"></a>목차</h1><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.RA(이동평균션) : <span class="type">Standard</span> deviation rolling average</span><br><span class="line"><span class="number">2</span>.MACD : <span class="type">Moving</span> Average Convergence/Divergence</span><br><span class="line"><span class="number">3</span>.CCI : <span class="type">Commodity</span> Channel Index # Momentum(모멘텀) Indicators</span><br><span class="line"><span class="number">4</span>.ATR(변동성) : <span class="type">Average</span> <span class="literal">True</span> <span class="keyword">Range</span></span><br><span class="line"><span class="number">5</span>.BOLL(볼린저 밴드) : <span class="type">Bollinger</span> Band</span><br><span class="line"><span class="number">7</span>.MTM1 </span><br><span class="line"><span class="number">7</span>.MTM3</span><br><span class="line"><span class="number">8</span>.ROC : <span class="type">Rate</span> <span class="keyword">of</span> change : ((<span class="type">price</span>/prevPrice)-<span class="number">1</span>)*<span class="number">100</span></span><br><span class="line"><span class="number">9</span>.WPR : <span class="type">william</span> percent <span class="keyword">range</span> (Williams&#x27; %R)</span><br></pre></td></tr></table></figure><h2 id="이동평균선"><a href="#이동평균선" class="headerlink" title="이동평균선"></a>이동평균선</h2>]]></content:encoded>
+      
+      
+      <category domain="https://jukyellow.github.io/categories/ai/">AI</category>
+      
+      <category domain="https://jukyellow.github.io/categories/ai/finance/">Finance</category>
+      
+      
+      <category domain="https://jukyellow.github.io/tags/stock/">Stock</category>
+      
+      <category domain="https://jukyellow.github.io/tags/indicatior/">Indicatior</category>
+      
+      <category domain="https://jukyellow.github.io/tags/%EB%B3%BC%EB%A6%B0%EC%A0%80%EB%B0%B4%EB%93%9C/">볼린저밴드</category>
+      
+      <category domain="https://jukyellow.github.io/tags/%EC%9D%B4%EB%8F%99%ED%8F%89%EA%B7%A0%EC%84%A0/">이동평균선</category>
+      
+      <category domain="https://jukyellow.github.io/tags/%EB%AA%A8%EB%A9%98%ED%85%80/">모멘텀</category>
+      
+      <category domain="https://jukyellow.github.io/tags/%EB%B3%80%EB%8F%99%EC%84%B1/">변동성</category>
+      
+      
+      <comments>https://jukyellow.github.io/2021/04/02/stock-tech-indicator/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>AI 이론 정리노트</title>
+      <link>https://jukyellow.github.io/2021/04/02/ai-theory-note/</link>
+      <guid>https://jukyellow.github.io/2021/04/02/ai-theory-note/</guid>
+      <pubDate>Thu, 01 Apr 2021 20:32:11 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h1 id=&quot;개요&quot;&gt;&lt;a href=&quot;#개요&quot; class=&quot;headerlink&quot; title=&quot;개요&quot;&gt;&lt;/a&gt;개요&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;딥러닝/머신러닝 이론를 작성해보자!&lt;/li&gt;
+&lt;li&gt;진척률(2021.04.02): 1%&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 </description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h1><ul><li>딥러닝/머신러닝 이론를 작성해보자!</li><li>진척률(2021.04.02): 1%</li></ul><h1 id="목차"><a href="#목차" class="headerlink" title="목차"></a>목차</h1><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">A. 개론</span><br><span class="line"><span class="bullet"> 1.</span> 신경망의 역사</span><br><span class="line"><span class="bullet"> 2.</span> 머신러닝과 딥러닝의 차이</span><br><span class="line"><span class="bullet"> 3.</span> 신경망 구조</span><br><span class="line"><span class="bullet"> 4.</span> 오류 역전파 알고리즘</span><br><span class="line"><span class="bullet"> 5.</span> 활성화 함수</span><br><span class="line"><span class="bullet"> 6.</span> 성능측정 및 평가</span><br><span class="line">B. NLP</span><br><span class="line"><span class="bullet"> 7.</span> 자연어 처리 개요</span><br><span class="line"><span class="bullet"> 8.</span> 자연어 전처리 및 성능측정/평가</span><br><span class="line"><span class="bullet"> 9.</span> Word2Vec, FastText, 통계적?...</span><br><span class="line"><span class="bullet"> 10.</span> RNN/LSTM, Seq2Seq</span><br><span class="line"><span class="bullet"> 11.</span> Attention 모델</span><br><span class="line"><span class="bullet"> 12.</span> Transformer 모델(Bert)</span><br><span class="line"><span class="bullet"> 13.</span> GPT-3 모델</span><br><span class="line">C. 머신러닝 모델</span><br><span class="line"><span class="bullet"> 14.</span> SVC</span><br><span class="line"><span class="bullet"> 15.</span> 배깅과 부스팅</span><br><span class="line"><span class="bullet"> 16.</span> 랜덤포레스트</span><br><span class="line"><span class="bullet"> 17.</span> XgBoost, AdaBoost 등</span><br><span class="line"><span class="bullet"> 18.</span> 앙상블</span><br><span class="line"><span class="bullet"> 19.</span> 성능측정, 평가</span><br><span class="line">D. 이미지 모델</span><br><span class="line"><span class="bullet"> 20.</span> CNN 개요</span><br><span class="line"><span class="bullet"> 21.</span> CNN 다양한 버전들</span><br><span class="line"><span class="bullet"> 22.</span> 안면인식</span><br><span class="line"><span class="bullet"> 23.</span> OCR</span><br><span class="line">E. 통계모델</span><br><span class="line"><span class="bullet"> 24.</span> 통계모델 개요</span><br><span class="line"><span class="bullet"> 25.</span> AR/ARIMA 모형</span><br><span class="line">F. AI와 수학/통계학</span><br><span class="line"><span class="bullet"> 26.</span> 기술통계(평균,분산,표준편차,표준정규분포등)</span><br><span class="line"><span class="bullet"> 27.</span> </span><br><span class="line"><span class="bullet"> 28.</span> </span><br><span class="line"><span class="bullet"> 29.</span> </span><br><span class="line"><span class="bullet"> 30.</span> </span><br></pre></td></tr></table></figure><hr><h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content:encoded>
+      
+      
+      <category domain="https://jukyellow.github.io/categories/ai/">AI</category>
+      
+      <category domain="https://jukyellow.github.io/categories/ai/note/">Note</category>
+      
+      
+      <category domain="https://jukyellow.github.io/tags/%EA%B0%95%EC%9D%98%EB%85%B8%ED%8A%B8/">강의노트</category>
+      
+      <category domain="https://jukyellow.github.io/tags/ai/">AI</category>
+      
+      <category domain="https://jukyellow.github.io/tags/lecture/">Lecture</category>
+      
+      <category domain="https://jukyellow.github.io/tags/kaist/">Kaist</category>
+      
+      <category domain="https://jukyellow.github.io/tags/note/">note</category>
+      
+      
+      <comments>https://jukyellow.github.io/2021/04/02/ai-theory-note/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>빅데이터 이론/분석 Part2</title>
+      <link>https://jukyellow.github.io/2021/04/02/%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%9D%B4%EB%A1%A0-%EB%B6%84%EC%84%9D-part2/</link>
+      <guid>https://jukyellow.github.io/2021/04/02/%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%9D%B4%EB%A1%A0-%EB%B6%84%EC%84%9D-part2/</guid>
+      <pubDate>Thu, 01 Apr 2021 20:31:47 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;[온라인 강좌 강의노트]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;K-MOOC 강좌명: [집콕]빅데이터의 세계, 원리와 응용  &lt;/li&gt;
+&lt;li&gt;진척률(2021.04.02): 5%&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;5주차&quot;&gt;&lt;a href=&quot;#5주차&quot; class=&quot;</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>[온라인 강좌 강의노트]</p><ul><li>K-MOOC 강좌명: [집콕]빅데이터의 세계, 원리와 응용  </li><li>진척률(2021.04.02): 5%</li></ul><h1 id="5주차"><a href="#5주차" class="headerlink" title="5주차"></a>5주차</h1><ul><li>데이터 군집화 방법  </li></ul><hr><h2 id="군집분석이란"><a href="#군집분석이란" class="headerlink" title="군집분석이란?"></a>군집분석이란?</h2><ul><li>정의: 유사한 특성을 가진 데이터 집단으로 그룹화하는 기법  </li><li>구분: 자율학습(목표 변수가 없음), 비지도 학습에 해당  </li><li>목표: 데이터 이해를 돕기위해, 특성 값이 유사한 레코드들의 모임으로 세분화  </li><li>유형: 계층적 클러스터링(Single Linkage method?), 비계층적(K-means), 모델기반(Kohonen network)  </li></ul><h3 id="계층적-병합-군집화"><a href="#계층적-병합-군집화" class="headerlink" title="계층적 병합 군집화"></a>계층적 병합 군집화</h3><ul><li>N개의 군집 시작 -&gt; 가장 근접한 2개의 레코드를 군집 병합 -&gt; 매 단계에서 가장 거리가 짧은 2개 군집 병합  </li><li>레코드간의 거리 측정: 유클리드 거리, 만하탄 거리, </li><li>군집간의 거리 측정: 최단거리/최대거리/평균거리/중심거리 등  </li><li>단일(최단) 연결법(Single Linkage method)<br>: 각 군집에 속하는 임의의 두 개체들 사이의 거리중 최단거리로 정의하여 유사성이 큰 군집을 묶어나가는 방법  </li><li>계층적 군집화의 장단점:<br>: (장점) 군집의 수 명시 필요없음, 군집화가 자동수행, 덴드로그램 도출 이해용이<br>: (단점) 데이터가 클 경우 거리행열 계산 부담, 극단치에 민감, 비안정성(데이터 재구성시 상이한 결과 나타날수 있음)  </li></ul><h3 id="비계층적-군집분석"><a href="#비계층적-군집분석" class="headerlink" title="비계층적 군집분석"></a>비계층적 군집분석</h3><ul><li>원하는 군집의 수(K)를 사전에 명시하고, 군집들 내부의 분산을 최소화하도록 각 사례를 K개의 군집중 하나에 할당하는 기법  </li><li>ex: k-means  </li><li>절차: 클러스터링 수 K결정 -&gt; 최초 군집 기준값 결정-&gt; 군집분류-&gt; 군집 기준값 설정-&gt;군집재분류&lt;-&gt;군집기준값변경-&gt;최종 클러스터 도출  </li></ul><h2 id="군집분석의-장단점-및-활용"><a href="#군집분석의-장단점-및-활용" class="headerlink" title="군집분석의 장단점 및 활용"></a>군집분석의 장단점 및 활용</h2><ul><li>장점: 데이터에 대한 사전 지식 필요없음, 모든 형태의 데이터에 적용가능    </li><li>단점: 각 변수에 대한 가중치를 결정하거나 거리 정의 방법에 따라 결과 차이 가능, 초기 클러스터 수에 민감, 결과 해석 어려움  </li><li>활용<br>: (데이터 이해제고) 데이터 마이닝 초기작업에 유용, 세부집단 지식 없어서 전체 이해 하기 어려운 경우 탐색가능<br>: 텍스트 마이닝 적용시, 유사 문서 군집화 유용<br>: 마케팅의 고객 세분화 등 다양한 분양에 적용  </li></ul><h2 id="실습1"><a href="#실습1" class="headerlink" title="실습1"></a>실습1</h2><ul><li>보험청구 데이터 유사그룹 생성, 보험사기 정보 활용 분류모형 구축  </li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://jukyellow.github.io/categories/data-scientist/">Data Scientist</category>
+      
+      <category domain="https://jukyellow.github.io/categories/data-scientist/note/">Note</category>
+      
+      
+      <category domain="https://jukyellow.github.io/tags/%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0/">빅데이터</category>
+      
+      <category domain="https://jukyellow.github.io/tags/data-analysis/">Data Analysis</category>
+      
+      <category domain="https://jukyellow.github.io/tags/data-scientist/">Data Scientist</category>
+      
+      <category domain="https://jukyellow.github.io/tags/k-mooc/">K-MOOC</category>
+      
+      <category domain="https://jukyellow.github.io/tags/%EA%B0%95%EC%9D%98%EB%85%B8%ED%8A%B8/">강의노트</category>
+      
+      
+      <comments>https://jukyellow.github.io/2021/04/02/%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%9D%B4%EB%A1%A0-%EB%B6%84%EC%84%9D-part2/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>구글 Colab Jupyter Notebook 사용 팁</title>
