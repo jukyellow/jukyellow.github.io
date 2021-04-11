@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+	<meta name="naver-site-verification" content="357b4759c0e0b85f2d702c6bdd4f59bd590ca1d5">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="yelan&#39;s tech blog">
+    <meta name="keyword" content="AI, Data Scientist, MSA">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          시계열 분석(통계분석 기법) - 옐란
+        
+    </title>
+
+    <link rel="canonical" href="https://jukyellow.github.io/2021/04/12/statistics-time-series/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="../../../../css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+<link rel="stylesheet" href="../../../../css/beantech.min.css">
+
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="../../../../css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/widget.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/signature.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/toc.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-EG1ZFE1SGM"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-EG1ZFE1SGM');
+	</script>
+	
+	<link rel="canonical" href="https://jukyellow.github.io/2021/04/12/statistics-time-series/">
+	<script data-ad-client="ca-pub-3777597204408341" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="rss2.xml" title="옐란 기술 블로그" type="application/rss+xml">
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart>
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/category_img/note.jpg')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/');
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#강의노트" title="강의노트">강의노트</a>
+                            
+                              <a class="tag" href="/tags/#시계열분석" title="시계열분석">시계열분석</a>
+                            
+                              <a class="tag" href="/tags/#time series" title="time series">time series</a>
+                            
+                              <a class="tag" href="/tags/#ARMA" title="ARMA">ARMA</a>
+                            
+                              <a class="tag" href="/tags/#ARIMA" title="ARIMA">ARIMA</a>
+                            
+                        </div>
+                        <h1>시계열 분석(통계분석 기법)</h1>
+                        <h2 class="subheading">ARIMA 모형을 이용한 비정상적 시계열 예측</h2>
+                        <span class="meta">
+                            Posted by 옐란 on
+                            2021-04-12
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">옐란 기술 블로그</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About Me</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <ul>
+<li>개요: 통계학 기반 시계열 예측 모델의 이론과 실습을 통해 알아보자, 특히 ARIMA모델 사용법을 익혀보자</li>
+<li>강좌: [K-MOOC강의] 시계열분석 기법과 응용</li>
+</ul>
+<h1 id="목차"><a href="#목차" class="headerlink" title="목차"></a>목차</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Week1. 시계열 평활기법</span><br><span class="line">Week2. ARMA 모형</span><br><span class="line">Week3. ARMA 모형의 식별 및 예측</span><br><span class="line">Week4. 비정상적 시계열</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Week1-시계열-평활기법"><a href="#Week1-시계열-평활기법" class="headerlink" title="Week1. 시계열 평활기법"></a>Week1. 시계열 평활기법</h1><h2 id="강좌소개"><a href="#강좌소개" class="headerlink" title="강좌소개:"></a>강좌소개:</h2><ul>
+<li>수평적 패턴, 추세 패턴, 계절성이 포함된 패턴 -&gt; 시계열</li>
+</ul>
+<h2 id="이동평균법과-이중-이동평균법"><a href="#이동평균법과-이중-이동평균법" class="headerlink" title="이동평균법과 이중 이동평균법"></a>이동평균법과 이중 이동평균법</h2><h3 id="시계열-분석"><a href="#시계열-분석" class="headerlink" title="시계열 분석"></a>시계열 분석</h3><ul>
+<li>하나의 변수에 대한 시간에 따른 관측치를 시계열 또는 시계열 데이터라함  </li>
+<li>시계열 분석의 목적<br>: 시계열의 특성(추세, 계절성 등)을 요약하고 시간에 따른 패턴(자기 상관성 등)분석<br>: 시간에 따른 패턴을 바탕으로 모형화하고 미래값을 예측  </li>
+<li>회귀모형과 달리 다른 변수를 도입하지 않고 자신의 변수의 과거 패턴이 미래에도 계속된다는 가정하에<br>과거값을 바탕으로 미래값 예측  </li>
+<li>시계열 패턴은 수평/추세/계절성이 복합된 것으로 간주  </li>
+</ul>
+<h3 id="시계열-분석-개요"><a href="#시계열-분석-개요" class="headerlink" title="시계열 분석 개요"></a>시계열 분석 개요</h3><ul>
+<li>평활화 모형: 이동평균, 지수평활, 원터스 모형, 분해법  </li>
+<li>정상적 ARMA 모형: AR모형, MA모형, ARMA 모형  </li>
+<li>비정상적 모형: ARIMA 모형, 계절성 ARIMA 모형  </li>
+<li>오차 이분산 모형: ARCH모형, GARCH 모형  </li>
+<li>다변량 시계열: 벡터회귀 모형(VAR)  </li>
+<li>상태공간모형  </li>
+</ul>
+<h3 id="이동-평균법"><a href="#이동-평균법" class="headerlink" title="이동 평균법"></a>이동 평균법</h3><ul>
+<li>이동편균(Moveing Averatge): 매 시점에서 직전 N개 데이터의 평균을 산출하여 평활치로 사용  </li>
+<li>단순 이동 평균: 시계열 데이터가 수평적 패턴인 경우  </li>
+<li>이중 이동평균: 추세 패턴을 따르는 경우 사용  </li>
+</ul>
+<h3 id="단순-이동-평균법"><a href="#단순-이동-평균법" class="headerlink" title="단순 이동 평균법"></a>단순 이동 평균법</h3><ul>
+<li>시계열 데이터가 수평적 패턴인 경우 사용  </li>
+<li>시점 t+1에서의 이동평균(산술평균)  </li>
+<li>시점 T에서 시점T+1의 값 예측(한 단계이후 예측)  </li>
+<li>N 클수록 평활 효과가 큼 (N이 작으면 최근 추세 반영, 크면 평평해지는 효과 큼)</li>
+</ul>
+<h3 id="이중-이동-평균법"><a href="#이중-이동-평균법" class="headerlink" title="이중 이동 평균법"></a>이중 이동 평균법</h3><ul>
+<li>시계열이 선형 추세를 갖는다고 가정하자: Xt = c + bt + at<blockquote>
+<p>단순 이동편균 추세는 늦게 따라감(gap이 생김)<br>이를 보정하기 위해 이중 이동평균을 활용  </p>
+</blockquote>
+</li>
+<li>이중 이동 평균: 이동선이 여러 변수의 영향을 받으면 그 변수만큼 데이터 확보가 필요…?  </li>
+</ul>
+<h3 id="예측성능-척도"><a href="#예측성능-척도" class="headerlink" title="예측성능 척도"></a>예측성능 척도</h3><ul>
+<li>예측오차: 특정 시점에서 다음 시점을 예측하고 다음 시점의 실제값과 비교하여 예측 오차를 산출<blockquote>
+<p>Et,1 = Xt+1 - Ft,1  </p>
+</blockquote>
+</li>
+<li>평균제곱오차(MSE), 제곱근 평균제곱오차(RMSE-기본단위와 같음), 평균절대오차(MAD), 평균절대 퍼센트오차(MAPE)  </li>
+</ul>
+<hr>
+<h2 id="지수평활법과-이중-지수평활법"><a href="#지수평활법과-이중-지수평활법" class="headerlink" title="지수평활법과 이중 지수평활법"></a>지수평활법과 이중 지수평활법</h2><h3 id="지수평활법과-이중-지수평활법과"><a href="#지수평활법과-이중-지수평활법과" class="headerlink" title="지수평활법과 이중 지수평활법과"></a>지수평활법과 이중 지수평활법과</h3><ul>
+<li>지수평활법(Exponential Smoothing) : 평활치를 구하는데 전체 데이터를 사용, 시간에 따른 다른 가중치를 줌, 과거로 갈수록 지수적으로 감소하는 가중치 사용<blockquote>
+<p>단순 지수평활: 시계열 데이터가 수평적인 패턴인 경우<br>이중 지수평활: 추세패턴을 따르는 경우<br>홀트 모형(Holt`s Model) 추세패턴을 따라는 경우  </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="단순-지수평활법"><a href="#단순-지수평활법" class="headerlink" title="단순 지수평활법"></a>단순 지수평활법</h3><ul>
+<li>시계열 데이터가 수평적 패턴인 경우  </li>
+<li>St = Axt + a(1-a)Xt-1 + a(a-a)^2Xt-2 …</li>
+<li>시점 t+1에서 지수평활치: St+1 = Axt+1 + (1-a)St  </li>
+<li>평홯상수 (0&lt;aa)작을수록 평활효과가 큼  </li>
+<li>최근 추세를 반영하여 예측코자 하면 큰 a를 사용하고 저네 평균으로 예측코자 하면 작은 a를 사용  </li>
+</ul>
+<h3 id="이중-지수평활법"><a href="#이중-지수평활법" class="headerlink" title="이중 지수평활법"></a>이중 지수평활법</h3><ul>
+<li>시계열 데이터가 추세 패턴을 따르는 경우  </li>
+<li>단순 지수평활치의 기대치와 시계열 기대치간에는 격차가 존재<br>: 이를 보정하기 위해 이중 지수평활을 활용<br>: St(2) = aSt + (1-a)S(2)t-1  </li>
+</ul>
+<hr>
+<h2 id="홀트-및-윈터스-모형"><a href="#홀트-및-윈터스-모형" class="headerlink" title="홀트 및 윈터스 모형"></a>홀트 및 윈터스 모형</h2><ul>
+<li>추세와 계절성을 고려한 지수 평활 모형</li>
+</ul>
+<h3 id="계절성-고려-모형"><a href="#계절성-고려-모형" class="headerlink" title="계절성 고려 모형"></a>계절성 고려 모형</h3><ul>
+<li>추세와 계절성이 있는 시계열에 적용 </li>
+<li>윈터스(Winters) 모형: 홀트 모형에 계절성(seansonality)를 추가 반영하여 확장, 가법모형과 승법모형이 있음  </li>
+<li>분해법(Decomposition): 추세와 계절성을 분해한 후 예측시 다시 결합, 가법모형과 승법모형이 있음  </li>
+</ul>
+<h3 id="윈터스-모형"><a href="#윈터스-모형" class="headerlink" title="윈터스 모형"></a>윈터스 모형</h3><ul>
+<li>홀트 모형에 계절성(분기/월별 변형 및 주기성을 띄는..)을 추가반영하여 확장시킴  </li>
+<li>가법모형(더해지는) 승법(곱해지는)모형  </li>
+</ul>
+<h3 id="분해법"><a href="#분해법" class="headerlink" title="분해법"></a>분해법</h3><ul>
+<li>가법적 모형: Xt = Bt + St + … = 0</li>
+<li>승법적 모형: Xt = Bt X St X … = m</li>
+<li>분해법에 의한 예측 절차<blockquote>
+<p>중심 이동 평균으로 평활치를 산출<br>추세 제거<br>계절성 지수 산출<br>계절성 제거 시계열 산출<br>회귀모형으로 추세 추정<br>추세 및 계절성 지수 결합하여 예측치 산출  </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="분해법-승법적-모형"><a href="#분해법-승법적-모형" class="headerlink" title="분해법(승법적 모형)"></a>분해법(승법적 모형)</h3><hr>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2021/04/10/docker-command2/" data-toggle="tooltip" data-placement="top" title="도커 기본 명령어">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%EB%AA%A9%EC%B0%A8"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">목차</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Week1-%EC%8B%9C%EA%B3%84%EC%97%B4-%ED%8F%89%ED%99%9C%EA%B8%B0%EB%B2%95"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Week1. 시계열 평활기법</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EA%B0%95%EC%A2%8C%EC%86%8C%EA%B0%9C"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">강좌소개:</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EC%9D%B4%EB%8F%99%ED%8F%89%EA%B7%A0%EB%B2%95%EA%B3%BC-%EC%9D%B4%EC%A4%91-%EC%9D%B4%EB%8F%99%ED%8F%89%EA%B7%A0%EB%B2%95"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">이동평균법과 이중 이동평균법</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EC%8B%9C%EA%B3%84%EC%97%B4-%EB%B6%84%EC%84%9D"><span class="toc-nav-number">2.2.1.</span> <span class="toc-nav-text">시계열 분석</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EC%8B%9C%EA%B3%84%EC%97%B4-%EB%B6%84%EC%84%9D-%EA%B0%9C%EC%9A%94"><span class="toc-nav-number">2.2.2.</span> <span class="toc-nav-text">시계열 분석 개요</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EC%9D%B4%EB%8F%99-%ED%8F%89%EA%B7%A0%EB%B2%95"><span class="toc-nav-number">2.2.3.</span> <span class="toc-nav-text">이동 평균법</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%8B%A8%EC%88%9C-%EC%9D%B4%EB%8F%99-%ED%8F%89%EA%B7%A0%EB%B2%95"><span class="toc-nav-number">2.2.4.</span> <span class="toc-nav-text">단순 이동 평균법</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EC%9D%B4%EC%A4%91-%EC%9D%B4%EB%8F%99-%ED%8F%89%EA%B7%A0%EB%B2%95"><span class="toc-nav-number">2.2.5.</span> <span class="toc-nav-text">이중 이동 평균법</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EC%98%88%EC%B8%A1%EC%84%B1%EB%8A%A5-%EC%B2%99%EB%8F%84"><span class="toc-nav-number">2.2.6.</span> <span class="toc-nav-text">예측성능 척도</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EC%A7%80%EC%88%98%ED%8F%89%ED%99%9C%EB%B2%95%EA%B3%BC-%EC%9D%B4%EC%A4%91-%EC%A7%80%EC%88%98%ED%8F%89%ED%99%9C%EB%B2%95"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">지수평활법과 이중 지수평활법</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EC%A7%80%EC%88%98%ED%8F%89%ED%99%9C%EB%B2%95%EA%B3%BC-%EC%9D%B4%EC%A4%91-%EC%A7%80%EC%88%98%ED%8F%89%ED%99%9C%EB%B2%95%EA%B3%BC"><span class="toc-nav-number">2.3.1.</span> <span class="toc-nav-text">지수평활법과 이중 지수평활법과</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%8B%A8%EC%88%9C-%EC%A7%80%EC%88%98%ED%8F%89%ED%99%9C%EB%B2%95"><span class="toc-nav-number">2.3.2.</span> <span class="toc-nav-text">단순 지수평활법</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EC%9D%B4%EC%A4%91-%EC%A7%80%EC%88%98%ED%8F%89%ED%99%9C%EB%B2%95"><span class="toc-nav-number">2.3.3.</span> <span class="toc-nav-text">이중 지수평활법</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%ED%99%80%ED%8A%B8-%EB%B0%8F-%EC%9C%88%ED%84%B0%EC%8A%A4-%EB%AA%A8%ED%98%95"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">홀트 및 윈터스 모형</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EA%B3%84%EC%A0%88%EC%84%B1-%EA%B3%A0%EB%A0%A4-%EB%AA%A8%ED%98%95"><span class="toc-nav-number">2.4.1.</span> <span class="toc-nav-text">계절성 고려 모형</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EC%9C%88%ED%84%B0%EC%8A%A4-%EB%AA%A8%ED%98%95"><span class="toc-nav-number">2.4.2.</span> <span class="toc-nav-text">윈터스 모형</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%B6%84%ED%95%B4%EB%B2%95"><span class="toc-nav-number">2.4.3.</span> <span class="toc-nav-text">분해법</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EB%B6%84%ED%95%B4%EB%B2%95-%EC%8A%B9%EB%B2%95%EC%A0%81-%EB%AA%A8%ED%98%95"><span class="toc-nav-number">2.4.4.</span> <span class="toc-nav-text">분해법(승법적 모형)</span></a></li></ol></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#강의노트" title="강의노트">강의노트</a>
+                        
+                          <a class="tag" href="/tags/#시계열분석" title="시계열분석">시계열분석</a>
+                        
+                          <a class="tag" href="/tags/#time series" title="time series">time series</a>
+                        
+                          <a class="tag" href="/tags/#ARMA" title="ARMA">ARMA</a>
+                        
+                          <a class="tag" href="/tags/#ARIMA" title="ARIMA">ARIMA</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "yelran-s-tech-blog";
+    var disqus_identifier = "https://jukyellow.github.io/2021/04/12/statistics-time-series/";
+    var disqus_url = "https://jukyellow.github.io/2021/04/12/statistics-time-series/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/jukyellow" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 옐란 2021 
+                    <br>
+                    Theme by <a target="_blank" rel="external nofollow noopener noreferrer" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a target="_blank" rel="external nofollow noopener noreferrer" href="http://beantech.org">BeanTech</a> 
+                    <!-- | 
+					<iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe>
+					-->
+					<br>
+					<!-- hits -->
+					<a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank" rel="external nofollow noopener noreferrer">
+					  <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg">
+					</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="../../../../js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="../../../../js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="../../../../js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://jukyellow.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'G-EG1ZFE1SGM';
+    var _gaDomain = 'https://jukyellow.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T5KTSP5JKB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  var _gaId = 'G-EG1ZFE1SGM';
+  gtag('config', _gaId);
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+	<a id="rocket" href="#top" class></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async></script>
+<!-- Image to hack wechat -->
+<img src="https://jukyellow.github.io/img/icon_wechat.png" width="0" height="0">
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
