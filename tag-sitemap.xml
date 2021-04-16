@@ -3,6 +3,41 @@
 
 
     <url>
+        <loc>https://jukyellow.github.io/tags/%EA%B0%95%EC%9D%98%EB%85%B8%ED%8A%B8/</loc>
+        <lastmod>2021-04-16T21:44:20.287Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/k-mooc/</loc>
+        <lastmod>2021-04-16T21:44:20.287Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/data-scientist/</loc>
+        <lastmod>2021-04-16T21:44:20.287Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/data-analysis/</loc>
+        <lastmod>2021-04-16T21:44:20.287Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/tags/%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0/</loc>
+        <lastmod>2021-04-16T21:44:20.287Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://jukyellow.github.io/tags/arima/</loc>
         <lastmod>2021-04-16T21:05:50.149Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -25,13 +60,6 @@
 
     <url>
         <loc>https://jukyellow.github.io/tags/%EC%8B%9C%EA%B3%84%EC%97%B4%EB%B6%84%EC%84%9D/</loc>
-        <lastmod>2021-04-16T21:05:50.149Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/tags/%EA%B0%95%EC%9D%98%EB%85%B8%ED%8A%B8/</loc>
         <lastmod>2021-04-16T21:05:50.149Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -68,34 +96,6 @@
     <url>
         <loc>https://jukyellow.github.io/tags/docker/</loc>
         <lastmod>2021-04-09T22:33:17.266Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/tags/k-mooc/</loc>
-        <lastmod>2021-04-01T21:48:06.399Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/tags/data-scientist/</loc>
-        <lastmod>2021-04-01T21:48:06.399Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/tags/data-analysis/</loc>
-        <lastmod>2021-04-01T21:48:06.399Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/tags/%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0/</loc>
-        <lastmod>2021-04-01T21:48:06.399Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
