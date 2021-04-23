@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+	<meta name="naver-site-verification" content="357b4759c0e0b85f2d702c6bdd4f59bd590ca1d5">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="yelan&#39;s tech blog">
+    <meta name="keyword" content="AI, Data Scientist, MSA">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          헬스장 회원 행동(이용빈도) 예측 - 옐란
+        
+    </title>
+
+    <link rel="canonical" href="https://jukyellow.github.io/2021/04/23/py100-ch04-user-action-pred/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="../../../../css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+<link rel="stylesheet" href="../../../../css/beantech.min.css">
+
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="../../../../css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/widget.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/signature.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/toc.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-EG1ZFE1SGM"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-EG1ZFE1SGM');
+	</script>
+	
+	<link rel="canonical" href="https://jukyellow.github.io/2021/04/23/py100-ch04-user-action-pred/">
+	<script data-ad-client="ca-pub-3777597204408341" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="rss2.xml" title="옐란 기술 블로그" type="application/rss+xml">
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart>
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/category_img/note.jpg')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/');
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#데이터 분석" title="데이터 분석">데이터 분석</a>
+                            
+                              <a class="tag" href="/tags/#파이썬" title="파이썬">파이썬</a>
+                            
+                              <a class="tag" href="/tags/#Panadas" title="Panadas">Panadas</a>
+                            
+                              <a class="tag" href="/tags/#DataFrame" title="DataFrame">DataFrame</a>
+                            
+                              <a class="tag" href="/tags/#K-means" title="K-means">K-means</a>
+                            
+                              <a class="tag" href="/tags/#Sklearn" title="Sklearn">Sklearn</a>
+                            
+                              <a class="tag" href="/tags/#LinearRegression" title="LinearRegression">LinearRegression</a>
+                            
+                        </div>
+                        <h1>헬스장 회원 행동(이용빈도) 예측</h1>
+                        <h2 class="subheading">파이썬 데이터분석 실무 테크닉 100</h2>
+                        <span class="meta">
+                            Posted by 옐란 on
+                            2021-04-23
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">옐란 기술 블로그</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About Me</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <ul>
+<li>파이썬을 기반으로 데이터 분석 기술을 습득해 보자!</li>
+<li>참고도서: 파이썬 데이터 분석 실무 테크닉 100</li>
+<li>data: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/jukyellow/pyda100/tree/master/4%EC%9E%A5">https://github.com/jukyellow/pyda100/tree/master/4%EC%9E%A5</a></li>
+<li>전체소스: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/jukyellow/data-scientist/blob/main/01_Base_Skills/(book)Practical-Techniques_100/04_User_Action_Predict_20210423.ipynb">https://github.com/jukyellow/data-scientist/blob/main/01_Base_Skills/(book)Practical-Techniques_100/04_User_Action_Predict_20210423.ipynb</a></li>
+</ul>
+<h1 id="목차"><a href="#목차" class="headerlink" title="목차"></a>목차</h1><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">1</span>. 데이터 로딩/확인</span><br><span class="line"><span class="attribute">2</span>. 회원 특징별 클러스터링</span><br><span class="line"><span class="attribute">3</span>. 헬스장 사용빈도 예측</span><br><span class="line"><span class="attribute">3</span>-<span class="number">1</span>. <span class="number">6</span>개월간 DataSet 준비</span><br><span class="line"><span class="attribute">3</span>-<span class="number">2</span>. Regression 예측</span><br></pre></td></tr></table></figure>
+<h1 id="데이터-로딩-확인"><a href="#데이터-로딩-확인" class="headerlink" title="데이터 로딩/확인"></a>데이터 로딩/확인</h1><h2 id="데이터-로딩"><a href="#데이터-로딩" class="headerlink" title="데이터 로딩"></a>데이터 로딩</h2><ul>
+<li>pandas로 csv파일 read하여 DataFrame으로 반환<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">uselog = pd.read_csv(<span class="string">&#x27;use_log.csv&#x27;</span>)</span><br><span class="line">print(uselog.<span class="keyword">isnull</span>().sum())</span><br><span class="line"></span><br><span class="line">customer = pd.read_csv(<span class="string">&#x27;customer_join.csv&#x27;</span>)</span><br><span class="line">print(customer.<span class="keyword">isnull</span>().sum())</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="데이터-확인"><a href="#데이터-확인" class="headerlink" title="데이터 확인"></a>데이터 확인</h2><ul>
+<li>uselog는 사용자의 이용빈도를 체크하기 위한 목적으로 활용</li>
+<li>customer는 회원정보 및 월 사용기간/빈도(min,max 등 추가)관련 정보 존재<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">uselog</span>.head()</span><br><span class="line"><span class="attribute">log_id</span>	customer_id	usedate</span><br><span class="line"><span class="attribute">0</span>	L<span class="number">00000049012330</span>	AS<span class="number">009373</span>	<span class="number">2018</span>-<span class="number">04</span>-<span class="number">01</span></span><br><span class="line"><span class="attribute">1</span>	L<span class="number">00000049012331</span>	AS<span class="number">015315</span>	<span class="number">2018</span>-<span class="number">04</span>-<span class="number">01</span></span><br><span class="line"><span class="attribute">2</span>	L<span class="number">00000049012332</span>	AS<span class="number">040841</span>	<span class="number">2018</span>-<span class="number">04</span>-<span class="number">01</span></span><br><span class="line"><span class="attribute">3</span>	L<span class="number">00000049012333</span>	AS<span class="number">046594</span>	<span class="number">2018</span>-<span class="number">04</span>-<span class="number">01</span></span><br><span class="line"><span class="attribute">4</span>	L<span class="number">00000049012334</span>	AS<span class="number">073285</span>	<span class="number">2018</span>-<span class="number">04</span>-<span class="number">01</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">customer</span>.head()</span><br><span class="line">	<span class="attribute">customer_id</span>	name	class	gender	start_date	end_date	campaign_id	is_deleted	class_name	price	campaign_name	mean	median	max	min	routine_flg	calc_date	membership_period</span><br><span class="line"><span class="attribute">0</span>	OA<span class="number">832399</span>	XXXX	C<span class="number">01</span>	F	<span class="number">2015</span>-<span class="number">05</span>-<span class="number">01</span>	NaN	CA<span class="number">1</span>	<span class="number">0</span>	<span class="number">0</span>_종일	<span class="number">10500</span>	<span class="number">2</span>_일반	<span class="number">4</span>.<span class="number">833333</span>	<span class="number">5</span>.<span class="number">0</span>	<span class="number">8</span>	<span class="number">2</span>	<span class="number">1</span>	<span class="number">2019</span>-<span class="number">04</span>-<span class="number">30</span>	<span class="number">47</span></span><br><span class="line"><span class="attribute">1</span>	PL<span class="number">270116</span>	XXXXX	C<span class="number">01</span>	M	<span class="number">2015</span>-<span class="number">05</span>-<span class="number">01</span>	NaN	CA<span class="number">1</span>	<span class="number">0</span>	<span class="number">0</span>_종일	<span class="number">10500</span>	<span class="number">2</span>_일반	<span class="number">5</span>.<span class="number">083333</span>	<span class="number">5</span>.<span class="number">0</span>	<span class="number">7</span>	<span class="number">3</span>	<span class="number">1</span>	<span class="number">2019</span>-<span class="number">04</span>-<span class="number">30</span>	<span class="number">47</span></span><br><span class="line"><span class="attribute">2</span>	OA<span class="number">974876</span>	XXXXX	C<span class="number">01</span>	M	<span class="number">2015</span>-<span class="number">05</span>-<span class="number">01</span>	NaN	CA<span class="number">1</span>	<span class="number">0</span>	<span class="number">0</span>_종일	<span class="number">10500</span>	<span class="number">2</span>_일반	<span class="number">4</span>.<span class="number">583333</span>	<span class="number">5</span>.<span class="number">0</span>	<span class="number">6</span>	<span class="number">3</span>	<span class="number">1</span>	<span class="number">2019</span>-<span class="number">04</span>-<span class="number">30</span>	<span class="number">47</span></span><br><span class="line"><span class="attribute">3</span>	HD<span class="number">024127</span>	XXXXX	C<span class="number">01</span>	F	<span class="number">2015</span>-<span class="number">05</span>-<span class="number">01</span>	NaN	CA<span class="number">1</span>	<span class="number">0</span>	<span class="number">0</span>_종일	<span class="number">10500</span>	<span class="number">2</span>_일반	<span class="number">4</span>.<span class="number">833333</span>	<span class="number">4</span>.<span class="number">5</span>	<span class="number">7</span>	<span class="number">2</span>	<span class="number">1</span>	<span class="number">2019</span>-<span class="number">04</span>-<span class="number">30</span>	<span class="number">47</span></span><br><span class="line"><span class="attribute">4</span>	HD<span class="number">661448</span>	XXXXX	C<span class="number">03</span>	F	<span class="number">2015</span>-<span class="number">05</span>-<span class="number">01</span>	NaN	CA<span class="number">1</span>	<span class="number">0</span>	<span class="number">2</span>_야간	<span class="number">6000</span>	<span class="number">2</span>_일반	<span class="number">3</span>.<span class="number">916667</span>	<span class="number">4</span>.<span class="number">0</span>	<span class="number">6</span>	<span class="number">1</span>	<span class="number">1</span>	<span class="number">2019</span>-<span class="number">04</span>-<span class="number">30</span>	<span class="number">47</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="회원-특징별-클러스터링"><a href="#회원-특징별-클러스터링" class="headerlink" title="회원 특징별 클러스터링"></a>회원 특징별 클러스터링</h1><h2 id="클러스터링-Feature-추출"><a href="#클러스터링-Feature-추출" class="headerlink" title="클러스터링 Feature 추출"></a>클러스터링 Feature 추출</h2><ul>
+<li>회원별 사용기간, 사용빈도에 관한 특징 추출</li>
+<li>최종 월별 사용빈도 예측시, 영향을 끼칠걸로 판단되는 특징을 임으로 선택하여 추출(다른 feature 추가 사용가능)<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">customer_clustering</span> = customer[[<span class="string">&quot;mean&quot;</span>, <span class="string">&quot;median&quot;</span>,<span class="string">&quot;max&quot;</span>, <span class="string">&quot;min&quot;</span>, <span class="string">&quot;membership_period&quot;</span>]]</span><br><span class="line"><span class="attribute">customer_clustering</span>.head()</span><br><span class="line"><span class="attribute">mean</span>	median	max	min	membership_period</span><br><span class="line"><span class="attribute">0</span>	<span class="number">4</span>.<span class="number">833333</span>	<span class="number">5</span>.<span class="number">0</span>	<span class="number">8</span>	<span class="number">2</span>	<span class="number">47</span></span><br><span class="line"><span class="attribute">1</span>	<span class="number">5</span>.<span class="number">083333</span>	<span class="number">5</span>.<span class="number">0</span>	<span class="number">7</span>	<span class="number">3</span>	<span class="number">47</span></span><br><span class="line"><span class="attribute">2</span>	<span class="number">4</span>.<span class="number">583333</span>	<span class="number">5</span>.<span class="number">0</span>	<span class="number">6</span>	<span class="number">3</span>	<span class="number">47</span></span><br><span class="line"><span class="attribute">3</span>	<span class="number">4</span>.<span class="number">833333</span>	<span class="number">4</span>.<span class="number">5</span>	<span class="number">7</span>	<span class="number">2</span>	<span class="number">47</span></span><br><span class="line"><span class="attribute">4</span>	<span class="number">3</span>.<span class="number">916667</span>	<span class="number">4</span>.<span class="number">0</span>	<span class="number">6</span>	<span class="number">1</span>	<span class="number">47</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="K-means-군집화"><a href="#K-means-군집화" class="headerlink" title="K-means 군집화"></a>K-means 군집화</h2><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 클러스터링으로 회원을 그룹화하자</span></span><br><span class="line"><span class="attribute">from</span> sklearn.cluster import KMeans</span><br><span class="line"><span class="attribute">from</span> sklearn.preprocessing import StandardScaler</span><br><span class="line"><span class="attribute">sc</span> = StandardScaler()</span><br><span class="line"><span class="comment"># 스케일을 맞추지 않으면 특정 이상치에 대해 크게 반응하여 잘못된 결과가 발생할수 있음</span></span><br><span class="line"><span class="attribute">customer_clustering_sc</span> = sc.fit_transform(customer_clustering)</span><br><span class="line"></span><br><span class="line"><span class="attribute">kmeans</span> = KMeans(n_clusters=<span class="number">4</span>, random_state=<span class="number">0</span>)</span><br><span class="line"><span class="attribute">clusters</span> = kmeans.fit(customer_clustering_sc)</span><br><span class="line"><span class="attribute">customer_clustering</span>[<span class="string">&quot;cluster&quot;</span>] = clusters.labels_</span><br><span class="line"><span class="attribute">print</span>(&#x27;unique:&#x27;, customer_clustering[<span class="string">&quot;cluster&quot;</span>].unique())</span><br><span class="line"><span class="attribute">customer_clustering</span>.head()</span><br><span class="line"></span><br><span class="line"><span class="attribute">unique</span>:<span class="meta"> [3 1 0 2]</span></span><br><span class="line"><span class="attribute">mean</span>	median	max	min	membership_period	cluster</span><br><span class="line"><span class="attribute">0</span>	<span class="number">4</span>.<span class="number">833333</span>	<span class="number">5</span>.<span class="number">0</span>	<span class="number">8</span>	<span class="number">2</span>	<span class="number">47</span>	<span class="number">3</span></span><br><span class="line"><span class="attribute">1</span>	<span class="number">5</span>.<span class="number">083333</span>	<span class="number">5</span>.<span class="number">0</span>	<span class="number">7</span>	<span class="number">3</span>	<span class="number">47</span>	<span class="number">3</span></span><br><span class="line"><span class="attribute">2</span>	<span class="number">4</span>.<span class="number">583333</span>	<span class="number">5</span>.<span class="number">0</span>	<span class="number">6</span>	<span class="number">3</span>	<span class="number">47</span>	<span class="number">3</span></span><br><span class="line"><span class="attribute">3</span>	<span class="number">4</span>.<span class="number">833333</span>	<span class="number">4</span>.<span class="number">5</span>	<span class="number">7</span>	<span class="number">2</span>	<span class="number">47</span>	<span class="number">3</span></span><br><span class="line"><span class="attribute">4</span>	<span class="number">3</span>.<span class="number">916667</span>	<span class="number">4</span>.<span class="number">0</span>	<span class="number">6</span>	<span class="number">1</span>	<span class="number">47</span>	<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="클러스터링-결과-분석"><a href="#클러스터링-결과-분석" class="headerlink" title="클러스터링 결과 분석"></a>클러스터링 결과 분석</h2><ul>
+<li>회원2 그룹은, 회원기간이 짧지만, 사용횟수가 많은 그룹</li>
+<li>회원1 그룹은, 기간도 짧고 이용률도 낮음</li>
+<li>회원0,3은 회원기간이 길다. 그룹3이 회원기간은 길지만, 이용률은 0보다 낮다.</li>
+<li>이렇게 회원 그룹별로 차이가 발생하는것을 파악하고, 어느그룹인지에 따라 다른 정책적용이 가능하다!!! <figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">클러스터링 결과를 분석하자</span><br><span class="line">customer_clustering.columns = [&quot;월평균값&quot;,&quot;월중앙값&quot;, &quot;월최댓값&quot;, &quot;월최솟값&quot;,&quot;회원기간&quot;, &quot;cluster&quot;]</span><br><span class="line">customer_clustering.groupby(&quot;cluster&quot;).count()</span><br><span class="line">	월평균값	월중앙값	월최댓값	월최솟값	회원기간</span><br><span class="line">cluster					</span><br><span class="line"><span class="number">0</span>	<span class="number">1334	1334</span>	<span class="number">1334	1334</span>	<span class="number">1334</span></span><br><span class="line"><span class="number">1</span>	<span class="number">763	763</span>	<span class="number">763	763</span>	<span class="number">763</span></span><br><span class="line"><span class="number">2</span>	<span class="number">846	846</span>	<span class="number">846	846</span>	<span class="number">846</span></span><br><span class="line"><span class="number">3</span>	<span class="number">1249	1249</span>	<span class="number">1249	1249</span>	<span class="number">1249</span></span><br><span class="line"></span><br><span class="line">customer_clustering.groupby(&quot;cluster&quot;).mean()</span><br><span class="line">월평균값	월중앙값	월최댓값	월최솟값	회원기간</span><br><span class="line">cluster					</span><br><span class="line"><span class="number">0	5.524239</span>	<span class="number">5.375187	8</span>.<span class="number">745877	2</span>.<span class="number">687406	14</span>.<span class="number">843328</span></span><br><span class="line"><span class="number">1</span>	<span class="number">3.054713</span>	<span class="number">2.888598</span>	<span class="number">4.756225	1</span>.<span class="number">653997	9</span>.<span class="number">263434</span></span><br><span class="line"><span class="number">2</span>	<span class="number">8.054608</span>	<span class="number">8.039598</span>	<span class="number">10.009456</span>	<span class="number">6.160757	7</span>.<span class="number">072104</span></span><br><span class="line"><span class="number">3</span>	<span class="number">4.677494</span>	<span class="number">4.671337</span>	<span class="number">7.232986	2</span>.<span class="number">153723	36</span>.<span class="number">915933</span></span><br></pre></td></tr></table></figure></li>
+<li>클러스터링 결과를 바탕으로 탈퇴회원의 경향을 파악</li>
+<li>그룹0은, 골고루 분포</li>
+<li>그룹1은, 탈퇴회원만 존재</li>
+<li>그룹2는, 초기 가입고객으로 보이며 초반 의욕적인모습</li>
+<li>그룹3은, 2보다는 낮지만, 안정적인<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">customer_clustering</span> = pd.concat([customer_clustering, customer], axis=<span class="number">1</span>)</span><br><span class="line"><span class="attribute">customer_clustering</span>.groupby([<span class="string">&quot;cluster&quot;</span>,<span class="string">&quot;is_deleted&quot;</span>],as_index=False).count()[[<span class="string">&quot;cluster&quot;</span>,<span class="string">&quot;is_deleted&quot;</span>,<span class="string">&quot;customer_id&quot;</span>]]</span><br><span class="line"><span class="attribute">cluster</span>	is_deleted	customer_id</span><br><span class="line"><span class="attribute">0</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">785</span></span><br><span class="line"><span class="attribute">1</span>	<span class="number">0</span>	<span class="number">1</span>	<span class="number">549</span></span><br><span class="line"><span class="attribute">2</span>	<span class="number">1</span>	<span class="number">1</span>	<span class="number">763</span></span><br><span class="line"><span class="attribute">3</span>	<span class="number">2</span>	<span class="number">0</span>	<span class="number">827</span></span><br><span class="line"><span class="attribute">4</span>	<span class="number">2</span>	<span class="number">1</span>	<span class="number">19</span></span><br><span class="line"><span class="attribute">5</span>	<span class="number">3</span>	<span class="number">0</span>	<span class="number">1230</span></span><br><span class="line"><span class="attribute">6</span>	<span class="number">3</span>	<span class="number">1</span>	<span class="number">19</span></span><br></pre></td></tr></table></figure></li>
+<li>routine_flag: 정기적 비정기적 사용고객 여부</li>
+<li>그룹0과 그룹3이 가장 정기적으로 사용함<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">customer_clustering</span>.groupby([<span class="string">&quot;cluster&quot;</span>,<span class="string">&quot;routine_flg&quot;</span>],as_index=False).count()[[<span class="string">&quot;cluster&quot;</span>,<span class="string">&quot;routine_flg&quot;</span>,<span class="string">&quot;customer_id&quot;</span>]]</span><br><span class="line"><span class="attribute">cluster</span>	routine_flg	customer_id</span><br><span class="line"><span class="attribute">0</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">228</span></span><br><span class="line"><span class="attribute">1</span>	<span class="number">0</span>	<span class="number">1</span>	<span class="number">1106</span></span><br><span class="line"><span class="attribute">2</span>	<span class="number">1</span>	<span class="number">0</span>	<span class="number">497</span></span><br><span class="line"><span class="attribute">3</span>	<span class="number">1</span>	<span class="number">1</span>	<span class="number">266</span></span><br><span class="line"><span class="attribute">4</span>	<span class="number">2</span>	<span class="number">0</span>	<span class="number">52</span></span><br><span class="line"><span class="attribute">5</span>	<span class="number">2</span>	<span class="number">1</span>	<span class="number">794</span></span><br><span class="line"><span class="attribute">6</span>	<span class="number">3</span>	<span class="number">0</span>	<span class="number">2</span></span><br><span class="line"><span class="attribute">7</span>	<span class="number">3</span>	<span class="number">1</span>	<span class="number">1247</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="클러스터링-가시화"><a href="#클러스터링-가시화" class="headerlink" title="클러스터링 가시화"></a>클러스터링 가시화</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.decomposition import <span class="keyword">PCA</span></span><br><span class="line">X = customer_clustering_sc</span><br><span class="line"><span class="keyword">pca</span> = <span class="keyword">PCA</span>(n_components=2)</span><br><span class="line"><span class="keyword">pca</span>.<span class="keyword">fit</span>(X)</span><br><span class="line">x_pca = <span class="keyword">pca</span>.transform(X)</span><br><span class="line">pca_df = pd.DataFrame(x_pca)</span><br><span class="line">pca_df[<span class="string">&quot;cluster&quot;</span>] = customer_clustering[<span class="string">&quot;cluster&quot;</span>]</span><br><span class="line"></span><br><span class="line">import matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> customer_clustering[<span class="string">&quot;cluster&quot;</span>].unique():</span><br><span class="line">    tmp = pca_df.<span class="keyword">loc</span>[pca_df[<span class="string">&quot;cluster&quot;</span>]==i]</span><br><span class="line">    plt.<span class="keyword">scatter</span>(tmp[0], tmp[1])</span><br></pre></td></tr></table></figure>
+<p><img src="./images/k-means.jpg">  </p>
+<hr>
+<h1 id="헬스장-사용빈도-예측"><a href="#헬스장-사용빈도-예측" class="headerlink" title="헬스장 사용빈도 예측"></a>헬스장 사용빈도 예측</h1><h2 id="6개월간-DataSet-준비"><a href="#6개월간-DataSet-준비" class="headerlink" title="6개월간 DataSet 준비"></a>6개월간 DataSet 준비</h2><ul>
+<li>다음달의 이용횟수 예측을 위해 테이터를 준비<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 고객별 사용횟수</span></span><br><span class="line">uselog[<span class="string">&quot;usedate&quot;</span>] = pd.to_datetime(uselog[<span class="string">&quot;usedate&quot;</span>])</span><br><span class="line">uselog[<span class="string">&quot;연월&quot;</span>] = uselog[<span class="string">&quot;usedate&quot;</span>].dt.strftime(<span class="string">&quot;%Y%m&quot;</span>)</span><br><span class="line">uselog_months = uselog.groupby([<span class="string">&quot;연월&quot;</span>,<span class="string">&quot;customer_id&quot;</span>],<span class="attribute">as_index</span>=<span class="literal">False</span>).count()</span><br><span class="line">uselog_months.rename(columns=&#123;<span class="string">&quot;log_id&quot;</span>:<span class="string">&quot;count&quot;</span>&#125;, <span class="attribute">inplace</span>=<span class="literal">True</span>)</span><br><span class="line">del uselog_months[<span class="string">&quot;usedate&quot;</span>]</span><br><span class="line">uselog_months.head()</span><br><span class="line"></span><br><span class="line">연월	customer_id	count</span><br><span class="line">0	201804	AS002855	4</span><br><span class="line">1	201804	AS009013	2</span><br><span class="line">2	201804	AS009373	3</span><br><span class="line">3	201804	AS015315	6</span><br><span class="line">4	201804	AS015739	7</span><br></pre></td></tr></table></figure></li>
+<li>현재월 기준, 1개월전~6개월 data(사용빈도)를 차례로 묶어서, 다음달의 예측값으로 활용하자<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 6개월치 data</span></span><br><span class="line">year_months = list(uselog_months[<span class="string">&quot;연월&quot;</span>].unique())</span><br><span class="line">print(year_months)</span><br><span class="line">predict_data = pd.DataFrame()</span><br><span class="line">print(predict_data.head())</span><br><span class="line"></span><br><span class="line">[&#x27;<span class="number">201804</span>&#x27;, &#x27;<span class="number">201805</span>&#x27;, &#x27;<span class="number">201806</span>&#x27;, &#x27;<span class="number">201807</span>&#x27;, &#x27;<span class="number">201808</span>&#x27;, &#x27;<span class="number">201809</span>&#x27;, &#x27;<span class="number">201810</span>&#x27;, &#x27;<span class="number">201811</span>&#x27;, &#x27;<span class="number">201812</span>&#x27;, &#x27;<span class="number">201901</span>&#x27;, &#x27;<span class="number">201902</span>&#x27;, &#x27;<span class="number">201903</span>&#x27;]</span><br><span class="line">Empty DataFrame</span><br><span class="line">Columns: []</span><br><span class="line">Index: []</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 직전달 6개월치의 이용횟수를 이번달 기준으로 도출하여 merge</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(6, len(year_months)):</span><br><span class="line">    tmp = uselog_months.loc[uselog_months[<span class="string">&quot;연월&quot;</span>]==year_months[i]]</span><br><span class="line">    tmp.rename(columns=&#123;<span class="string">&quot;count&quot;</span>:<span class="string">&quot;count_pred&quot;</span>&#125;, <span class="attribute">inplace</span>=<span class="literal">True</span>)</span><br><span class="line">    #<span class="builtin-name">print</span>(tmp)</span><br><span class="line"><span class="comment">#연월 customer_id  count_pred</span></span><br><span class="line"><span class="comment">#18532  201810    AS002855           3</span></span><br><span class="line">    #break</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(1, 7):</span><br><span class="line">        #<span class="builtin-name">print</span>(<span class="string">&quot;i-j:&quot;</span>, (i-j)) #6-1 =&gt; 6-7</span><br><span class="line">        #<span class="builtin-name">print</span>(year_months[i-j])</span><br><span class="line">        tmp_before = uselog_months.loc[uselog_months[<span class="string">&quot;연월&quot;</span>]==year_months[i-j]]</span><br><span class="line">        del tmp_before[<span class="string">&quot;연월&quot;</span>]</span><br><span class="line"></span><br><span class="line">        # 직전달의 결과를 저장</span><br><span class="line">        tmp_before.rename(columns=&#123;<span class="string">&quot;count&quot;</span>:<span class="string">&quot;count_&#123;&#125;&quot;</span>.format(j-1)&#125;, <span class="attribute">inplace</span>=<span class="literal">True</span>)</span><br><span class="line">        tmp = pd.merge(tmp, tmp_before, <span class="attribute">on</span>=<span class="string">&quot;customer_id&quot;</span>, <span class="attribute">how</span>=<span class="string">&quot;left&quot;</span>)</span><br><span class="line">        #<span class="builtin-name">print</span>(tmp)</span><br><span class="line">        #break</span><br><span class="line"></span><br><span class="line">    #break    </span><br><span class="line">    predict_data = pd.concat([predict_data, tmp], <span class="attribute">ignore_index</span>=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">print</span>(predict_data.head())</span><br><span class="line"><span class="builtin-name">print</span>(predict_data.tail())</span><br><span class="line"></span><br><span class="line">연월 customer_id  count_pred  count_0  <span class="built_in">..</span>.  count_2  count_3  count_4  count_5</span><br><span class="line">0  201810    AS002855           3      7.0  <span class="built_in">..</span>.      5.0      5.0      5.0      4.0</span><br><span class="line">1  201810    AS008805           2      2.0  <span class="built_in">..</span>.      7.0      8.0      NaN      NaN</span><br><span class="line">2  201810    AS009373           5      6.0  <span class="built_in">..</span>.      7.0      4.0      4.0      3.0</span><br><span class="line">3  201810    AS015233           7      9.0  <span class="built_in">..</span>.      5.0      7.0      7.0      NaN</span><br><span class="line">4  201810    AS015315           4      7.0  <span class="built_in">..</span>.      6.0      3.0      3.0      6.0</span><br><span class="line"></span><br><span class="line">[5 rows x 9 columns]</span><br><span class="line">           연월 customer_id  count_pred  <span class="built_in">..</span>.  count_3  count_4  count_5</span><br><span class="line">39685  201903    TS995853           8  <span class="built_in">..</span>.      NaN      NaN      NaN</span><br><span class="line">39686  201903    TS998593           8  <span class="built_in">..</span>.      9.0      9.0      9.0</span><br><span class="line">39687  201903    TS999079           3  <span class="built_in">..</span>.      6.0      6.0      4.0</span><br><span class="line">39688  201903    TS999231           6  <span class="built_in">..</span>.      5.0      5.0      4.0</span><br><span class="line">39689  201903    TS999855           4  <span class="built_in">..</span>.      4.0      4.0      5.0</span><br></pre></td></tr></table></figure></li>
+<li>null 제거<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">predict_data</span> = predict_data.dropna()</span><br><span class="line"><span class="attr">predict_data</span> = predict_data.reset_index(<span class="attr">drop=True)</span></span><br><span class="line">predict_data.head()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Feature-추가"><a href="#Feature-추가" class="headerlink" title="Feature 추가"></a>Feature 추가</h2><ul>
+<li>특징이 되는 변수를 추가: 회원유지기간(period) <figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">predict_data = pd.merge(predict_data, customer[[&quot;customer_id&quot;,&quot;start_date&quot;]], on=&quot;customer_id&quot;, how=&quot;left&quot;)</span><br><span class="line">predict_data.head()</span><br><span class="line"></span><br><span class="line">연월	customer_id	count_pred	count_0	count_1	count_2	count_3	count_4	count_5	start_date</span><br><span class="line"><span class="number">0	201810</span>	AS<span class="number">002855	3</span>	<span class="number">7.0	3.0</span>	<span class="number">5.0	5.0</span>	<span class="number">5.0	4.0</span>	<span class="number">2016-11-01</span></span><br><span class="line"><span class="number">1	201810</span>	AS<span class="number">009373	5</span>	<span class="number">6.0	6.0</span>	<span class="number">7.0	4.0</span>	<span class="number">4.0	3.0</span>	<span class="number">2015-11-01</span></span><br><span class="line"><span class="number">2	201810</span>	AS<span class="number">015315	4</span>	<span class="number">7.0	3.0</span>	<span class="number">6.0	3.0</span>	<span class="number">3.0	6.0</span>	<span class="number">2015-07-01</span></span><br><span class="line"><span class="number">3	201810</span>	AS<span class="number">015739	5</span>	<span class="number">6.0	5.0</span>	<span class="number">8.0	6.0</span>	<span class="number">5.0	7.0</span>	<span class="number">2017-06-01</span></span><br><span class="line"><span class="number">4	201810</span>	AS<span class="number">019860	7</span>	<span class="number">5.0	7.0</span>	<span class="number">4.0	6.0</span>	<span class="number">8.0	6.0</span>	<span class="number">2017-10-01</span></span><br><span class="line"></span><br><span class="line">predict_data[&quot;now_date&quot;] = pd.to_datetime(predict_data[&quot;연월&quot;], format=&quot;%Y%m&quot;)</span><br><span class="line">predict_data[&quot;start_date&quot;] = pd.to_datetime(predict_data[&quot;start_date&quot;])</span><br><span class="line">from dateutil.relativedelta import relativedelta</span><br><span class="line">predict_data[&quot;period&quot;] = None</span><br><span class="line">for i in range(len(predict_data)):</span><br><span class="line">    delta = relativedelta(predict_data[&quot;now_date&quot;][i], predict_data[&quot;start_date&quot;][i])</span><br><span class="line">    predict_data[&quot;period&quot;][i] = delta.years*<span class="number">12</span> + delta.months</span><br><span class="line">predict_data.head()</span><br><span class="line"></span><br><span class="line">연월	customer_id	count_pred	count_0	count_1	count_2	count_3	count_4	count_5	start_date	now_date	period</span><br><span class="line"><span class="number">0	201810</span>	AS<span class="number">002855	3</span>	<span class="number">7.0	3.0</span>	<span class="number">5.0	5.0</span>	<span class="number">5.0	4.0</span>	<span class="number">2016-11-01</span>	<span class="number">2018-10-01</span>	<span class="number">23</span></span><br><span class="line"><span class="number">1	201810</span>	AS<span class="number">009373	5</span>	<span class="number">6.0	6.0</span>	<span class="number">7.0	4.0</span>	<span class="number">4.0	3.0</span>	<span class="number">2015-11-01</span>	<span class="number">2018-10-01</span>	<span class="number">35</span></span><br><span class="line"><span class="number">2	201810</span>	AS<span class="number">015315	4</span>	<span class="number">7.0	3.0</span>	<span class="number">6.0	3.0</span>	<span class="number">3.0	6.0</span>	<span class="number">2015-07-01</span>	<span class="number">2018-10-01</span>	<span class="number">39</span></span><br><span class="line"><span class="number">3	201810</span>	AS<span class="number">015739	5</span>	<span class="number">6.0	5.0</span>	<span class="number">8.0	6.0</span>	<span class="number">5.0	7.0</span>	<span class="number">2017-06-01</span>	<span class="number">2018-10-01</span>	<span class="number">16</span></span><br><span class="line"><span class="number">4	201810</span>	AS<span class="number">019860	7</span>	<span class="number">5.0	7.0</span>	<span class="number">4.0	6.0</span>	<span class="number">8.0	6.0</span>	<span class="number">2017-10-01</span>	<span class="number">2018-10-01</span>	<span class="number">12</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Regression-예측"><a href="#Regression-예측" class="headerlink" title="Regression 예측"></a>Regression 예측</h2><ul>
+<li>다음달 이용횟수를 예측하는 모델을 구축<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">predict_data = predict_data<span class="selector-class">.loc</span>[predict_data[<span class="string">&quot;start_date&quot;</span>]&gt;=pd.to_datetime(<span class="string">&quot;20180401&quot;</span>)]</span><br><span class="line">from sklearn import linear_model</span><br><span class="line">import sklearn.model_selection</span><br><span class="line">model = linear_model.LinearRegression()</span><br><span class="line">X = predict_data[[<span class="string">&quot;count_0&quot;</span>,<span class="string">&quot;count_1&quot;</span>,<span class="string">&quot;count_2&quot;</span>,<span class="string">&quot;count_3&quot;</span>,<span class="string">&quot;count_4&quot;</span>,<span class="string">&quot;count_5&quot;</span>,<span class="string">&quot;period&quot;</span>]]</span><br><span class="line">y = predict_data[<span class="string">&quot;count_pred&quot;</span>]</span><br><span class="line">X_train, X_test, y_train, y_test = sklearn<span class="selector-class">.model_selection</span>.train_test_split(X,y)</span><br><span class="line">model.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(model.score(X_train, y_train)</span></span>)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(model.score(X_test, y_test)</span></span>)</span><br><span class="line"><span class="number">0.60340021081248</span></span><br><span class="line"><span class="number">0.6089792828788805</span></span><br></pre></td></tr></table></figure></li>
+<li>모델에 기여하는 변수를 확인 : 가장 직전달의 영향도가 가장 큼<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">coef</span> = pd.DataFrame(&#123;<span class="string">&quot;feature_names&quot;</span>:X.columns, <span class="string">&quot;coefficient&quot;</span>:model.coef_&#125;)</span><br><span class="line"><span class="attribute">coef</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">feature_names</span>	coefficient</span><br><span class="line"><span class="attribute">0</span>	count_<span class="number">0</span>	<span class="number">0</span>.<span class="number">333505</span></span><br><span class="line"><span class="attribute">1</span>	count_<span class="number">1</span>	<span class="number">0</span>.<span class="number">203808</span></span><br><span class="line"><span class="attribute">2</span>	count_<span class="number">2</span>	<span class="number">0</span>.<span class="number">165699</span></span><br><span class="line"><span class="attribute">3</span>	count_<span class="number">3</span>	<span class="number">0</span>.<span class="number">172100</span></span><br><span class="line"><span class="attribute">4</span>	count_<span class="number">4</span>	<span class="number">0</span>.<span class="number">085076</span></span><br><span class="line"><span class="attribute">5</span>	count_<span class="number">5</span>	<span class="number">0</span>.<span class="number">054027</span></span><br><span class="line"><span class="attribute">6</span>	period	<span class="number">0</span>.<span class="number">078326</span></span><br></pre></td></tr></table></figure></li>
+<li>임의 사용자의 사용패턴에 대해 다음달의 이용횟수를 예측하자<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">x1</span> =<span class="meta"> [3, 4, 4, 6, 8, 7, 8]</span></span><br><span class="line"><span class="attribute">x2</span> =<span class="meta"> [2, 2, 3, 3, 4, 6, 8]</span></span><br><span class="line"><span class="attribute">x_pred</span> =<span class="meta"> [x1, x2]</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">result</span> = model.predict(x_pred)</span><br><span class="line"><span class="attribute">print</span>(result)</span><br><span class="line">[3.8379106  2.02046272]</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2021/04/12/statistics-time-series/" data-toggle="tooltip" data-placement="top" title="시계열 분석(통계분석 기법)">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%EB%AA%A9%EC%B0%A8"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">목차</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A1%9C%EB%94%A9-%ED%99%95%EC%9D%B8"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">데이터 로딩&#x2F;확인</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A1%9C%EB%94%A9"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">데이터 로딩</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%99%95%EC%9D%B8"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">데이터 확인</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%ED%9A%8C%EC%9B%90-%ED%8A%B9%EC%A7%95%EB%B3%84-%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0%EB%A7%81"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">회원 특징별 클러스터링</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0%EB%A7%81-Feature-%EC%B6%94%EC%B6%9C"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">클러스터링 Feature 추출</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#K-means-%EA%B5%B0%EC%A7%91%ED%99%94"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">K-means 군집화</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0%EB%A7%81-%EA%B2%B0%EA%B3%BC-%EB%B6%84%EC%84%9D"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">클러스터링 결과 분석</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0%EB%A7%81-%EA%B0%80%EC%8B%9C%ED%99%94"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">클러스터링 가시화</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%ED%97%AC%EC%8A%A4%EC%9E%A5-%EC%82%AC%EC%9A%A9%EB%B9%88%EB%8F%84-%EC%98%88%EC%B8%A1"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">헬스장 사용빈도 예측</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#6%EA%B0%9C%EC%9B%94%EA%B0%84-DataSet-%EC%A4%80%EB%B9%84"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">6개월간 DataSet 준비</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Feature-%EC%B6%94%EA%B0%80"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">Feature 추가</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Regression-%EC%98%88%EC%B8%A1"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">Regression 예측</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#데이터 분석" title="데이터 분석">데이터 분석</a>
+                        
+                          <a class="tag" href="/tags/#파이썬" title="파이썬">파이썬</a>
+                        
+                          <a class="tag" href="/tags/#Panadas" title="Panadas">Panadas</a>
+                        
+                          <a class="tag" href="/tags/#DataFrame" title="DataFrame">DataFrame</a>
+                        
+                          <a class="tag" href="/tags/#K-means" title="K-means">K-means</a>
+                        
+                          <a class="tag" href="/tags/#Sklearn" title="Sklearn">Sklearn</a>
+                        
+                          <a class="tag" href="/tags/#LinearRegression" title="LinearRegression">LinearRegression</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "yelran-s-tech-blog";
+    var disqus_identifier = "https://jukyellow.github.io/2021/04/23/py100-ch04-user-action-pred/";
+    var disqus_url = "https://jukyellow.github.io/2021/04/23/py100-ch04-user-action-pred/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/jukyellow" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 옐란 2021 
+                    <br>
+                    Theme by <a target="_blank" rel="external nofollow noopener noreferrer" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a target="_blank" rel="external nofollow noopener noreferrer" href="http://beantech.org">BeanTech</a> 
+                    <!-- | 
+					<iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe>
+					-->
+					<br>
+					<!-- hits -->
+					<a href="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}" target="_blank" rel="external nofollow noopener noreferrer">
+					  <img src="http://hits.dwyl.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}.svg">
+					</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="../../../../js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="../../../../js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="../../../../js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://jukyellow.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'G-EG1ZFE1SGM';
+    var _gaDomain = 'https://jukyellow.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T5KTSP5JKB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  var _gaId = 'G-EG1ZFE1SGM';
+  gtag('config', _gaId);
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+	<a id="rocket" href="#top" class></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async></script>
+<!-- Image to hack wechat -->
+<img src="https://jukyellow.github.io/img/icon_wechat.png" width="0" height="0">
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
