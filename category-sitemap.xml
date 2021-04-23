@@ -9,15 +9,29 @@
 
 
     <url>
+        <loc>https://jukyellow.github.io/categories/ai/competition/</loc>
+        <lastmod>2021-04-23T23:27:52.673Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/categories/ai/</loc>
+        <lastmod>2021-04-23T23:27:52.673Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://jukyellow.github.io/categories/data-scientist/practice/</loc>
-        <lastmod>2021-04-23T01:00:43.060Z</lastmod>
+        <lastmod>2021-04-23T01:25:51.606Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://jukyellow.github.io/categories/data-scientist/</loc>
-        <lastmod>2021-04-23T01:00:43.060Z</lastmod>
+        <lastmod>2021-04-23T01:25:51.606Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -58,13 +72,6 @@
     </url>
 
     <url>
-        <loc>https://jukyellow.github.io/categories/ai/</loc>
-        <lastmod>2021-04-01T20:36:17.927Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://jukyellow.github.io/categories/ai/note/</loc>
         <lastmod>2021-04-01T20:36:03.005Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -95,13 +102,6 @@
     <url>
         <loc>https://jukyellow.github.io/categories/blog-pt/presentation/</loc>
         <lastmod>2021-03-16T20:33:03.552Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/categories/ai/competition/</loc>
-        <lastmod>2021-03-15T01:37:19.816Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

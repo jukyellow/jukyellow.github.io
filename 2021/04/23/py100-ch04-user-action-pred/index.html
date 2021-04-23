@@ -96,7 +96,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/category_img/note.jpg')
+            background-image: url('/img/category_img/data-analysis2.jpg')
             /*post*/
         
     }
@@ -266,6 +266,7 @@
 <li>전체소스: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/jukyellow/data-scientist/blob/main/01_Base_Skills/(book)Practical-Techniques_100/04_User_Action_Predict_20210423.ipynb">https://github.com/jukyellow/data-scientist/blob/main/01_Base_Skills/(book)Practical-Techniques_100/04_User_Action_Predict_20210423.ipynb</a></li>
 </ul>
 <h1 id="목차"><a href="#목차" class="headerlink" title="목차"></a>목차</h1><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">1</span>. 데이터 로딩/확인</span><br><span class="line"><span class="attribute">2</span>. 회원 특징별 클러스터링</span><br><span class="line"><span class="attribute">3</span>. 헬스장 사용빈도 예측</span><br><span class="line"><span class="attribute">3</span>-<span class="number">1</span>. <span class="number">6</span>개월간 DataSet 준비</span><br><span class="line"><span class="attribute">3</span>-<span class="number">2</span>. Regression 예측</span><br></pre></td></tr></table></figure>
+<hr>
 <h1 id="데이터-로딩-확인"><a href="#데이터-로딩-확인" class="headerlink" title="데이터 로딩/확인"></a>데이터 로딩/확인</h1><h2 id="데이터-로딩"><a href="#데이터-로딩" class="headerlink" title="데이터 로딩"></a>데이터 로딩</h2><ul>
 <li>pandas로 csv파일 read하여 DataFrame으로 반환<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">uselog = pd.read_csv(<span class="string">&#x27;use_log.csv&#x27;</span>)</span><br><span class="line">print(uselog.<span class="keyword">isnull</span>().sum())</span><br><span class="line"></span><br><span class="line">customer = pd.read_csv(<span class="string">&#x27;customer_join.csv&#x27;</span>)</span><br><span class="line">print(customer.<span class="keyword">isnull</span>().sum())</span><br></pre></td></tr></table></figure>
 
@@ -327,6 +328,10 @@
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2021/04/23/bit-trade-competition1/" data-toggle="tooltip" data-placement="top" title="비트코인 트레이드 경진대회">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
