@@ -19,7 +19,7 @@
         
     </title>
 
-    <link rel="canonical" href="https://jukyellow.github.io/2021/04/02/stock-tech-indicator/">
+    <link rel="canonical" href="https://jukyellow.github.io/2021/04/25/stock-tech-indicator/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -83,7 +83,7 @@
 	  gtag('config', 'G-EG1ZFE1SGM');
 	</script>
 	
-	<link rel="canonical" href="https://jukyellow.github.io/2021/04/02/stock-tech-indicator/">
+	<link rel="canonical" href="https://jukyellow.github.io/2021/04/25/stock-tech-indicator/">
 	<script data-ad-client="ca-pub-3777597204408341" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="rss2.xml" title="옐란 기술 블로그" type="application/rss+xml">
 </head>
@@ -134,7 +134,7 @@
                         <h2 class="subheading">볼린저밴드, 이동평균선, 모멘텀, 변동성 등</h2>
                         <span class="meta">
                             Posted by 옐란 on
-                            2021-04-02
+                            2021-04-25
                         </span>
                     </div>
 					<!-- hits를 페이지마다 달수는 없는듯, google 애널리스틱 페이지 조회수로 참고하자!
@@ -266,20 +266,27 @@
 <li>진척률(2021.04.02): 1%</li>
 </ul>
 <h1 id="목차"><a href="#목차" class="headerlink" title="목차"></a>목차</h1><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.RA(이동평균션) : <span class="type">Standard</span> deviation rolling average</span><br><span class="line"><span class="number">2</span>.MACD : <span class="type">Moving</span> Average Convergence/Divergence</span><br><span class="line"><span class="number">3</span>.CCI : <span class="type">Commodity</span> Channel Index # Momentum(모멘텀) Indicators</span><br><span class="line"><span class="number">4</span>.ATR(변동성) : <span class="type">Average</span> <span class="literal">True</span> <span class="keyword">Range</span></span><br><span class="line"><span class="number">5</span>.BOLL(볼린저 밴드) : <span class="type">Bollinger</span> Band</span><br><span class="line"><span class="number">7</span>.MTM1 </span><br><span class="line"><span class="number">7</span>.MTM3</span><br><span class="line"><span class="number">8</span>.ROC : <span class="type">Rate</span> <span class="keyword">of</span> change : ((<span class="type">price</span>/prevPrice)-<span class="number">1</span>)*<span class="number">100</span></span><br><span class="line"><span class="number">9</span>.WPR : <span class="type">william</span> percent <span class="keyword">range</span> (Williams&#x27; %R)</span><br></pre></td></tr></table></figure>
-<h2 id="이동평균선"><a href="#이동평균선" class="headerlink" title="이동평균선"></a>이동평균선</h2>
+<hr>
+<h1 id="이동평균선"><a href="#이동평균선" class="headerlink" title="이동평균선"></a>이동평균선</h1><h2 id="Pandas-구현"><a href="#Pandas-구현" class="headerlink" title="Pandas 구현"></a>Pandas 구현</h2><ul>
+<li>들쑥날쑥한 주가의 흐름을 몇일간의 평균적인 값으로 나타내는 지표를 이동평균선이라고 한다. </li>
+<li>이동평균 구현 : rolling window를 정하고 평균을 계산<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">price_df[&#x27;center&#x27;] = price_df[&#x27;Adj <span class="keyword">Close</span>&#x27;].<span class="keyword">rolling</span>(20).<span class="keyword">mean</span>() # 이동평균선을 구한다.</span><br><span class="line"></span><br><span class="line">import matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.<span class="keyword">plot</span>(<span class="keyword">sample</span>.index, <span class="keyword">sample</span>[&#x27;Adj <span class="keyword">Close</span>&#x27;], <span class="keyword">label</span>=<span class="string">&quot;Adj Close&quot;</span>)</span><br><span class="line">plt.<span class="keyword">plot</span>(<span class="keyword">sample</span>.index, <span class="keyword">sample</span>[&#x27;center&#x27;], <span class="keyword">label</span>=<span class="string">&quot;center&quot;</span>)</span><br></pre></td></tr></table></figure>
+<img src="./images/01_MA.jpg"></li>
+</ul>
+<h2 id="ta-lib로-적용"><a href="#ta-lib로-적용" class="headerlink" title="ta-lib로 적용"></a>ta-lib로 적용</h2><ul>
+<li><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># colab 설치</span><br><span class="line"># (<span class="number">2020</span>) http<span class="variable">s:</span>//stackoverflow.<span class="keyword">com</span>/questions/<span class="number">49648391</span>/how-<span class="keyword">to</span>-install-<span class="keyword">ta</span>-lib-in-google-colab</span><br><span class="line">url = <span class="string">&#x27;https://launchpad.net/~mario-mariomedina/+archive/ubuntu/talib/+files&#x27;</span></span><br><span class="line">!wget $url/libta-lib0_0.<span class="number">4.0</span>-oneiric1_amd64.<span class="keyword">deb</span> -qO libta.<span class="keyword">deb</span></span><br><span class="line">!wget $url/<span class="keyword">ta</span>-lib0-dev_0.<span class="number">4.0</span>-oneiric1_amd64.<span class="keyword">deb</span> -qO <span class="keyword">ta</span>.<span class="keyword">deb</span></span><br><span class="line">!dpkg -i libta.<span class="keyword">deb</span> <span class="keyword">ta</span>.<span class="keyword">deb</span></span><br><span class="line">!pip install <span class="keyword">ta</span>-lib</span><br><span class="line">import talib</span><br><span class="line"></span><br><span class="line">sample[<span class="string">&#x27;MA20&#x27;</span>] = talib.SMA(sample[<span class="string">&#x27;Adj Close&#x27;</span>],timeperiod=<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id><a href="#" class="headerlink" title></a></h1>
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2021/04/02/linux-command2/" data-toggle="tooltip" data-placement="top" title="리눅스/유닉스 명령어 모음2">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2021/04/02/ai-theory-note/" data-toggle="tooltip" data-placement="top" title="AI 이론 정리노트">Next Post &rarr;</a>
+                            <a href="/2021/04/24/bit-trade-competition1/" data-toggle="tooltip" data-placement="top" title="비트코인 트레이드 경진대회">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -309,7 +316,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%EB%AA%A9%EC%B0%A8"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">목차</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%EC%9D%B4%EB%8F%99%ED%8F%89%EA%B7%A0%EC%84%A0"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">이동평균선</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%EB%AA%A9%EC%B0%A8"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">목차</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%EC%9D%B4%EB%8F%99%ED%8F%89%EA%B7%A0%EC%84%A0"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">이동평균선</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Pandas-%EA%B5%AC%ED%98%84"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">Pandas 구현</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ta-lib%EB%A1%9C-%EC%A0%81%EC%9A%A9"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">ta-lib로 적용</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">3.</span> <span class="toc-nav-text"></span></a></li></ol>
         
         </div>
       </aside>
@@ -359,8 +366,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "yelran-s-tech-blog";
-    var disqus_identifier = "https://jukyellow.github.io/2021/04/02/stock-tech-indicator/";
-    var disqus_url = "https://jukyellow.github.io/2021/04/02/stock-tech-indicator/";
+    var disqus_identifier = "https://jukyellow.github.io/2021/04/25/stock-tech-indicator/";
+    var disqus_url = "https://jukyellow.github.io/2021/04/25/stock-tech-indicator/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
