@@ -9,15 +9,29 @@
 
 
     <url>
+        <loc>https://jukyellow.github.io/categories/data-scientist/note/</loc>
+        <lastmod>2021-04-26T22:28:54.243Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://jukyellow.github.io/categories/data-scientist/</loc>
+        <lastmod>2021-04-26T22:28:54.243Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://jukyellow.github.io/categories/ai/finance/</loc>
-        <lastmod>2021-04-26T21:30:35.970Z</lastmod>
+        <lastmod>2021-04-26T21:32:40.740Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://jukyellow.github.io/categories/ai/</loc>
-        <lastmod>2021-04-26T21:30:35.970Z</lastmod>
+        <lastmod>2021-04-26T21:32:40.740Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -46,20 +60,6 @@
     <url>
         <loc>https://jukyellow.github.io/categories/data-scientist/practice/</loc>
         <lastmod>2021-04-23T01:25:51.606Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/categories/data-scientist/</loc>
-        <lastmod>2021-04-23T01:25:51.606Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://jukyellow.github.io/categories/data-scientist/note/</loc>
-        <lastmod>2021-04-18T20:49:02.791Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
